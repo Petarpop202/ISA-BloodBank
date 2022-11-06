@@ -7,6 +7,7 @@ import { MaterialModule } from './material/material.module';
 import { SharedModule } from './modules/shared/shared.module';
 import { HomepageModule } from './modules/homepage/homepage.module';
 import { BloodBankCenterModule } from './modules/blood-bank-center/blood-bank-center.module';
+import { UserProfilesModule } from './modules/user-profiles/user-profiles.module';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { BloodBankCenterModule } from './modules/blood-bank-center/blood-bank-ce
     
     HomepageModule,
     BloodBankCenterModule,
+    UserProfilesModule
     
   ],
   providers: [],

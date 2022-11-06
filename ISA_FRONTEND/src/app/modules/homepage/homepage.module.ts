@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { HomepageMenuComponent } from './homepage-menu/homepage-menu.component';
+import { MedicineStaffMenuComponent } from './medicine-staff-menu/medicine-staff-menu.component';
 
 
 
@@ -14,14 +15,16 @@ import { HomepageMenuComponent } from './homepage-menu/homepage-menu.component';
     HomepageComponent,
     LoginComponent,
     RegisterComponent,
-    HomepageMenuComponent
+    HomepageMenuComponent,
+    MedicineStaffMenuComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
   ],
   exports: [
-    HomepageMenuComponent
+    HomepageMenuComponent,
+    MedicineStaffMenuComponent,
   ]
 })
 export class HomepageModule { }
