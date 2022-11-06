@@ -3,6 +3,15 @@ import { CommonModule } from '@angular/common';
 import { FooterComponent } from './footer/footer.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { RouterModule } from '@angular/router';
+import { MaterialModule } from 'src/app/material/material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+const importAndExport = [
+  AppRoutingModule,
+  RouterModule,
+  MaterialModule,
+  BrowserAnimationsModule,
+]
 
 @NgModule({
   declarations: [
@@ -10,11 +19,11 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
-    AppRoutingModule,
-    RouterModule,
+    importAndExport
   ],
   exports: [
-    FooterComponent
+    importAndExport,
+    FooterComponent,
   ]
 })
 export class SharedModule { }

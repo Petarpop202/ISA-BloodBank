@@ -19,7 +19,9 @@ import { HomepageMenuComponent } from './homepage-menu/homepage-menu.component';
   imports: [
     CommonModule,
     SharedModule,
-    AppRoutingModule
+  ],
+  exports: [
+    HomepageMenuComponent
   ]
 })
 export class HomepageModule { }
