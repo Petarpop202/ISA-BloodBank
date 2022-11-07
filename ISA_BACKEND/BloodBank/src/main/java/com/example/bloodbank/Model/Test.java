@@ -1,28 +1,17 @@
 package com.example.bloodbank.Model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "Tests")
 public class Test {
     @Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
+    @Getter @Setter
     private String Id;
+    @Getter @Setter
     private String Name;
 
-    public String getId() {
-        return Id;
-    }
-
-    public void setId(String id) {
-        Id = id;
-    }
-
-    public String getName() {
-        return Name;
-    }
-
-    public void setName(String name) {
-        Name = name;
-    }
 }

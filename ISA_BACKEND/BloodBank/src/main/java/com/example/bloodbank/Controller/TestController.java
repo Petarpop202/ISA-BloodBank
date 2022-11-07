@@ -1,7 +1,7 @@
 package com.example.bloodbank.Controller;
 
 import com.example.bloodbank.Model.Test;
-import com.example.bloodbank.Service.TestService;
+import com.example.bloodbank.Service.ServiceImplementation.TestService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
