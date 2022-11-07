@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BloodBank } from 'src/app/model/bloodBank';
+import { BloodBankService } from 'src/app/services/blood-bank.service';
 
 @Component({
   selector: 'app-blood-center',
@@ -7,9 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BloodCenterComponent implements OnInit {
 
-  constructor() { }
+  bloodBanks: BloodBank[] = [];
+  bloodBank: BloodBank | undefined;
+  constructor(private bloodBankService:BloodBankService) { }
 
   ngOnInit(): void {
+    this.getBloodBank("1");
+    //this.getBloodBanks();
+  }
+
+  
+  public getBloodBank(id:any): void {
+    this.bloodBankService.getBloodBank(id).subscribe(res => {
+      this.bloodBank = res;
+    })
+  }
+
+  public getBloodBanks(): void {
+    this.bloodBankService.getBloodBanks().subscribe(res => {
+      this.bloodBanks = res;
+    })
   }
 
 }

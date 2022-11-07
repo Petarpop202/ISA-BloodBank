@@ -1,7 +1,4 @@
-import { getSafePropertyAccessString } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { Test } from 'src/app/model/test';
-import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-homepage',
@@ -10,18 +7,9 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class HomepageComponent implements OnInit {
 
-  
-  constructor(private userService:UserService) { }
-  tests: Test[] = [];
+  constructor() { }
 
   ngOnInit(): void {
-    this.jebo();
-  }
-
-  public jebo(): void {
-    this.userService.getTests().subscribe(res => {
-      this.tests = res;
-    })
   }
 
 }
