@@ -8,6 +8,9 @@ import { SharedModule } from './modules/shared/shared.module';
 import { HomepageModule } from './modules/homepage/homepage.module';
 import { BloodBankCenterModule } from './modules/blood-bank-center/blood-bank-center.module';
 import { UserProfilesModule } from './modules/user-profiles/user-profiles.module';
+import { FormsModule } from '@angular/forms';
+import { RegisterComponent } from './modules/homepage/register/register.component';
+
 
 
 @NgModule({
@@ -20,7 +23,8 @@ import { UserProfilesModule } from './modules/user-profiles/user-profiles.module
     
     HomepageModule,
     BloodBankCenterModule,
-    UserProfilesModule
+    UserProfilesModule,
+    FormsModule
     
   ],
   providers: [],

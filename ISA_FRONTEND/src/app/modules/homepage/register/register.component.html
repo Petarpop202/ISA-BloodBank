@@ -1,2 +1,79 @@
 <app-homepage-menu></app-homepage-menu>
-<p>register works!</p>
+<mat-grid-list cols="1" rowHeight="1100px" style="background-color:gray;">
+    <mat-grid-tile>
+        <div class="example-container">
+          <br>
+          <label style="font-size: 20px;">Registracija novog donora</label>
+          <br><br>
+          <mat-form-field appearance="fill" class="width-50">
+            <mat-label>Ime</mat-label>
+            <input type="text" matInput [(ngModel)]="donor.name" >
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill" class="width-50 ml-2">
+            <mat-label>Prezime</mat-label>
+            <input matInput [(ngModel)]="donor.surname">
+          </mat-form-field>
+          <br>
+          <label id="example-radio-group-label">Pol: </label>
+          <br><br>
+          <mat-radio-group aria-label="Select an option">
+            <div style="display:flex; gap: 10px;">
+            <mat-radio-button name="musko" (change)="setGender('MALE')" selectedvalue="1">Musko</mat-radio-button>
+            <mat-radio-button name="zensko" (change)="setGender('FEMALE')" class="example-radio-button" value="2">Zensko</mat-radio-button>
+            </div>
+          </mat-radio-group>
+          <br>
+          <br>
+          <br>
+          <label id="example-radio-group-label">Adresa</label>
+          <br>
+          <mat-form-field appearance="fill" class="width-100">
+            <mat-label>Drzava</mat-label>
+            <input matInput placeholder="Ex. pat@example.com" [(ngModel)]="donor.adress.country">
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill" class="width-100">
+            <mat-label>Grad</mat-label>
+            <input matInput placeholder="Ex. pat@example.com" [(ngModel)]="donor.adress.city">
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill" class="width-100">
+            <mat-label>Ulica</mat-label>
+            <input matInput placeholder="Ex. pat@example.com" [(ngModel)]="donor.adress.street">
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill" class="width-100">
+            <mat-label>Broj Ulice</mat-label>
+            <input matInput placeholder="Ex. pat@example.com" [(ngModel)]="donor.adress.streetNum">
+          </mat-form-field>
+          <br><br>
+          <mat-form-field appearance="fill" class="width-50">
+            <mat-label>Broj telefona</mat-label>
+            <input matInput [(ngModel)]="donor.phoneNumber">
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill" class="width-100">
+            <mat-label>Email adresa</mat-label>
+            <input matInput placeholder="Ex. pat@example.com" [(ngModel)]="donor.mail">
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill" class="width-50">
+            <mat-label>JMBG</mat-label>
+            <input matInput [(ngModel)]="donor.jmbg">
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill" class="width-50">
+            <mat-label>Korisnicko ime</mat-label>
+            <input matInput [(ngModel)]="donor.username">
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill" class="width-100">
+            <mat-label>Sifra korisnika</mat-label>
+            <input matInput [(ngModel)]="donor.password" [type]="hide ? 'password' : 'text'">
+          </mat-form-field>
+          <br>
+          <button mat-raised-button color="primary" (click)="createDonor()">Registruj</button>
+        </div>
+    </mat-grid-tile>
+    </mat-grid-list>

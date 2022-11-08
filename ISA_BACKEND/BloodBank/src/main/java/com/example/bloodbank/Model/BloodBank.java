@@ -15,6 +15,7 @@ import lombok.Setter;
 @Table(name = "BloodBanks")
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter @Setter
 public class BloodBank {
 	
 	@Id
@@ -24,7 +25,7 @@ public class BloodBank {
 	private float AverageGrade;
 	private Date FreeTermin;
 	private String Blood;
-	
+	/*
 	public long getId() {
 		return Id;
 	}
@@ -62,6 +63,6 @@ public class BloodBank {
 		Blood = blood;
 	}
 	
-	
+	*/
 	
 }
