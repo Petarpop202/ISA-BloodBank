@@ -1,0 +1,40 @@
+package com.example.bloodbank.Service.ServiceImplementation;
+
+import com.example.bloodbank.Model.BloodDonor;
+import com.example.bloodbank.Repository.IBloodDonorRepository;
+import com.example.bloodbank.Service.IBloodDonorService;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class BloodDonorService implements IBloodDonorService {
+    private IBloodDonorRepository _bloodDonorRepository;
+
+    BloodDonorService(IBloodDonorRepository bloodDonorRepository){_bloodDonorRepository = bloodDonorRepository;}
+
+    @Override
+    public List<BloodDonor> getAll() {
+        return _bloodDonorRepository.findAll();
+    }
+
+    @Override
+    public BloodDonor getById(Long id) {
+        return _bloodDonorRepository.findById(id).orElseGet(null);
+    }
+
+    @Override
+    public BloodDonor create(BloodDonor entity) {
+        return _bloodDonorRepository.save(entity);
+    }
+
+    @Override
+    public BloodDonor update(BloodDonor entity) {
+        return null;
+    }
+
+    @Override
+    public void delete(Long entityId) {
+
+    }
+}

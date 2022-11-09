@@ -21,4 +21,8 @@ export class UserService {
   getTests(): Observable<Test[]> {
     return this.http.get<Test[]>(this.apiHost + 'test/get', {headers: this.headers});
   }
+
+  createUser(user: any): Observable<any> {
+    return this.http.post<any>(this.apiHost + 'user/new', user);
+  }
 }
