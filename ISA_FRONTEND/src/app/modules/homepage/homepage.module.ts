@@ -17,6 +17,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { FormsModule } from '@angular/forms';
+import { ValidationErrorComponent } from './register/validation-error/validation-error.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
@@ -25,7 +27,8 @@ import { FormsModule } from '@angular/forms';
     LoginComponent,
     RegisterComponent,
     HomepageMenuComponent,
-    MedicineStaffMenuComponent
+    MedicineStaffMenuComponent,
+    ValidationErrorComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +46,8 @@ import { FormsModule } from '@angular/forms';
    
     MatRadioModule,
     MatGridListModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule
   ],
   exports: [
     HomepageMenuComponent,
