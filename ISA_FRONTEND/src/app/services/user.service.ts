@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../model/user';
+import { BloodDonor } from "../model/bloodDonor"
 import { Test } from '../model/test';
 
 @Injectable({
@@ -15,7 +16,11 @@ export class UserService {
 
   // ovo je nako napravljeno bezveze
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.apiHost + 'api/User', {headers: this.headers});
+    return this.http.get<User[]>(this.apiHost + 'user/get', {headers: this.headers});
+  }
+
+  getUser(id: number): Observable<BloodDonor> {
+    return this.http.get<BloodDonor>(this.apiHost + 'user/get/' + id, {headers: this.headers});
   }
 
   getTests(): Observable<Test[]> {
@@ -24,5 +29,9 @@ export class UserService {
 
   createUser(user: any): Observable<any> {
     return this.http.post<any>(this.apiHost + 'user/new', user);
+  }
+
+  updateUser(user: any): Observable<any> {
+    return this.http.put<any>(this.apiHost + 'user/update', user);
   }
 }

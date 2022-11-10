@@ -28,4 +28,9 @@ public class UserController {
     BloodDonor CreateDonor(@RequestBody BloodDonor newUser) {
         return _userService.create(newUser);
     }
+    
+    @PutMapping("/update")
+    BloodDonor UpdateDonor(@RequestBody BloodDonor updatedUser) {
+        return _userService.update(updatedUser);
+    }
 }

@@ -19,6 +19,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { FormsModule } from '@angular/forms';
 import { ValidationErrorComponent } from './register/validation-error/validation-error.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { BloodDonorMenuComponent } from './blood-donor-menu/blood-donor-menu.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     LoginComponent,
     RegisterComponent,
     HomepageMenuComponent,
+    BloodDonorMenuComponent,
     MedicineStaffMenuComponent,
     ValidationErrorComponent
   ],
@@ -51,7 +53,8 @@ import {MatDialogModule} from '@angular/material/dialog';
   ],
   exports: [
     HomepageMenuComponent,
-    MedicineStaffMenuComponent,
+    BloodDonorMenuComponent,
+    MedicineStaffMenuComponent
   ]
 })
 export class HomepageModule { }
