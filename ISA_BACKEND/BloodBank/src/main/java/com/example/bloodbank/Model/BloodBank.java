@@ -19,12 +19,17 @@ import lombok.Setter;
 public class BloodBank {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false)
 	private long Id;
 	private String Name;
 	private String Description;
 	private float AverageGrade;
 	private Date FreeTermin;
 	private String Blood;
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "adress_id")
+	private Adress Adress;
 	/*
 	public long getId() {
 		return Id;
