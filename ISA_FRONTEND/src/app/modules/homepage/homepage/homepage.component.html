@@ -1,8 +1,42 @@
 <app-homepage-menu></app-homepage-menu>
 <div>
 <h1 class="m-3" >Prikaz svih centara za doniranje krvi</h1>
-
-    <table mat-table [dataSource]="dataSource" style="width:100%" class="mt-3" matSort (matSortChange)="announceSortChange($event)">
+<div class="d-flex float-end justify-content-center align-items-center mat-app-background">
+  <div class="float-end">
+    <mat-form-field appearance="fill" class="mx-2 mt-3">
+      <mat-label>Mesto</mat-label>
+      <mat-select [(ngModel)]="filteredValues.selectedCity" (selectionChange)="applyFilter()">
+        <mat-option *ngFor="let city of addresses" [value]="city">
+          {{city}}
+        </mat-option>
+      </mat-select>
+      <mat-icon matSuffix>location_city</mat-icon>
+    </mat-form-field>
+  </div>
+  <div class="float-end">
+    <mat-form-field appearance="fill" class="mx-2 mt-3">
+      <mat-label>Od ocene</mat-label>
+      <input matInput type="number" min="0" max="5" (change)="applyFilter()" (keyup)="applyFilter()" [(ngModel)]="filteredValues.gradeFrom" placeholder="Od">
+      <mat-icon matSuffix>star</mat-icon>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="mx-2 mt-3">
+      <mat-label>Do ocene</mat-label>
+      <input matInput type="number" min="0" max="5" (change)="applyFilter()" (keyup)="applyFilter()" [(ngModel)]="filteredValues.gradeTo" placeholder="Do">
+      <mat-icon matSuffix>star</mat-icon>
+    </mat-form-field>
+  </div>
+  <div class="float-end">
+    <mat-form-field appearance="fill" class="mx-2 mt-3">
+      <mat-label>Pretraži</mat-label>
+      <input matInput (keyup)="applyFilter()" [(ngModel)]="filteredValues.search" placeholder="Pretraga po imenu ili gradu">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </div>
+  <div class="float-end">
+    <button type="button" class="btn btn-warning btn-lg justify-content-center" (click)="resetFilters()">Resetuj</button>
+  </div>
+</div>
+  <table mat-table [dataSource]="dataSource" style="width:100%" class="mt-3" matSort (matSortChange)="announceSortChange($event)">
 
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
