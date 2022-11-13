@@ -20,6 +20,8 @@ import { FormsModule } from '@angular/forms';
 import { ValidationErrorComponent } from './register/validation-error/validation-error.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { BloodDonorMenuComponent } from './blood-donor-menu/blood-donor-menu.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatSortModule} from '@angular/material/sort';
 
 
 @NgModule({
@@ -49,7 +51,9 @@ import { BloodDonorMenuComponent } from './blood-donor-menu/blood-donor-menu.com
     MatRadioModule,
     MatGridListModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTableModule,
+    MatSortModule
   ],
   exports: [
     HomepageMenuComponent,
