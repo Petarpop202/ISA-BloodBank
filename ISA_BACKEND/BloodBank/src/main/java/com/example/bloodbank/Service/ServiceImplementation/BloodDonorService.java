@@ -30,7 +30,19 @@ public class BloodDonorService implements IBloodDonorService {
 
     @Override
     public BloodDonor update(BloodDonor entity) {
-        return null;
+    	BloodDonor oldDonor = _bloodDonorRepository.findById(entity.getId()).orElseGet(null);
+    	
+    	oldDonor.setName(entity.getName());
+    	oldDonor.setSurname(entity.getSurname());
+    	oldDonor.setGender(entity.getGender());
+    	oldDonor.setUsername(entity.getUsername());
+    	oldDonor.setPassword(entity.getPassword());
+    	oldDonor.setJmbg(entity.getJmbg());
+    	oldDonor.setMail(entity.getMail());
+    	oldDonor.setPhoneNumber(entity.getPhoneNumber());
+    	oldDonor.setAdress(entity.getAdress());
+    	
+    	return _bloodDonorRepository.save(oldDonor);
     }
 
     @Override
