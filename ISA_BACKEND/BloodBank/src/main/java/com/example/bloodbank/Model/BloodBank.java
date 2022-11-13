@@ -1,7 +1,9 @@
 package com.example.bloodbank.Model;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -19,50 +21,22 @@ import lombok.Setter;
 public class BloodBank {
 	
 	@Id
-	private long Id;
-	private String Name;
-	private String Description;
-	private float AverageGrade;
-	private Date FreeTermin;
-	private String Blood;
-	/*
-	public long getId() {
-		return Id;
-	}
-	public void setId(long id) {
-		Id = id;
-	}
-	public String getName() {
-		return Name;
-	}
-	public void setName(String name) {
-		Name = name;
-	}
-	public String getDescription() {
-		return Description;
-	}
-	public void setDescription(String description) {
-		Description = description;
-	}
-	public float getAverageGrade() {
-		return AverageGrade;
-	}
-	public void setAverageGrade(float averageGrade) {
-		AverageGrade = averageGrade;
-	}
-	public Date getFreeTermin() {
-		return FreeTermin;
-	}
-	public void setFreeTermin(Date freeTermin) {
-		FreeTermin = freeTermin;
-	}
-	public String getBlood() {
-		return Blood;
-	}
-	public void setBlood(String blood) {
-		Blood = blood;
-	}
-	
-	*/
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false)
+	private long id;
+	private String name;
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "address_id")
+	private Address address;
+	private String description;
+	private float averageGrade;
+	private String blood;
+
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "bloodDonationAppointments_id", referencedColumnName = "id")
+	private Set<BloodDonationAppointment> bloodDonationAppointments = new HashSet<BloodDonationAppointment>();
+
+	@OneToMany
+	@JoinColumn(name = "medicineStaff_id", referencedColumnName = "id")
+	private Set<MedicineStaff> medicineStaffs = new HashSet<MedicineStaff>();
 }
