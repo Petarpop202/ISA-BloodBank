@@ -1,8 +1,8 @@
-insert into adresses (city, country, street, street_num) values ('Novi Sad', 'Srbija', 'Ulica 1', '11');
-insert into adresses (city, country, street, street_num) values ('Novi Sad', 'Srbija', 'Ulica 2', '22');
-insert into adresses (city, country, street, street_num) values ('Beograd', 'Srbija', 'Ulica 3', '33');
-insert into adresses (city, country, street, street_num) values ('Beograd', 'Srbija', 'Ulica 4', '44');
-insert into adresses (city, country, street, street_num) values ('Niš', 'Srbija', 'Ulica 5', '55');
+insert into addresses (city, country, street, street_num) values ('Novi Sad', 'Srbija', 'Ulica 1', '11');
+insert into addresses (city, country, street, street_num) values ('Novi Sad', 'Srbija', 'Ulica 2', '22');
+insert into addresses (city, country, street, street_num) values ('Beograd', 'Srbija', 'Ulica 3', '33');
+insert into addresses (city, country, street, street_num) values ('Beograd', 'Srbija', 'Ulica 4', '44');
+insert into addresses (city, country, street, street_num) values ('Niš', 'Srbija', 'Ulica 5', '55');
 
 insert into users (name, surname, gender, username, password, jmbg, mail, phone_number, adress_id) values ('Danilo', 'Bulatović', 0, 'Danilo123', 'danilo', '123456789123', 'danilo@gmail.com', '065/123-456', 1);
 
