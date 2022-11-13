@@ -16,15 +16,16 @@ import java.util.Set;
 @Getter
 @Setter
 public class MedicineStaff extends User{
-    @Id
+    /*@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private long id;
+    private long id;*/
+
     @ManyToOne
     @JoinColumn(name = "blood_bank_id")
     private BloodBank bloodBank;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    /*@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "bloodDonationAppointments_id", referencedColumnName = "id")
-    private Set<BloodDonationAppointment> bloodDonationAppointments = new HashSet<BloodDonationAppointment>();
+    private Set<BloodDonationAppointment> bloodDonationAppointments = new HashSet<BloodDonationAppointment>();*/
 }

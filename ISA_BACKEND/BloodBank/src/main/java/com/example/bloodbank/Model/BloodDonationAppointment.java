@@ -23,7 +23,7 @@ public class BloodDonationAppointment {
 
     private Date date;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "medicineStaff_id", referencedColumnName = "id")
     private Set<MedicineStaff> medicineStaffs = new HashSet<MedicineStaff>();
 

@@ -32,11 +32,10 @@ public class BloodBank {
 	private float averageGrade;
 	private String blood;
 
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	/*@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "bloodDonationAppointments_id", referencedColumnName = "id")
-	private Set<BloodDonationAppointment> bloodDonationAppointments = new HashSet<BloodDonationAppointment>();
 
-	@OneToMany
+	/*@OneToMany
 	@JoinColumn(name = "medicineStaff_id", referencedColumnName = "id")
-	private Set<MedicineStaff> medicineStaffs = new HashSet<MedicineStaff>();
+	private Set<MedicineStaff> medicineStaffs = new HashSet<MedicineStaff>();*/
 }

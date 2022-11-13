@@ -4,12 +4,14 @@ insert into addresses (city, country, street, street_num) values ('Beograd', 'Sr
 insert into addresses (city, country, street, street_num) values ('Beograd', 'Srbija', 'Ulica 4', '44');
 insert into addresses (city, country, street, street_num) values ('Niš', 'Srbija', 'Ulica 5', '55');
 
-insert into users (name, surname, gender, username, password, jmbg, mail, phone_number, adress_id) values ('Danilo', 'Bulatović', 0, 'Danilo123', 'danilo', '123456789123', 'danilo@gmail.com', '065/123-456', 1);
+insert into users (name, surname, gender, username, password, jmbg, mail, phone_number, address_id) values ('Danilo', 'Bulatović', 0, 'Danilo123', 'danilo', '123456789123', 'danilo@gmail.com', '065/123-456', 1);
+insert into users (name, surname, gender, username, password, jmbg, mail, phone_number, address_id) values ('Đorđe', 'Lipovčić', 0, 'plaoludastruja', 'pls', '123456789123', 'pls@gmail.com', '065/123-456', 2);
+
+insert into blood_banks (name, address_id, description, average_grade, blood) values ('Kul Banka Krvi', 3, 'Kul opis', 5, 'AB');
+insert into blood_banks (name, address_id, description, average_grade, blood) values ('Losa Banka Krvi', 4, 'Los opis', 1, 'A');
 
 insert into blood_donors (category, loyality_points, penalty_points, id) values (0, 0, 0, 1);
+insert into medicine_staffs (blood_bank_id, id) values (1, 2);
 
-insert into blood_banks (name, description, average_grade, blood, free_termin, adress_id) values ('Banka 1', 'Opis 1', 4.6, 'A+', '2022-11-20 15:00:00', 2);
-insert into blood_banks (name, description, average_grade, blood, free_termin, adress_id) values ('Banka 2', 'Opis 2', 3.2, 'B+', '2022-11-15 10:00:00', 3);
-insert into blood_banks (name, description, average_grade, blood, free_termin, adress_id) values ('Banka 3', 'Opis 3', 4.1, 'AB+', '2022-11-25 11:00:00', 3);
-insert into blood_banks (name, description, average_grade, blood, free_termin, adress_id) values ('Banka 4', 'Opis 4', 2.9, 'O+', '2022-12-01 09:00:00', 4);
-insert into blood_banks (name, description, average_grade, blood, free_termin, adress_id) values ('Banka 5', 'Opis 5', 3.8, 'A-', '2022-12-14 14:00:00', 5);
+insert into blood_donation_appointments (date,blood_bank_id) values ('12.12.2022.', 1);
+insert into blood_donation_appointments_medicine_staffs (blood_donation_appointment_id, medicine_staffs_id) values (1, 2);

@@ -39,8 +39,8 @@ export class EditBloodDonorProfileComponent implements OnInit {
   validateInput(): boolean{
     if(this.donor.name == "" || this.donor.surname == "" || this.donor.username == ""
      || this.donor.password == "" || this.donor.jmbg == "" || this.donor.mail == "" 
-     || this.donor.phoneNumber == "" || this.donor.adress.street == "" ||this.donor.adress.streetNum == ""
-     ||this.donor.adress.city == "" || this.donor.adress.country == ""){
+     || this.donor.phoneNumber == "" || this.donor.address.street == "" ||this.donor.address.streetNum == ""
+     ||this.donor.address.city == "" || this.donor.address.country == ""){
        this.error = true;
        return false;
     }

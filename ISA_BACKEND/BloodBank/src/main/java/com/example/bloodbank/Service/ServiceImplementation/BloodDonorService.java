@@ -40,7 +40,7 @@ public class BloodDonorService implements IBloodDonorService {
     	oldDonor.setJmbg(entity.getJmbg());
     	oldDonor.setMail(entity.getMail());
     	oldDonor.setPhoneNumber(entity.getPhoneNumber());
-    	oldDonor.setAdress(entity.getAdress());
+    	oldDonor.setAddress(entity.getAddress());
     	
     	return _bloodDonorRepository.save(oldDonor);
     }
