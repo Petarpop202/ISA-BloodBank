@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
   validateInput():boolean{
     if(this.donor.name == "" || this.donor.surname == "" || this.donor.mail == ""
      || this.donor.jmbg == "" || this.donor.password == "" || this.donor.phoneNumber == "" 
-     || this.donor.adress.country == "" || this.donor.adress.city == "" || this.donor.adress.street == "")
+     || this.donor.address.country == "" || this.donor.address.city == "" || this.donor.address.street == "")
       return false;
     else return true;
   }

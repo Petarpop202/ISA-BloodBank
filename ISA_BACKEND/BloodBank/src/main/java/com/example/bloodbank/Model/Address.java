@@ -6,15 +6,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
-@Table(name = "Adresses")
+@Table(name = "Addresses")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class Adress {
+public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -27,4 +26,8 @@ public class Adress {
     private String Street;
     @Column
     private String StreetNum;
+    @Column
+    private String Longitude;
+    @Column
+    private String Latitude;
 }

@@ -36,6 +36,6 @@ public class User {
     @Column
     private GenderEnum Gender;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "adress_id")
-    private Adress Adress;
+    @JoinColumn(name = "address_id")
+    private Address Address;
 }

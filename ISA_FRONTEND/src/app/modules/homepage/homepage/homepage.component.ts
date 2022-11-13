@@ -48,7 +48,7 @@ export class HomepageComponent implements OnInit {
 
   getAddresses() : void{
     this.banks.forEach(bank => {
-      this.addresses.push(bank.adress.city)
+      this.addresses.push(bank.address.city)
     });
     this.addresses = [...new Set(this.addresses)];
   }
@@ -69,9 +69,9 @@ export class HomepageComponent implements OnInit {
     this.dataSource.filterPredicate = function(data, filter){
       let _filter = JSON.parse(filter);
       return (data.name.toLocaleLowerCase().includes(_filter.search.toLocaleLowerCase())
-      || data.adress.city.toLocaleLowerCase().includes(_filter.search.toLocaleLowerCase()))
+      || data.address.city.toLocaleLowerCase().includes(_filter.search.toLocaleLowerCase()))
       && (data.averageGrade >= Number(_filter.gradeFrom) && data.averageGrade <= Number(_filter.gradeTo))
-      && (_filter.selectedCity === 'Sve' ? true : data.adress.city.toLocaleLowerCase() === _filter.selectedCity.toLocaleLowerCase());
+      && (_filter.selectedCity === 'Sve' ? true : data.address.city.toLocaleLowerCase() === _filter.selectedCity.toLocaleLowerCase());
     }
     this.dataSource.filter = JSON.stringify(this.filteredValues);
   }

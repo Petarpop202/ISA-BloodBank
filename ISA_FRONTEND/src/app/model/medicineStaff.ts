@@ -1,6 +1,6 @@
 import { Address } from "./address";
 
-export class BloodDonor {
+export class MedicineStaff {
     id: string = '';
     name: string = '';
     surname: string = '';
@@ -11,9 +11,6 @@ export class BloodDonor {
     password: string = '';
     gender: string = '';
     address: Address = new Address;
-    penaltyPoints: number = 0;
-    loyalityPoints: number = 0;
-    category: string = 'REGULAR';
 
     public constructor(obj?: any) {
         if (obj) {
@@ -27,9 +24,6 @@ export class BloodDonor {
             this.password = obj.password;
             this.gender = obj.gender;
             this.address = obj.address;
-            this.penaltyPoints = obj.penaltyPoints;
-            this.loyalityPoints = obj.loyalityPoints;
-            this.category = obj.category;
         }
     }
 }
