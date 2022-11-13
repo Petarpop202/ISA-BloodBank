@@ -22,6 +22,13 @@ export class HomepageComponent implements OnInit {
   public dataSource = new MatTableDataSource<BloodBank>();
   banks: BloodBank[] = [];
   displayedColumns: string[] = ['id', 'name', 'averageGrade', 'city'];
+  addresses: string[] = ['Sve']
+  filteredValues = {
+    search: '',
+    selectedCity: 'Sve',
+    gradeFrom: 0.0,
+    gradeTo: 5.0
+  }
 
   ngOnInit(): void {
     this.getBanks();
@@ -33,9 +40,17 @@ export class HomepageComponent implements OnInit {
 
   getBanks() : void {
     this.bloodBankService.getBloodBanks().subscribe(res=>{
-      this.banks = res;
-      this.dataSource.data = this.banks;
+        this.banks = res;
+        this.dataSource.data = this.banks;
+        this.getAddresses();
       })
+  }
+
+  getAddresses() : void{
+    this.banks.forEach(bank => {
+      this.addresses.push(bank.adress.city)
+    });
+    this.addresses = [...new Set(this.addresses)];
   }
 
   announceSortChange(sortState: Sort) {
@@ -48,5 +63,24 @@ export class HomepageComponent implements OnInit {
     } else {
       this._liveAnnouncer.announce('Sorting cleared');
     }
+  }
+
+  applyFilter() {
+    this.dataSource.filterPredicate = function(data, filter){
+      let _filter = JSON.parse(filter);
+      return (data.name.toLocaleLowerCase().includes(_filter.search.toLocaleLowerCase())
+      || data.adress.city.toLocaleLowerCase().includes(_filter.search.toLocaleLowerCase()))
+      && (data.averageGrade >= Number(_filter.gradeFrom) && data.averageGrade <= Number(_filter.gradeTo))
+      && (_filter.selectedCity === 'Sve' ? true : data.adress.city.toLocaleLowerCase() === _filter.selectedCity.toLocaleLowerCase());
+    }
+    this.dataSource.filter = JSON.stringify(this.filteredValues);
+  }
+
+  resetFilters() {
+    this.filteredValues.search = '';
+    this.filteredValues.gradeFrom = 0.0;
+    this.filteredValues.gradeTo = 5.0;
+    this.filteredValues.selectedCity = 'Sve';
+    this.applyFilter();
   }
 }
