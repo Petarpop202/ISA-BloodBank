@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { BloodBank } from 'src/app/model/bloodBank';
+import { MedicineStaff } from 'src/app/model/medicineStaff';
 import { BloodBankService } from 'src/app/services/blood-bank.service';
 
 @Component({
@@ -9,15 +11,18 @@ import { BloodBankService } from 'src/app/services/blood-bank.service';
 })
 export class BloodCenterComponent implements OnInit {
 
+  id : string | null | undefined;
   bloodBanks: BloodBank[] = [];
-  bloodBank: BloodBank | undefined;
-  constructor(private bloodBankService:BloodBankService) { }
+  bloodBank: BloodBank = new BloodBank;
+  medicineStaff : MedicineStaff[] = []
+
+  constructor(private bloodBankService:BloodBankService,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.getBloodBank("2");
-    //this.getBloodBanks();
+    this.id = this.route.snapshot.paramMap.get('id')
+    this.getBloodBank(this.id);
+    this.getMedicineStaffFromBloodBank(this.id);
   }
-
   
   public getBloodBank(id:any): void {
     this.bloodBankService.getBloodBank(id).subscribe(res => {
@@ -25,10 +30,14 @@ export class BloodCenterComponent implements OnInit {
     })
   }
 
-  public getBloodBanks(): void {
-    this.bloodBankService.getBloodBanks().subscribe(res => {
-      this.bloodBanks = res;
+  public getMedicineStaffFromBloodBank(id:any) {
+    this.bloodBankService.getMedicineStaffFromBloodBank(id).subscribe(res => {
+      this.medicineStaff = res;
     })
+  }
+
+  public numSequence(n: any): Array<number> {
+    return Array(n);
   }
 
 }

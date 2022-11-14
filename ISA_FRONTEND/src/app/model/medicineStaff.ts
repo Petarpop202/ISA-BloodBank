@@ -1,4 +1,5 @@
 import { Address } from "./address";
+import { BloodBank } from "./bloodBank";
 
 export class MedicineStaff {
     id: string = '';
@@ -11,6 +12,7 @@ export class MedicineStaff {
     password: string = '';
     gender: string = '';
     address: Address = new Address;
+    bloodBank: BloodBank = new BloodBank;
 
     public constructor(obj?: any) {
         if (obj) {
@@ -24,6 +26,7 @@ export class MedicineStaff {
             this.password = obj.password;
             this.gender = obj.gender;
             this.address = obj.address;
+            this.bloodBank = obj.bloodBank;
         }
     }
 }

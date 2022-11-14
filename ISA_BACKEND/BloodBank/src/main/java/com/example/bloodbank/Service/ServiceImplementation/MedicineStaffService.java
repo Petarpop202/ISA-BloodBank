@@ -8,6 +8,7 @@ import com.example.bloodbank.Repository.IUserRepository;
 import com.example.bloodbank.Service.IMedicineStaffService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -50,5 +51,18 @@ public class MedicineStaffService implements IMedicineStaffService {
     @Override
     public void delete(Long entityId) {
         _medicineStaffRepository.delete(getById(entityId));
+    }
+
+    @Override
+    public List<MedicineStaff> getMedicineStaffFromBloodBank(Long Id) {
+        List<MedicineStaff> medicineStaffs = new ArrayList<MedicineStaff>();
+
+        for(MedicineStaff person: getAll()){
+            if(person.getBloodBank().getId() == Id){
+                medicineStaffs.add(person);
+            }
+        }
+
+        return  medicineStaffs;
     }
 }

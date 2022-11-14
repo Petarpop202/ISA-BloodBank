@@ -38,4 +38,10 @@ public class MedicineStaffController {
         return _medicineStaffService.update(updatedMedicineStaff);
     }
 
+    @GetMapping(value = "/getMedicineStaffFromBloodBank/{id}")
+    public List<MedicineStaff> getMedicineStaffFromBloodBank(@PathVariable Long id){
+        return _medicineStaffService.getMedicineStaffFromBloodBank(id);
+    }
+
+
 }

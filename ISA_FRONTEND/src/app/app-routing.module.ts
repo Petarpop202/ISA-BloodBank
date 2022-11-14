@@ -15,11 +15,12 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
 
-  { path: 'myBloodBank', component: BloodCenterComponent},
+  { path: 'myBloodBank/:id', component: BloodCenterComponent},
   { path: 'editBloodBank/:id', component: EditBloodBankComponent},
 
   { path: 'bloodDonorProfile', component: BloodDonorProfileComponent},
   { path: 'editBloodDonorProfile', component: EditBloodDonorProfileComponent},
+
   { path: 'medicineStaffProfile/:id', component: MedicineStaffProfileComponent},
   { path: 'editMedicineStaffProfile/:id', component: EditMedicineStaffProfileComponent},
 
