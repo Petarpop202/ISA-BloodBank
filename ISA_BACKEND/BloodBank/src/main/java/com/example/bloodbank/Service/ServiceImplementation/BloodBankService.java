@@ -2,6 +2,7 @@ package com.example.bloodbank.Service.ServiceImplementation;
 
 import java.util.List;
 
+import com.example.bloodbank.Model.MedicineStaff;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -26,26 +27,27 @@ public class BloodBankService implements IBloodBankService {
 
 	@Override
 	public BloodBank getById(Long id) {
-		// TODO Auto-generated method stub
 		return bloodBankRepo.findById(id).orElseGet(null);
 	}
 
 	@Override
 	public BloodBank create(BloodBank entity) {
-		// TODO Auto-generated method stub
-		return null;
+		return bloodBankRepo.save(entity);
 	}
 
 	@Override
 	public BloodBank update(BloodBank entity) {
-		// TODO Auto-generated method stub
-		return null;
+		BloodBank oldBloodBank = getById(entity.getId());
+
+		oldBloodBank.setName(entity.getName());
+		oldBloodBank.setDescription(entity.getDescription());
+		oldBloodBank.setAddress(entity.getAddress());
+		return bloodBankRepo.save(oldBloodBank);
 	}
 
 	@Override
 	public void delete(Long entityId) {
-		// TODO Auto-generated method stub
-		
+		bloodBankRepo.delete(getById(entityId));
 	}
 
 }

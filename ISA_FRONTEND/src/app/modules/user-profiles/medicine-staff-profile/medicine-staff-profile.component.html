@@ -22,23 +22,33 @@
                             <div class="card-body">
                                 <div class="row">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Ime</h6>
+                                            <h6 class="mb-0">Ime i prezime</h6>
                                         </div>
-                                        <div class="col-sm-9 text-secondary">{{medicineStaff?.name}}</div>
+                                        <div class="col-sm-9 text-secondary">{{medicineStaff?.name}} {{medicineStaff?.surname}}</div>
                                 </div>
                                 <hr>
                                 <div class="row">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Prezime</h6>
+                                            <h6 class="mb-0">Korisničko ime</h6>
                                         </div>
-                                        <div class="col-sm-9 text-secondary">{{medicineStaff?.surname}}</div>
+                                        <div class="col-sm-9 text-secondary">{{medicineStaff?.username}}</div>
                                 </div>
                                 <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Email</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">{{medicineStaff?.mail}}</div>
+                            </div>
+                            <hr>
                                 <div class="row">
                                         <div class="col-sm-3">
                                             <h6 class="mb-0">Pol</h6>
                                         </div>
-                                        <div class="col-sm-9 text-secondary">{{medicineStaff?.gender}}</div>
+                                        <ng-container *ngIf="medicineStaff?.gender === 'MALE'; else elseBlock"><div class="col-sm-9 text-secondary">Muško</div></ng-container>
+                                        <ng-template #elseBlock><div class="col-sm-9 text-secondary">Žensko</div></ng-template>
+
+                                        
                                 </div>
                                 <hr>
                                 <div class="row">
@@ -50,7 +60,7 @@
                                 <hr>
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <a class="btn btn-outline-dark" routerLink="/editMedicineStaffProfile">Izmijeni profil</a>
+                                        <a class="btn btn-outline-dark" [routerLink]="['/editMedicineStaffProfile', medicineStaff?.id]">Izmijeni profil</a>
                                     </div>
                                 </div>
                             </div>

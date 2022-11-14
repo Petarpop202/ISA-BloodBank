@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { User } from '../model/user';
 import { BloodDonor } from "../model/bloodDonor"
 import { Test } from '../model/test';
+import { MedicineStaff } from '../model/medicineStaff';
 
 @Injectable({
   providedIn: 'root'
@@ -33,5 +34,13 @@ export class UserService {
 
   updateUser(user: any): Observable<any> {
     return this.http.put<any>(this.apiHost + 'user/update', user);
+  }
+
+  getMedicineStaff(id: number): Observable<MedicineStaff> {
+    return this.http.get<MedicineStaff>(this.apiHost + 'MedicineStaff/get/' + id, {headers: this.headers});
+  }
+
+  updateMedicineStaff(user: any): Observable<any> {
+    return this.http.put<any>(this.apiHost + 'MedicineStaff/update', user);
   }
 }

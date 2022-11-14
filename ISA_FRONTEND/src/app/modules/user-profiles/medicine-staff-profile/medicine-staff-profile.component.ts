@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { MedicineStaff } from 'src/app/model/medicineStaff';
 import { UserService } from 'src/app/services/user.service';
 
@@ -9,15 +10,17 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class MedicineStaffProfileComponent implements OnInit {
 
+  id?:string | null;
   medicineStaff?: MedicineStaff
-  constructor(private userService: UserService) { }
+  constructor(private route: ActivatedRoute, private userService: UserService) { }
 
   ngOnInit(): void {
-    this.getMedicineStaff('1');
+    this.id = this.route.snapshot.paramMap.get('id')
+    this.getMedicineStaff(this.id);
   }
 
   public getMedicineStaff(id:any): void {
-    this.userService.getUser(id).subscribe(res => {
+    this.userService.getMedicineStaff(id).subscribe(res => {
       this.medicineStaff = res;
     })
   }
