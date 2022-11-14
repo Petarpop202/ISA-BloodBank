@@ -14,7 +14,7 @@ export class BloodCenterComponent implements OnInit {
   constructor(private bloodBankService:BloodBankService) { }
 
   ngOnInit(): void {
-    this.getBloodBank("1");
+    this.getBloodBank("2");
     //this.getBloodBanks();
   }
 
