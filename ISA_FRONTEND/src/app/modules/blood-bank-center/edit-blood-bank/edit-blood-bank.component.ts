@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BloodBank } from 'src/app/model/bloodBank';
 import { BloodBankService } from 'src/app/services/blood-bank.service';
 
@@ -11,9 +11,9 @@ import { BloodBankService } from 'src/app/services/blood-bank.service';
 export class EditBloodBankComponent implements OnInit {
 
   id : string | null | undefined;
-  bloodBank?: BloodBank;
+  bloodBank: BloodBank = new BloodBank;
   
-  constructor(private route: ActivatedRoute, private bloodBankService:BloodBankService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private bloodBankService:BloodBankService) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id')
@@ -23,6 +23,13 @@ export class EditBloodBankComponent implements OnInit {
   public getBloodBankToEdit(id:any): void {
     this.bloodBankService.getBloodBank(id).subscribe(res => {
       this.bloodBank = res;
+    })
+  }
+
+  public updateBloodBank(): void {
+    this.bloodBankService.updateBloodBank(this.bloodBank).subscribe(res => {
+      this.bloodBank = res;
+      this.router.navigate(['/myBloodBank', this.bloodBank.id]);
     })
   }
 

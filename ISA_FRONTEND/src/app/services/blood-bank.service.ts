@@ -24,4 +24,8 @@ export class BloodBankService {
   getMedicineStaffFromBloodBank(id: any): Observable<MedicineStaff[]> {
     return this.http.get<MedicineStaff[]>(this.apiHost + 'MedicineStaff/getMedicineStaffFromBloodBank/' + id, {headers: this.headers});
   }
+
+  updateBloodBank(bloodBank: any): Observable<any> {
+    return this.http.put<any>(this.apiHost + 'bloodBank/update', bloodBank);
+  }
 }

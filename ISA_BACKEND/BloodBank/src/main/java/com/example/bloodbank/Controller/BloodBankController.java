@@ -2,6 +2,7 @@ package com.example.bloodbank.Controller;
 
 import java.util.List;
 
+import com.example.bloodbank.Model.MedicineStaff;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,5 +29,10 @@ public class BloodBankController {
     @GetMapping(value = "/get/{id}")
     public BloodBank getBloodBankById(@PathVariable Long id){
         return bloodBankService.getById(id);
+    }
+
+    @PutMapping("/update")
+    BloodBank UpdateBloodBank(@RequestBody BloodBank updatedBloodBank) {
+        return bloodBankService.update(updatedBloodBank);
     }
 }

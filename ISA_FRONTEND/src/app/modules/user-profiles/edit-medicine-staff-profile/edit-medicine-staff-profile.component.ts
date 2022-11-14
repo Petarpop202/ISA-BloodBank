@@ -12,7 +12,7 @@ export class EditMedicineStaffProfileComponent implements OnInit {
 
   id?:string | null;
   medicineStaff : MedicineStaff = new MedicineStaff;
-  constructor(private route: ActivatedRoute,private router: Router, private userService: UserService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id')

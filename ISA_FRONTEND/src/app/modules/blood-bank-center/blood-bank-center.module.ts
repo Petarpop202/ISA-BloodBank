@@ -4,6 +4,7 @@ import { BloodCenterComponent } from './blood-center/blood-center.component';
 import { SharedModule } from '../shared/shared.module';
 import { HomepageModule } from '../homepage/homepage.module';
 import { EditBloodBankComponent } from './edit-blood-bank/edit-blood-bank.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -15,7 +16,8 @@ import { EditBloodBankComponent } from './edit-blood-bank/edit-blood-bank.compon
   imports: [
     CommonModule,
     SharedModule,
-    HomepageModule
+    HomepageModule,
+    FormsModule
   ]
 })
 export class BloodBankCenterModule { }
