@@ -22,6 +22,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { BloodDonorMenuComponent } from './blood-donor-menu/blood-donor-menu.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
+import { DonorSurveyComponent } from './donor-survey/donor-survey.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import {MatSortModule} from '@angular/material/sort';
     HomepageMenuComponent,
     BloodDonorMenuComponent,
     MedicineStaffMenuComponent,
-    ValidationErrorComponent
+    ValidationErrorComponent,
+    DonorSurveyComponent
   ],
   imports: [
     CommonModule,

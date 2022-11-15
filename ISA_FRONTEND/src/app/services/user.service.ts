@@ -36,11 +36,15 @@ export class UserService {
     return this.http.put<any>(this.apiHost + 'user/update', user);
   }
 
+  createSurvey(survey: any): Observable<any> {
+    return this.http.post<any>(this.apiHost + 'user/createSurvey', survey);
+
   getMedicineStaff(id: number): Observable<MedicineStaff> {
     return this.http.get<MedicineStaff>(this.apiHost + 'MedicineStaff/get/' + id, {headers: this.headers});
   }
 
   updateMedicineStaff(user: any): Observable<any> {
     return this.http.put<any>(this.apiHost + 'MedicineStaff/update', user);
+
   }
 }
