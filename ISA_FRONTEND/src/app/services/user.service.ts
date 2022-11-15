@@ -34,4 +34,8 @@ export class UserService {
   updateUser(user: any): Observable<any> {
     return this.http.put<any>(this.apiHost + 'user/update', user);
   }
+
+  createSurvey(survey: any): Observable<any> {
+    return this.http.post<any>(this.apiHost + 'user/createSurvey', survey);
+  }
 }
