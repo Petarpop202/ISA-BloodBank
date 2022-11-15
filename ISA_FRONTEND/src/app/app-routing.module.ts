@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BloodCenterComponent } from './modules/blood-bank-center/blood-center/blood-center.component';
+import { EditBloodBankComponent } from './modules/blood-bank-center/edit-blood-bank/edit-blood-bank.component';
 import { HomepageComponent } from './modules/homepage/homepage/homepage.component';
 import { LoginComponent } from './modules/homepage/login/login.component';
 import { RegisterComponent } from './modules/homepage/register/register.component';
@@ -15,14 +16,18 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
 
-  { path: 'myBloodBankCenter', component: BloodCenterComponent},
+  { path: 'myBloodBank/:id', component: BloodCenterComponent},
+  { path: 'editBloodBank/:id', component: EditBloodBankComponent},
 
   { path: 'bloodDonorProfile', component: BloodDonorProfileComponent},
   { path: 'editBloodDonorProfile', component: EditBloodDonorProfileComponent},
 
-  { path: 'medicineStaffProfile', component: MedicineStaffProfileComponent},
-  { path: 'editMedicineStaffProfile', component: EditMedicineStaffProfileComponent},
   { path: 'donorSurvey', component: DonorSurveyComponent}
+  { path: 'medicineStaffProfile/:id', component: MedicineStaffProfileComponent},
+  { path: 'editMedicineStaffProfile/:id', component: EditMedicineStaffProfileComponent},
+
+  // ova linija mora biti zadnja, biti zadnja
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 
 @NgModule({
