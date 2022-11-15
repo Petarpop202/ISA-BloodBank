@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'bloodDonorProfile', component: BloodDonorProfileComponent},
   { path: 'editBloodDonorProfile', component: EditBloodDonorProfileComponent},
 
-  { path: 'donorSurvey', component: DonorSurveyComponent}
+  { path: 'donorSurvey', component: DonorSurveyComponent},
   { path: 'medicineStaffProfile/:id', component: MedicineStaffProfileComponent},
   { path: 'editMedicineStaffProfile/:id', component: EditMedicineStaffProfileComponent},
 
