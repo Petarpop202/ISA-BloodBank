@@ -3,11 +3,15 @@ insert into addresses (city, country, street, street_num) values ('Novi Sad', 'S
 insert into addresses (city, country, street, street_num) values ('Beograd', 'Srbija', 'Ulica 3', '33');
 insert into addresses (city, country, street, street_num) values ('Beograd', 'Srbija', 'Ulica 4', '44');
 insert into addresses (city, country, street, street_num) values ('Niš', 'Srbija', 'Ulica 5', '55');
+insert into addresses (city, country, street, street_num) values ('Kraljevo', 'Srbija', 'Dositejeva', '14');
 
 insert into users (name, surname, gender, username, password, jmbg, mail, phone_number, address_id) values ('Danilo', 'Bulatović', 0, 'Danilo123', 'danilo', '123456789123', 'danilo@gmail.com', '065/123-456', 1);
 insert into users (name, surname, gender, username, password, jmbg, mail, phone_number, address_id) values ('Đorđe', 'Lipovčić', 0, 'plaoludastruja', 'pls', '123456789123', 'pls@gmail.com', '065/123-456', 2);
 insert into users (name, surname, gender, username, password, jmbg, mail, phone_number, address_id) values ('Đorđe1', 'Lipovčić1', 0, 'plaoludastruja1', 'pls1', '123456789123', 'pls@gmail.com', '065/123-456', 3);
 insert into users (name, surname, gender, username, password, jmbg, mail, phone_number, address_id) values ('Đorđe2', 'Lipovčić2', 0, 'plaoludastruja2', 'pls', '123456789123', 'pls@gmail.com', '065/123-456', 4);
+insert into users (name, surname, gender, username, password, jmbg, mail, phone_number, address_id) values ('Stefan', 'Lepsanovic', 0, 'stefan', 'stefan', '12345678999', 'stefan@gmail.com', '065/123-456', 5);
+
+insert into system_administrators (id) values (5);
 
 insert into blood_banks (name, address_id, description, average_grade, blood) values ('Kul Banka Krvi', 3, 'Kul opis', 5, 'AB');
 insert into blood_banks (name, address_id, description, average_grade, blood) values ('Losa Banka Krvi', 4, 'Los opis', 1, 'A');
