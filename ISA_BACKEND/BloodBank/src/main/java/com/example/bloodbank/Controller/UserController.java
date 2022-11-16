@@ -29,7 +29,10 @@ public class UserController {
 
     @PostMapping("/new")
     BloodDonor CreateDonor(@RequestBody BloodDonor newUser) {
-        return _userService.create(newUser);
+        if(_userService.isUnique(newUser))
+            return _userService.create(newUser);
+        else
+            return null;
     }
     
     @PutMapping("/update")

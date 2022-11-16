@@ -49,4 +49,14 @@ public class BloodDonorService implements IBloodDonorService {
     public void delete(Long entityId) {
 
     }
+
+    @Override
+    public boolean isUnique(BloodDonor newUser) {
+        List<BloodDonor> listAll  = this.getAll();
+        for(BloodDonor donor : listAll){
+            if(donor.getUsername().equals(newUser.getUsername()))
+                return false;
+        }
+        return true;
+    }
 }
