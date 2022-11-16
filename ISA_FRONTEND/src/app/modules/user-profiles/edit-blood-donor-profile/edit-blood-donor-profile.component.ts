@@ -16,7 +16,8 @@ export class EditBloodDonorProfileComponent implements OnInit {
   public donor: BloodDonor = new BloodDonor;
   donorId = 1;
   isMale = true;
-  public error = false;
+  error = false;
+  errorText = "POLJA NE MOGU BITI PRAZNA!";
 
   ngOnInit(): void {
     this.userService.getUser(this.donorId).subscribe(res=>{
@@ -31,7 +32,14 @@ export class EditBloodDonorProfileComponent implements OnInit {
   editBloodDonorProfile(){
     if(this.validateInput()){
       this.userService.updateUser(this.donor).subscribe(res=>{
-        this.router.navigate(["/bloodDonorProfile"]);
+        if (res == null){
+          this.error = true;
+          this.errorText = "KORISNIČKO IME JE ZAUZETO!";
+        }
+        else{
+          this.error = false;
+          this.router.navigate(["/bloodDonorProfile"]);
+        }
       })
     }
 }
@@ -42,6 +50,7 @@ export class EditBloodDonorProfileComponent implements OnInit {
      || this.donor.phoneNumber == "" || this.donor.address.street == "" ||this.donor.address.streetNum == ""
      ||this.donor.address.city == "" || this.donor.address.country == ""){
        this.error = true;
+       this.errorText = "POLJA NE MOGU BITI PRAZNA!"
        return false;
     }
     this.error = false;
@@ -50,5 +59,9 @@ export class EditBloodDonorProfileComponent implements OnInit {
 
   setGender(e: string):void{
     this.donor.gender = e;
+  }
+
+  cancelEdit() {
+    this.router.navigate(["/bloodDonorProfile"]);
   }
 }

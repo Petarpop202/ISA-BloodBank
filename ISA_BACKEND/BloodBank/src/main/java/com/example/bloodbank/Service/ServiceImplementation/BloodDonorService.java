@@ -38,7 +38,6 @@ public class BloodDonorService implements IBloodDonorService {
     	oldDonor.setUsername(entity.getUsername());
     	oldDonor.setPassword(entity.getPassword());
     	oldDonor.setJmbg(entity.getJmbg());
-    	oldDonor.setMail(entity.getMail());
     	oldDonor.setPhoneNumber(entity.getPhoneNumber());
     	oldDonor.setAddress(entity.getAddress());
     	
@@ -55,7 +54,7 @@ public class BloodDonorService implements IBloodDonorService {
         List<BloodDonor> listAll  = this.getAll();
         for(BloodDonor donor : listAll){
             if(donor.getUsername().equals(newUser.getUsername()))
-                return false;
+            	return false;
         }
         return true;
     }

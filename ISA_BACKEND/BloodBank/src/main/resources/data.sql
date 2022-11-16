@@ -13,6 +13,9 @@ insert into blood_banks (name, address_id, description, average_grade, blood) va
 insert into blood_banks (name, address_id, description, average_grade, blood) values ('Losa Banka Krvi', 4, 'Los opis', 1, 'A');
 
 insert into blood_donors (category, loyality_points, penalty_points, id) values (0, 0, 0, 1);
+insert into blood_donors (category, loyality_points, penalty_points, id) values (0, 0, 0, 2);
+insert into blood_donors (category, loyality_points, penalty_points, id) values (0, 0, 0, 3);
+insert into blood_donors (category, loyality_points, penalty_points, id) values (0, 0, 0, 4);
 insert into medicine_staffs (blood_bank_id, id) values (1, 2);
 insert into medicine_staffs (blood_bank_id, id) values (1, 3);
 insert into medicine_staffs (blood_bank_id, id) values (2, 4);

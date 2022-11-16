@@ -118,10 +118,11 @@
                                     </div>
                                 </div>
                                 <div class="row mb-0 text-center">
-                                    <div style="color: red;" id="greska" [hidden]="!error"><h2>POLJA NE MOGU BITI PRAZNA!</h2></div>
+                                    <div style="color: red;" id="greska" [hidden]="!error"><h2>{{errorText}}</h2></div>
                                 </div> 
                                 <div class="text-center pt-3">
-                                    <button type="button" class="btn btn-warning btn-lg ms-2" (click)="editBloodDonorProfile()">Izmeni podatke</button>
+                                    <button type="button" class="btn btn-success btn-lg ms-2" (click)="editBloodDonorProfile()">Izmeni podatke</button>
+                                    <button type="button" class="btn btn-warning btn-lg ms-2" (click)="cancelEdit()">Otkaži</button>
                                 </div>
                             </div>
                         </div>

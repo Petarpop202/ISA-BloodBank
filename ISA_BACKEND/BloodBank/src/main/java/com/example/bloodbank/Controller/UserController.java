@@ -37,7 +37,10 @@ public class UserController {
     
     @PutMapping("/update")
     BloodDonor UpdateDonor(@RequestBody BloodDonor updatedUser) {
-        return _userService.update(updatedUser);
+    	if (_userService.isUnique(updatedUser))
+    		return _userService.update(updatedUser);
+    	else
+    		return null;
     }
 
     @PostMapping("/createSurvey")
