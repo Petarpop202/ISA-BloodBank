@@ -16,6 +16,7 @@ export class RegisterComponent implements OnInit {
 
   public donor:BloodDonor = new BloodDonor;
   hide:boolean = true;
+  public checkPass:string = '';
 
   ngOnInit(): void {
     this.donor.gender = "MALE";
@@ -24,7 +25,9 @@ export class RegisterComponent implements OnInit {
   createDonor():void{
     if(this.validateInput())
     this.userService.createUser(this.donor).subscribe(res=>{
-      alert("Korisnik : " + res.name + " je uspesno registrovan !")
+      if(res != null)
+        alert("Korisnik : " + res.name + " je uspesno registrovan !");
+      else alert("Korisnicko ime vec postoji !");
     })
     else {
       const dialogRef = this.dialog.open(ValidationErrorComponent, {
@@ -45,6 +48,12 @@ export class RegisterComponent implements OnInit {
      || this.donor.jmbg == "" || this.donor.password == "" || this.donor.phoneNumber == "" 
      || this.donor.address.country == "" || this.donor.address.city == "" || this.donor.address.street == "")
       return false;
-    else return true;
+    else return this.validatePassword();
+  }
+
+  validatePassword():boolean{
+    if(this.donor.password == this.checkPass)
+      return true;
+    else return false;
   }
 }
