@@ -15,6 +15,7 @@ export class BloodCenterComponent implements OnInit {
   bloodBanks: BloodBank[] = [];
   bloodBank: BloodBank = new BloodBank;
   medicineStaff : MedicineStaff[] = []
+  todoFree : MedicineStaff[] = []
 
   constructor(private bloodBankService:BloodBankService,private route: ActivatedRoute) { }
 
