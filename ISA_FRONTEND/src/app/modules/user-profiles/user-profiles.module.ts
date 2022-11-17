@@ -10,18 +10,21 @@ import { EditBloodDonorProfileComponent } from './edit-blood-donor-profile/edit-
 
 
 
+
 @NgModule({
   declarations: [
     MedicineStaffProfileComponent,
     EditMedicineStaffProfileComponent,
     BloodDonorProfileComponent,
     EditBloodDonorProfileComponent
+    
   ],
   imports: [
     CommonModule,
     SharedModule,
     HomepageModule,
     FormsModule
-  ]
+  ],
+  
 })
 export class UserProfilesModule { }

@@ -7,6 +7,7 @@ import { RegisterComponent } from './register/register.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { HomepageMenuComponent } from './homepage-menu/homepage-menu.component';
 import { MedicineStaffMenuComponent } from './medicine-staff-menu/medicine-staff-menu.component';
+import { SystemAdministratorComponent } from './system-administrator/system-administrator.component';
 
 
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -34,7 +35,8 @@ import { DonorSurveyComponent } from './donor-survey/donor-survey.component';
     BloodDonorMenuComponent,
     MedicineStaffMenuComponent,
     ValidationErrorComponent,
-    DonorSurveyComponent
+    DonorSurveyComponent,
+    SystemAdministratorComponent
   ],
   imports: [
     CommonModule,
@@ -60,7 +62,8 @@ import { DonorSurveyComponent } from './donor-survey/donor-survey.component';
   exports: [
     HomepageMenuComponent,
     BloodDonorMenuComponent,
-    MedicineStaffMenuComponent
+    MedicineStaffMenuComponent,
+    SystemAdministratorComponent
   ]
 })
 export class HomepageModule { }

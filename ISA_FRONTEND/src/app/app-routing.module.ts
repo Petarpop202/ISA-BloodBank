@@ -10,6 +10,8 @@ import { EditBloodDonorProfileComponent } from './modules/user-profiles/edit-blo
 import { EditMedicineStaffProfileComponent } from './modules/user-profiles/edit-medicine-staff-profile/edit-medicine-staff-profile.component';
 import { MedicineStaffProfileComponent } from './modules/user-profiles/medicine-staff-profile/medicine-staff-profile.component';
 import { DonorSurveyComponent } from './modules/homepage/donor-survey/donor-survey.component';
+import { SystemAdministratorComponent } from './modules/homepage/system-administrator/system-administrator.component';
+import { NewBloodBankComponent } from './modules/blood-bank-center/new-blood-bank/new-blood-bank.component';
 
 const routes: Routes = [
   { path: 'home', component: HomepageComponent},
@@ -18,9 +20,11 @@ const routes: Routes = [
 
   { path: 'myBloodBank/:id', component: BloodCenterComponent},
   { path: 'editBloodBank/:id', component: EditBloodBankComponent},
+  { path: 'newBloodBank', component: NewBloodBankComponent},
 
   { path: 'bloodDonorProfile', component: BloodDonorProfileComponent},
   { path: 'editBloodDonorProfile', component: EditBloodDonorProfileComponent},
+  { path: 'systemAdministrator', component: SystemAdministratorComponent},
 
   { path: 'donorSurvey', component: DonorSurveyComponent},
   { path: 'medicineStaffProfile/:id', component: MedicineStaffProfileComponent},

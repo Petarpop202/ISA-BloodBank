@@ -5,13 +5,17 @@ import { SharedModule } from '../shared/shared.module';
 import { HomepageModule } from '../homepage/homepage.module';
 import { EditBloodBankComponent } from './edit-blood-bank/edit-blood-bank.component';
 import { FormsModule } from '@angular/forms';
+import { NewBloodBankComponent } from './new-blood-bank/new-blood-bank.component';
+
 
 
 
 @NgModule({
   declarations: [
     BloodCenterComponent,
-    EditBloodBankComponent
+    EditBloodBankComponent,
+    NewBloodBankComponent
+
   ],
   imports: [
     CommonModule,

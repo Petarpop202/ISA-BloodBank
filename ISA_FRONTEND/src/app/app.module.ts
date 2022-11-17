@@ -27,6 +27,7 @@ import { RegisterComponent } from './modules/homepage/register/register.componen
     FormsModule
     
   ],
+  
   providers: [],
   bootstrap: [AppComponent]
 })
