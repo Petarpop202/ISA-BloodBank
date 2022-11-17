@@ -3,6 +3,8 @@ package com.example.bloodbank.Controller;
 import java.util.List;
 
 import com.example.bloodbank.Model.MedicineStaff;
+import com.example.bloodbank.Model.SystemAdministrator;
+
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,4 +37,9 @@ public class BloodBankController {
     BloodBank UpdateBloodBank(@RequestBody BloodBank updatedBloodBank) {
         return bloodBankService.update(updatedBloodBank);
     }
+    
+    @PostMapping("/new")
+    BloodBank CreateBloodBank(@RequestBody BloodBank newBloodBank) {
+		return bloodBankService.create(newBloodBank);
+	}
 }

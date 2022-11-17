@@ -28,4 +28,8 @@ export class BloodBankService {
   updateBloodBank(bloodBank: any): Observable<any> {
     return this.http.put<any>(this.apiHost + 'bloodBank/update', bloodBank);
   }
+
+  createBloodBank(bloodBank: any): Observable<any> {
+    return this.http.post<any>(this.apiHost + 'bloodBank/new', bloodBank);
+  }
 }
