@@ -32,4 +32,8 @@ export class BloodBankService {
   createBloodBank(bloodBank: any): Observable<any> {
     return this.http.post<any>(this.apiHost + 'bloodBank/new', bloodBank);
   }
+
+  isNameUnique(name: string): Observable<boolean> {
+    return this.http.get<boolean>(this.apiHost + 'bloodBank/checkName=' + name, {headers: this.headers});
+  }
 }
