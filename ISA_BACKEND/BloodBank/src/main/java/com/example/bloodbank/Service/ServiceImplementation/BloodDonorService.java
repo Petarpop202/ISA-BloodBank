@@ -1,11 +1,13 @@
 package com.example.bloodbank.Service.ServiceImplementation;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
 import com.example.bloodbank.Model.BloodDonor;
 import com.example.bloodbank.Repository.IBloodDonorRepository;
 import com.example.bloodbank.Service.IBloodDonorService;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class BloodDonorService implements IBloodDonorService {
@@ -57,5 +59,17 @@ public class BloodDonorService implements IBloodDonorService {
             	return false;
         }
         return true;
+    }
+    
+    @Override
+    public List<BloodDonor> findByNameAndSurname(String name, String surname){
+    	List<BloodDonor> listAll = this.getAll();
+    	List<BloodDonor> result = new ArrayList<BloodDonor>();
+    	for(BloodDonor donor : listAll) {
+    		if(donor.getName().toLowerCase().contains(name.toLowerCase()) && donor.getSurname().toLowerCase().contains(surname.toLowerCase())) {
+    			result.add(donor);
+    		}
+    	}
+    	return result;
     }
 }

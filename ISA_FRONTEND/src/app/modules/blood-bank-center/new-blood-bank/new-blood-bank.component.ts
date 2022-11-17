@@ -13,19 +13,32 @@ export class NewBloodBankComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router, private bloodBankService: BloodBankService) { }
 
   public newBloodBank:BloodBank = new BloodBank;
+  banks: BloodBank[] = [];
+  unique = true;
 
   ngOnInit(): void {
+    this.bloodBankService.getBloodBanks
+  }
+
+  getBanks() : void {
+    this.bloodBankService.getBloodBanks().subscribe(res=>{        
+        this.banks = res;        
+      })
   }
 
   public createBloodBank(): void {
-    if(this.validateInput()){
+    
+    
+    if(this.validateInput() == false){
+      alert("sva polja moraju biti popunjena!")
+      return;
+    } else {
       this.bloodBankService.createBloodBank(this.newBloodBank).subscribe(res => {
         this.newBloodBank = res;
         this.router.navigate(['/systemAdministrator']);
       })
-    } else {
-      alert("Sva polja moraju biti popunjena!");
     }
+    
     
   }
 
@@ -36,5 +49,16 @@ export class NewBloodBankComponent implements OnInit {
     }
     return true;
   }
+
+  validateName(name: string):boolean{
+    if(this.bloodBankService.isNameUnique(name).subscribe(res => {
+      this.unique = res;      
+    }))
+    if(this.unique){
+      return true;      
+    }
+    return false;
+  }
+
 
 }

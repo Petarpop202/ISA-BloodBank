@@ -24,6 +24,7 @@ import { BloodDonorMenuComponent } from './blood-donor-menu/blood-donor-menu.com
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import { DonorSurveyComponent } from './donor-survey/donor-survey.component';
+import { SearchUsersComponent } from './search-users/search-users.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { DonorSurveyComponent } from './donor-survey/donor-survey.component';
     MedicineStaffMenuComponent,
     ValidationErrorComponent,
     DonorSurveyComponent,
-    SystemAdministratorComponent
+    SystemAdministratorComponent,
+    SearchUsersComponent
   ],
   imports: [
     CommonModule,

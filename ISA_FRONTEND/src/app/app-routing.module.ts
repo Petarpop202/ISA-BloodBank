@@ -12,6 +12,7 @@ import { MedicineStaffProfileComponent } from './modules/user-profiles/medicine-
 import { DonorSurveyComponent } from './modules/homepage/donor-survey/donor-survey.component';
 import { SystemAdministratorComponent } from './modules/homepage/system-administrator/system-administrator.component';
 import { NewBloodBankComponent } from './modules/blood-bank-center/new-blood-bank/new-blood-bank.component';
+import { SearchUsersComponent } from './modules/homepage/search-users/search-users.component';
 
 const routes: Routes = [
   { path: 'home', component: HomepageComponent},
@@ -29,6 +30,8 @@ const routes: Routes = [
   { path: 'donorSurvey', component: DonorSurveyComponent},
   { path: 'medicineStaffProfile/:id', component: MedicineStaffProfileComponent},
   { path: 'editMedicineStaffProfile/:id', component: EditMedicineStaffProfileComponent},
+
+  { path: 'searchUsers', component: SearchUsersComponent},
 
   // ova linija mora biti zadnja, biti zadnja
   { path: '', redirectTo: '/home', pathMatch: 'full' },

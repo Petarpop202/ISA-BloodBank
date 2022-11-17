@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.example.bloodbank.Model.BloodBank;
+import com.example.bloodbank.Model.BloodDonor;
 import com.example.bloodbank.Repository.IBloodBankRepository;
 import com.example.bloodbank.Repository.ITestRepository;
 import com.example.bloodbank.Service.IBloodBankService;
@@ -49,5 +50,15 @@ public class BloodBankService implements IBloodBankService {
 	public void delete(Long entityId) {
 		bloodBankRepo.delete(getById(entityId));
 	}
+	
+	@Override
+    public boolean isNameUnique(String name) {
+        List<BloodBank> listAll  = this.getAll();
+        for(BloodBank bloodBank : listAll){
+            if(bloodBank.getName().equals(name))
+            	return false;
+        }
+        return true;
+    }
 
 }

@@ -26,6 +26,11 @@ public class UserController {
     public BloodDonor getBloodDonorById(@PathVariable Long id){
         return _userService.getById(id);
     }
+    
+    @GetMapping(value = "/findByNameAndSurname/name={name}+surname={surname}")
+    public List<BloodDonor> findByNameAndSurname(@PathVariable String name, @PathVariable String surname){
+    	return _userService.findByNameAndSurname(name, surname);
+    }
 
     @PostMapping("/new")
     BloodDonor CreateDonor(@RequestBody BloodDonor newUser) {

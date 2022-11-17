@@ -32,6 +32,11 @@ public class BloodBankController {
     public BloodBank getBloodBankById(@PathVariable Long id){
         return bloodBankService.getById(id);
     }
+    
+    @GetMapping(value = "/checkName={name}")
+    public boolean isNameUnique(@PathVariable String name) {
+    	return bloodBankService.isNameUnique(name);
+    }
 
     @PutMapping("/update")
     BloodBank UpdateBloodBank(@RequestBody BloodBank updatedBloodBank) {
