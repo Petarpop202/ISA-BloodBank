@@ -18,24 +18,24 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private long Id;
+    private long id;
     @Column
-    private String Name;
+    private String name;
     @Column
-    private String Surname;
+    private String surname;
     @Column
-    private String Mail;
+    private String mail;
     @Column(unique = true)
-    private String Username;
+    private String username;
     @Column
-    private String Password;
+    private String password;
     @Column
-    private String PhoneNumber;
+    private String phoneNumber;
     @Column
-    private String Jmbg;
+    private String jmbg;
     @Column
-    private GenderEnum Gender;
+    private GenderEnum gender;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
-    private Address Address;
+    private Address address;
 }
