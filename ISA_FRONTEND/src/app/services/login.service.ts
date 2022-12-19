@@ -16,14 +16,13 @@ export class LoginService {
   private redirectToMainPage = () =>
   {
     var roleLandingPages = new Map<string, string>([
-      ['Doctor', 'doctor'],
-      ['Manager', 'manager']
+      ['ROLE_DONOR', 'donor']
 
     ]);
 
-      const token = localStorage.getItem('jwt');
+      const token = localStorage.getItem('token');
       const tokenPayload = this.jwtHelper.decodeToken(token!);
-      const role = tokenPayload['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+      const role = tokenPayload.role;
 
       this.router.navigate([roleLandingPages.get(role)]);         
   }
@@ -31,12 +30,12 @@ export class LoginService {
   public login = (loginCredentials: LoginDto): void => {
 
 
-    this.http.post<Jwt>(ConstSettings.apiHost + 'auth/login', loginCredentials, {
+    this.http.post<any>(ConstSettings.apiHost + 'auth/login', loginCredentials, {
            headers: ConstSettings.standardHeader,
        })
        .subscribe({
      next: (response) =>{
-       localStorage.setItem('jwt', response.jwt);
+       localStorage.setItem('token', response.accessToken);
        this.redirectToMainPage();
      },
      //TODO: handle errors

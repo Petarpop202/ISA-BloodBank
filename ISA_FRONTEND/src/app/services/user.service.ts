@@ -33,7 +33,7 @@ export class UserService {
   }
 
   createUser(user: any): Observable<any> {
-    return this.http.post<any>(this.apiHost + 'user/new', user);
+    return this.http.post<any>(this.apiHost + 'auth/signup', user);
   }
 
   updateUser(user: any): Observable<any> {

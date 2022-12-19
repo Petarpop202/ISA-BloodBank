@@ -53,14 +53,19 @@ public class TokenUtils {
 	 * @param username Korisničko ime korisnika kojem se token izdaje
 	 * @return JWT token
 	 */
-	public String generateToken(String username) {
+	public String generateToken(User user) {
 		return Jwts.builder()
 				.setIssuer(APP_NAME)
-				.setSubject(username)
+				.setSubject(user.getUsername())
 				.setAudience(generateAudience())
 				.setIssuedAt(new Date())
 				.setExpiration(generateExpirationDate())
+				.claim("role", user.getRole().getName())
+				.claim("name", user.getName())
+				.claim("surname", user.getSurname())
+				.claim("id", user.getId())
 				.signWith(SIGNATURE_ALGORITHM, SECRET).compact();
+
 		
 
 		// moguce je postavljanje proizvoljnih podataka u telo JWT tokena pozivom funkcije .claim("key", value), npr. .claim("role", user.getRole())

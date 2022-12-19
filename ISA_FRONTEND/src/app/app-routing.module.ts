@@ -4,6 +4,7 @@ import { BloodCenterComponent } from './modules/blood-bank-center/blood-center/b
 import { EditBloodBankComponent } from './modules/blood-bank-center/edit-blood-bank/edit-blood-bank.component';
 import { HomepageComponent } from './modules/homepage/homepage/homepage.component';
 import { LoginComponent } from './modules/homepage/login/login.component';
+import { RoleGuardService as RoleGuard } from './services/role-guard.service';
 import { RegisterComponent } from './modules/homepage/register/register.component';
 import { BloodDonorProfileComponent } from './modules/user-profiles/blood-donor-profile/blood-donor-profile.component';
 import { EditBloodDonorProfileComponent } from './modules/user-profiles/edit-blood-donor-profile/edit-blood-donor-profile.component';
@@ -13,6 +14,7 @@ import { DonorSurveyComponent } from './modules/homepage/donor-survey/donor-surv
 import { SystemAdministratorComponent } from './modules/homepage/system-administrator/system-administrator.component';
 import { NewBloodBankComponent } from './modules/blood-bank-center/new-blood-bank/new-blood-bank.component';
 import { SearchUsersComponent } from './modules/homepage/search-users/search-users.component';
+import { DonorRootComponent } from './modules/donor-routing-module/donor-root/donor-root.component';
 
 const routes: Routes = [
   { path: 'home', component: HomepageComponent},
@@ -32,6 +34,17 @@ const routes: Routes = [
   { path: 'editMedicineStaffProfile/:id', component: EditMedicineStaffProfileComponent},
 
   { path: 'searchUsers', component: SearchUsersComponent},
+
+  {
+    path: 'donor',
+    component: DonorRootComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRole: 'ROLE_DONOR' },
+    loadChildren: () =>
+      import('./modules/donor-routing-module/donor-routing-module.module').then(
+        (m) => m.DonorRoutingModuleModule
+      ),
+  },
 
   // ova linija mora biti zadnja, biti zadnja
   { path: '', redirectTo: '/home', pathMatch: 'full' },
