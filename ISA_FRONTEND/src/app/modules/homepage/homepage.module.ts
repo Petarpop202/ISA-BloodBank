@@ -17,7 +17,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatGridListModule} from '@angular/material/grid-list';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ValidationErrorComponent } from './register/validation-error/validation-error.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { BloodDonorMenuComponent } from './blood-donor-menu/blood-donor-menu.component';
@@ -52,6 +52,7 @@ import { SearchUsersComponent } from './search-users/search-users.component';
     MatSelectModule,
     
     MatIconModule,
+    ReactiveFormsModule,
     
    
     MatRadioModule,

@@ -30,3 +30,11 @@ insert into blood_donation_appointments (date,blood_bank_id) values ('11.11.2022
 insert into blood_donation_appointments_medicine_staffs (blood_donation_appointment_id, medicine_staffs_id) values (1, 2);
 insert into blood_donation_appointments_medicine_staffs (blood_donation_appointment_id, medicine_staffs_id) values (2, 3);
 insert into blood_donation_appointments_medicine_staffs (blood_donation_appointment_id, medicine_staffs_id) values (3, 4);
+
+INSERT INTO role (name) VALUES ('ROLE_DONOR');
+INSERT INTO role (name) VALUES ('ROLE_MEDICALWORKER');
+INSERT INTO role (name) VALUES ('ROLE_ADMIN');
+
+INSERT INTO USER_ROLE (user_id, role_id) VALUES (1, 1); -- user-u dodeljujemo rolu DONOR
+INSERT INTO USER_ROLE (user_id, role_id) VALUES (2, 2); -- user-u dodeljujemo rolu MW
+INSERT INTO USER_ROLE (user_id, role_id) VALUES (3, 3); -- user-u dodeljujemo rolu ADMIN

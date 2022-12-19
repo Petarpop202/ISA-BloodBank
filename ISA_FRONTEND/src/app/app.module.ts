@@ -8,8 +8,10 @@ import { SharedModule } from './modules/shared/shared.module';
 import { HomepageModule } from './modules/homepage/homepage.module';
 import { BloodBankCenterModule } from './modules/blood-bank-center/blood-bank-center.module';
 import { UserProfilesModule } from './modules/user-profiles/user-profiles.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './modules/homepage/register/register.component';
+import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
+
 
 
 
@@ -24,11 +26,13 @@ import { RegisterComponent } from './modules/homepage/register/register.componen
     HomepageModule,
     BloodBankCenterModule,
     UserProfilesModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
     
   ],
   
-  providers: [],
+  providers: [  { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    JwtHelperService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
