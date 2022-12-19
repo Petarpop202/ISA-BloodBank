@@ -6,6 +6,8 @@ export class BloodBank {
     description: string = '';
     averageGrade: number = 0;
     address: Address = new Address;
+    workTimeStart: string = '';
+    workTimeEnd: string = '';
 
     public constructor(obj?: any) {
         if (obj) {
@@ -14,6 +16,8 @@ export class BloodBank {
             this.description = obj.description;
             this.averageGrade = obj.averageGrade;
             this.address = obj.address;
+            this.workTimeStart = obj.workTimeStart;
+            this.workTimeEnd = obj.workTimeEnd;
         }
     }
 }
