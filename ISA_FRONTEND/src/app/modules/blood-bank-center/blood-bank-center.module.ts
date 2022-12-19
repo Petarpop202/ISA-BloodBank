@@ -6,6 +6,7 @@ import { HomepageModule } from '../homepage/homepage.module';
 import { EditBloodBankComponent } from './edit-blood-bank/edit-blood-bank.component';
 import { FormsModule } from '@angular/forms';
 import { NewBloodBankComponent } from './new-blood-bank/new-blood-bank.component';
+import { AddBloodDonationAppointmentComponent } from './add-blood-donation-appointment/add-blood-donation-appointment.component';
 
 
 
@@ -14,7 +15,8 @@ import { NewBloodBankComponent } from './new-blood-bank/new-blood-bank.component
   declarations: [
     BloodCenterComponent,
     EditBloodBankComponent,
-    NewBloodBankComponent
+    NewBloodBankComponent,
+    AddBloodDonationAppointmentComponent
 
   ],
   imports: [

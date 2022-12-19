@@ -13,6 +13,7 @@ import { DonorSurveyComponent } from './modules/homepage/donor-survey/donor-surv
 import { SystemAdministratorComponent } from './modules/homepage/system-administrator/system-administrator.component';
 import { NewBloodBankComponent } from './modules/blood-bank-center/new-blood-bank/new-blood-bank.component';
 import { SearchUsersComponent } from './modules/homepage/search-users/search-users.component';
+import { AddBloodDonationAppointmentComponent } from './modules/blood-bank-center/add-blood-donation-appointment/add-blood-donation-appointment.component';
 
 const routes: Routes = [
   { path: 'home', component: HomepageComponent},
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent},
 
   { path: 'myBloodBank/:id', component: BloodCenterComponent},
+  { path: 'addBloodDonationAppointment/:id', component: AddBloodDonationAppointmentComponent},
   { path: 'editBloodBank/:id', component: EditBloodBankComponent},
   { path: 'newBloodBank', component: NewBloodBankComponent},
 

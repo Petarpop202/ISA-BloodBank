@@ -3,7 +3,8 @@ package com.example.bloodbank.Model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
+
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,7 +22,8 @@ public class BloodDonationAppointment {
     @Column(name = "id", nullable = false)
     private long id;
 
-    private Date date;
+    private LocalDateTime startDateTime;
+    private int duration;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "medicineStaff_id", referencedColumnName = "id")
