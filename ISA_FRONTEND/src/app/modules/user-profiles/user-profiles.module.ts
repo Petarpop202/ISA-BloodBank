@@ -5,8 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { MedicineStaffProfileComponent } from './medicine-staff-profile/medicine-staff-profile.component';
 import { HomepageModule } from '../homepage/homepage.module';
 import { EditMedicineStaffProfileComponent } from './edit-medicine-staff-profile/edit-medicine-staff-profile.component';
-import { BloodDonorProfileComponent } from './blood-donor-profile/blood-donor-profile.component';
-import { EditBloodDonorProfileComponent } from './edit-blood-donor-profile/edit-blood-donor-profile.component';
+import { BloodDonorProfileComponent } from '../blood-donor/blood-donor-profile/blood-donor-profile.component';
+import { EditBloodDonorProfileComponent } from '../blood-donor/edit-blood-donor-profile/edit-blood-donor-profile.component';
 
 
 
@@ -15,9 +15,6 @@ import { EditBloodDonorProfileComponent } from './edit-blood-donor-profile/edit-
   declarations: [
     MedicineStaffProfileComponent,
     EditMedicineStaffProfileComponent,
-    BloodDonorProfileComponent,
-    EditBloodDonorProfileComponent
-    
   ],
   imports: [
     CommonModule,

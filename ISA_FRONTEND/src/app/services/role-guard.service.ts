@@ -20,7 +20,7 @@ export class RoleGuardService implements CanActivate {
       }
 
       const tokenPayload = this.jwtHelper.decodeToken(token!);
-      const role = tokenPayload['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+      const role = tokenPayload.roles;
       
       if(
         !this.auth.isAuthenticated() ||

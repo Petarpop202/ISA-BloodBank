@@ -6,15 +6,15 @@ import { HomepageComponent } from './modules/homepage/homepage/homepage.componen
 import { LoginComponent } from './modules/homepage/login/login.component';
 import { RoleGuardService as RoleGuard } from './services/role-guard.service';
 import { RegisterComponent } from './modules/homepage/register/register.component';
-import { BloodDonorProfileComponent } from './modules/user-profiles/blood-donor-profile/blood-donor-profile.component';
-import { EditBloodDonorProfileComponent } from './modules/user-profiles/edit-blood-donor-profile/edit-blood-donor-profile.component';
+import { BloodDonorProfileComponent } from './modules/blood-donor/blood-donor-profile/blood-donor-profile.component';
+import { EditBloodDonorProfileComponent } from './modules/blood-donor/edit-blood-donor-profile/edit-blood-donor-profile.component';
 import { EditMedicineStaffProfileComponent } from './modules/user-profiles/edit-medicine-staff-profile/edit-medicine-staff-profile.component';
 import { MedicineStaffProfileComponent } from './modules/user-profiles/medicine-staff-profile/medicine-staff-profile.component';
-import { DonorSurveyComponent } from './modules/homepage/donor-survey/donor-survey.component';
-import { SystemAdministratorComponent } from './modules/homepage/system-administrator/system-administrator.component';
+import { DonorSurveyComponent } from './modules/blood-donor/donor-survey/donor-survey.component';
+import { SystemAdministratorComponent } from './modules/administrator/system-administrator/system-administrator.component';
 import { NewBloodBankComponent } from './modules/blood-bank-center/new-blood-bank/new-blood-bank.component';
-import { SearchUsersComponent } from './modules/homepage/search-users/search-users.component';
-import { DonorRootComponent } from './modules/donor-routing-module/donor-root/donor-root.component';
+import { DonorRootComponent } from './modules/blood-donor/donor-root/donor-root.component';
+import { AdministratorRootComponent } from './modules/administrator/administrator-root/administrator-root.component';
 
 const routes: Routes = [
   { path: 'home', component: HomepageComponent},
@@ -25,15 +25,10 @@ const routes: Routes = [
   { path: 'editBloodBank/:id', component: EditBloodBankComponent},
   { path: 'newBloodBank', component: NewBloodBankComponent},
 
-  { path: 'bloodDonorProfile', component: BloodDonorProfileComponent},
-  { path: 'editBloodDonorProfile', component: EditBloodDonorProfileComponent},
-  { path: 'systemAdministrator', component: SystemAdministratorComponent},
 
-  { path: 'donorSurvey', component: DonorSurveyComponent},
   { path: 'medicineStaffProfile/:id', component: MedicineStaffProfileComponent},
   { path: 'editMedicineStaffProfile/:id', component: EditMedicineStaffProfileComponent},
 
-  { path: 'searchUsers', component: SearchUsersComponent},
 
   {
     path: 'donor',
@@ -41,8 +36,18 @@ const routes: Routes = [
     canActivate: [RoleGuard],
     data: { expectedRole: 'ROLE_DONOR' },
     loadChildren: () =>
-      import('./modules/donor-routing-module/donor-routing-module.module').then(
+      import('./modules/blood-donor/donor-routing-module.module').then(
         (m) => m.DonorRoutingModuleModule
+      ),
+  },
+  {
+    path: 'admin',
+    component: AdministratorRootComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRole: 'ROLE_ADMIN' },
+    loadChildren: () =>
+      import('./modules/administrator/administrator.module').then(
+        (m) => m.AdministratorModule
       ),
   },
 

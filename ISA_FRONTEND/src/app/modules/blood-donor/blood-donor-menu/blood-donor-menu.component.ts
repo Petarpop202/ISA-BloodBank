@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-blood-donor-menu',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BloodDonorMenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router : Router, private loginService: LoginService) { }
 
   ngOnInit(): void {
   }
 
+  logout = () =>
+  {
+    this.loginService.logout();
+  }
 }

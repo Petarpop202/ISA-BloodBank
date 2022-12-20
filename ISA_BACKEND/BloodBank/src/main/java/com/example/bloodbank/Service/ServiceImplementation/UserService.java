@@ -60,7 +60,7 @@ public class UserService implements IUserService {
 
         // u primeru se registruju samo obicni korisnici i u skladu sa tim im se i dodeljuje samo rola USER
         Role roles = _roleService.findByName("ROLE_USER");
-        u.setRole(roles);
+        //u.setRoles(roles);
 
         return this._userRepository.save(u);
     }

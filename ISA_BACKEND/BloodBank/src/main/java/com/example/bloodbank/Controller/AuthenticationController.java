@@ -2,7 +2,7 @@ package com.example.bloodbank.Controller;
 
 import com.example.bloodbank.Dto.JwtAuthenticationRequest;
 import com.example.bloodbank.Dto.UserRequest;
-import com.example.bloodbank.Dto.UserTokenState;
+import com.example.bloodbank.Dto.Jwt;
 import com.example.bloodbank.Model.User;
 import com.example.bloodbank.Service.IUserService;
 import com.example.bloodbank.Util.TokenUtils;
@@ -38,7 +38,7 @@ public class AuthenticationController {
 	// Tada zna samo svoje korisnicko ime i lozinku i to prosledjuje na backend.
 	@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping("/login")
-	public ResponseEntity<UserTokenState> createAuthenticationToken(
+	public ResponseEntity<Jwt> createAuthenticationToken(
 			@RequestBody JwtAuthenticationRequest authenticationRequest, HttpServletResponse response) {
 		// Ukoliko kredencijali nisu ispravni, logovanje nece biti uspesno, desice se
 		// AuthenticationException
@@ -55,7 +55,7 @@ public class AuthenticationController {
 		int expiresIn = tokenUtils.getExpiredIn();
 
 		// Vrati token kao odgovor na uspesnu autentifikaciju
-		return ResponseEntity.ok(new UserTokenState(jwt, expiresIn));
+		return ResponseEntity.ok(new Jwt(jwt, expiresIn));
 	}
 
 	// Endpoint za registraciju novog korisnika

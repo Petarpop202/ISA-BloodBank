@@ -16,13 +16,13 @@ export class LoginService {
   private redirectToMainPage = () =>
   {
     var roleLandingPages = new Map<string, string>([
-      ['ROLE_DONOR', 'donor']
-
+      ['ROLE_DONOR', 'donor'],
+      ['ROLE_ADMIN', 'admin']
     ]);
 
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('jwt');
       const tokenPayload = this.jwtHelper.decodeToken(token!);
-      const role = tokenPayload.role;
+      const role = tokenPayload.roles;
 
       this.router.navigate([roleLandingPages.get(role)]);         
   }
@@ -35,7 +35,7 @@ export class LoginService {
        })
        .subscribe({
      next: (response) =>{
-       localStorage.setItem('token', response.accessToken);
+       localStorage.setItem('jwt', response.jwt);
        this.redirectToMainPage();
      },
      //TODO: handle errors
