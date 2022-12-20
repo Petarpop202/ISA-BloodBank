@@ -1,5 +1,6 @@
 package com.example.bloodbank.Service.ServiceImplementation;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -52,6 +53,10 @@ public class BloodDonationAppointmentService implements IBloodDonationAppointmen
 
 	public List<BloodDonationAppointment> getAllByBloodBank(Long id){
 		return bloodDonationAppointmentRepo.findAllByBloodBankId(id);
+	}
+	
+	public List<BloodDonationAppointment> getAllByDateTime(LocalDateTime datetime){
+		return bloodDonationAppointmentRepo.findAllByStartDateTime(datetime);
 	}
 	
 	@Override

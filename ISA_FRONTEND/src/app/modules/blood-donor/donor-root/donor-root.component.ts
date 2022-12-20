@@ -2,6 +2,7 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Route, Router } from '@angular/router';
 import { BloodBank } from 'src/app/model/bloodBank';
 import { BloodBankService } from 'src/app/services/blood-bank.service';
 
@@ -12,7 +13,7 @@ import { BloodBankService } from 'src/app/services/blood-bank.service';
 })
 export class DonorRootComponent implements OnInit {
 
-  constructor(private bloodBankService: BloodBankService, private _liveAnnouncer: LiveAnnouncer) { }
+  constructor(private bloodBankService: BloodBankService, public router: Router, private _liveAnnouncer: LiveAnnouncer) { }
 
   
   @ViewChild(MatSort)
