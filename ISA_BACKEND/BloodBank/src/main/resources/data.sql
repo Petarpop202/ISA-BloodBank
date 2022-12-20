@@ -5,11 +5,13 @@ insert into addresses (city, country, street, street_num) values ('Beograd', 'Sr
 insert into addresses (city, country, street, street_num) values ('Niš', 'Srbija', 'Ulica 5', '55');
 insert into addresses (city, country, street, street_num) values ('Kraljevo', 'Srbija', 'Dositejeva', '14');
 
-insert into users (name, surname, gender, username, password, jmbg, mail, phone_number, address_id) values ('Danilo', 'Bulatović', 0, 'Danilo123', 'danilo', '123456789123', 'danilo@gmail.com', '065/123-456', 1);
-insert into users (name, surname, gender, username, password, jmbg, mail, phone_number, address_id) values ('Đorđe', 'Lipovčić', 0, 'plaoludastruja', 'pls', '123456789123', 'pls@gmail.com', '065/123-456', 2);
-insert into users (name, surname, gender, username, password, jmbg, mail, phone_number, address_id) values ('Đorđe1', 'Lipovčić1', 0, 'plaoludastruja1', 'pls1', '123456789123', 'pls@gmail.com', '065/123-456', 3);
-insert into users (name, surname, gender, username, password, jmbg, mail, phone_number, address_id) values ('Đorđe2', 'Lipovčić2', 0, 'plaoludastruja2', 'pls', '123456789123', 'pls@gmail.com', '065/123-456', 4);
-insert into users (name, surname, gender, username, password, jmbg, mail, phone_number, address_id) values ('Stefan', 'Lepsanovic', 0, 'stefan', 'stefan', '12345678999', 'stefan@gmail.com', '065/123-456', 5);
+--Sifre su 123 !
+
+insert into users (name, surname, gender, username, password, jmbg, enabled, mail, phone_number, address_id) values ('Danilo', 'Bulatović', 0, 'Danilo123', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', '123456789123', true, 'danilo@gmail.com', '065/123-456', 1);
+insert into users (name, surname, gender, username, password, jmbg, enabled, mail, phone_number, address_id) values ('Đorđe', 'Lipovčić', 0, 'plaoludastruja', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', '123456789123', true, 'pls@gmail.com', '065/123-456', 2);
+insert into users (name, surname, gender, username, password, jmbg, enabled, mail, phone_number, address_id) values ('Đorđe1', 'Lipovčić1', 0, 'plaoludastruja1', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', '123456789123', true, 'pls@gmail.com', '065/123-456', 3);
+insert into users (name, surname, gender, username, password, jmbg, enabled, mail, phone_number, address_id) values ('Đorđe2', 'Lipovčić2', 0, 'plaoludastruja2', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', '123456789123', true, 'pls@gmail.com', '065/123-456', 4);
+insert into users (name, surname, gender, username, password, jmbg, enabled, mail, phone_number, address_id) values ('Stefan', 'Lepsanovic', 0, 'stefan', 'stefan', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', true, 'stefan@gmail.com', '065/123-456', 5);
 
 insert into system_administrators (id) values (5);
 
@@ -31,3 +33,11 @@ insert into blood_donation_appointments (start_date_time, duration, blood_bank_i
 insert into blood_donation_appointments_medicine_staffs (blood_donation_appointment_id, medicine_staffs_id) values (1, 2);
 insert into blood_donation_appointments_medicine_staffs (blood_donation_appointment_id, medicine_staffs_id) values (2, 3);
 insert into blood_donation_appointments_medicine_staffs (blood_donation_appointment_id, medicine_staffs_id) values (3, 4);
+
+INSERT INTO role (name) VALUES ('ROLE_DONOR');
+INSERT INTO role (name) VALUES ('ROLE_MEDICALWORKER');
+INSERT INTO role (name) VALUES ('ROLE_ADMIN');
+
+INSERT INTO USER_ROLE (user_id, role_id) VALUES (1, 1); -- user-u dodeljujemo rolu DONOR
+INSERT INTO USER_ROLE (user_id, role_id) VALUES (2, 2); -- user-u dodeljujemo rolu MW
+INSERT INTO USER_ROLE (user_id, role_id) VALUES (3, 3); -- user-u dodeljujemo rolu ADMIN

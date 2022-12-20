@@ -1,0 +1,73 @@
+<div>
+    <!-- Info-->
+    <section>
+        <div class="container">
+            <div class="main-body">
+                <div class="row gutters-sm my-4">
+                    <div class="col-md-4 my-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex flex-column align-items-center text-center">
+                                    <div class="mt-3">
+                                        <!--ovde ide bejzik slika-->
+                                        <h4>{{medicineStaff?.name}}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card mb-1">
+                            <div class="card-body">
+                                <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Ime i prezime</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">{{medicineStaff?.name}} {{medicineStaff?.surname}}</div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Korisničko ime</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">{{medicineStaff?.username}}</div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Email</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">{{medicineStaff?.mail}}</div>
+                            </div>
+                            <hr>
+                                <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Pol</h6>
+                                        </div>
+                                        <ng-container *ngIf="medicineStaff?.gender === 'MALE'; else elseBlock"><div class="col-sm-9 text-secondary">Muško</div></ng-container>
+                                        <ng-template #elseBlock><div class="col-sm-9 text-secondary">Žensko</div></ng-template>
+
+                                        
+                                </div>
+                                <hr>
+                                <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Banka krvi</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">{{medicineStaff?.bloodBank?.name}}</div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <a class="btn btn-outline-dark" [routerLink]="['/editMedicineStaffProfile', medicineStaff?.id]">Izmijeni profil</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>

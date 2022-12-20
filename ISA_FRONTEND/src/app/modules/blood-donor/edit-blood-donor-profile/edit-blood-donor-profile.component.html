@@ -1,0 +1,133 @@
+<div>
+    <!-- Info-->
+    <section>
+        <div class="container">
+            <div class="main-body">
+                <div class="row d-flex justify-content-center align-items-center h-100" >
+                    <div class="col-md-8">
+                        <div class="card my-4 align-items-center" >
+                            <div class="card-body ">
+                                <p class="text-center h3 fw-bold mb-1 mx-1 mx-md-4 mt-1">Izmena profila</p>
+                                <div class="row mb-0">
+                                    <div class="mb-0">
+                                        <div class="form-outline">
+                                            <input type="text" class="form-control form-control-lg" [(ngModel)]="donor.name"/>
+                                            <label class="form-label">Ime</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-0">
+                                    <div class="mb-0">
+                                        <div class="form-outline">
+                                            <input type="text" class="form-control form-control-lg" [(ngModel)]="donor.surname"/>
+                                            <label class="form-label">Prezime</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-0">
+                                    <div class="mb-0">
+                                        <div class="form-outline">
+                                            <div>
+                                                <div class="form-check form-check-inline">
+                                                  <input mdbRadio class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" (change)="setGender('MALE')" [checked]="isMale" value="MALE"/>
+                                                  <label class="form-check-label" for="inlineRadio1">Muško</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                  <input mdbRadio class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" (change)="setGender('FEMALE')" [checked]="!isMale" value="FEMALE"/>
+                                                  <label class="form-check-label" for="inlineRadio2">Žensko</label>
+                                                </div>
+                                            </div>
+                                            <label class="form-label">Pol</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-0">
+                                    <div class="mb-0">
+                                        <div class="form-outline">
+                                            <input type="text" class="form-control form-control-lg" [(ngModel)]="donor.username"/>
+                                            <label class="form-label">Korisničko ime</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-0">
+                                    <div class="mb-0">
+                                        <div class="form-outline">
+                                            <input type="text" class="form-control form-control-lg" [(ngModel)]="donor.password"/>
+                                            <label class="form-label">Lozinka</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-0">
+                                    <div class="mb-0">
+                                        <div class="form-outline">
+                                            <input type="text" class="form-control form-control-lg" [(ngModel)]="donor.jmbg"/>
+                                            <label class="form-label">JMBG</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-0">
+                                    <div class="mb-0">
+                                        <div class="form-outline">
+                                            <input type="text" class="form-control form-control-lg" [(ngModel)]="donor.mail" disabled/>
+                                            <label class="form-label">Email</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-0">
+                                    <div class="mb-0">
+                                        <div class="form-outline">
+                                            <input type="text" class="form-control form-control-lg" [(ngModel)]="donor.phoneNumber"/>
+                                            <label class="form-label">Telefon</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="border-style: solid; border-color: burlywood; border-radius: 10%; " class="mb-5">
+                                    <p class="text-center h3 fw-bold mb-1 mx-1 mx-md-4 mt-1">Adresa</p>
+                                    <div class="row mb-0 mx-1">
+                                        <div class="mb-0">
+                                            <div class="form-outline">
+                                                <input type="text" class="form-control form-control-lg" [(ngModel)]="donor.address.street"/>
+                                                <label class="form-label">Ulica</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-0 mx-1">
+                                        <div class="mb-0">
+                                            <div class="form-outline">
+                                                <input type="text" class="form-control form-control-lg" [(ngModel)]="donor.address.streetNum"/>
+                                                <label class="form-label">Broj</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-0 mx-1">
+                                        <div class="mb-0">
+                                            <div class="form-outline">
+                                                <input type="text" class="form-control form-control-lg" [(ngModel)]="donor.address.city"/>
+                                                <label class="form-label">Grad</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2 mx-1">
+                                        <div class="mb-0">
+                                            <div class="form-outline">
+                                                <input type="text" class="form-control form-control-lg" [(ngModel)]="donor.address.country"/>
+                                                <label class="form-label">Država</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-0 text-center">
+                                    <div style="color: red;" id="greska" [hidden]="!error"><h2>{{errorText}}</h2></div>
+                                </div> 
+                                <div class="text-center pt-3">
+                                    <button type="button" class="btn btn-success btn-lg ms-2" (click)="editBloodDonorProfile()">Izmeni podatke</button>
+                                    <button type="button" class="btn btn-warning btn-lg ms-2" (click)="cancelEdit()">Otkaži</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

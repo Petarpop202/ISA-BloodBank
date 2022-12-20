@@ -6,8 +6,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { HomepageMenuComponent } from './homepage-menu/homepage-menu.component';
-import { MedicineStaffMenuComponent } from './medicine-staff-menu/medicine-staff-menu.component';
-import { SystemAdministratorComponent } from './system-administrator/system-administrator.component';
+import { MedicineStaffMenuComponent } from '../medical-staff/medicine-staff-menu/medicine-staff-menu.component';
+import { SystemAdministratorComponent } from '../administrator/system-administrator/system-administrator.component';
 
 
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -17,14 +17,12 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatGridListModule} from '@angular/material/grid-list';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ValidationErrorComponent } from './register/validation-error/validation-error.component';
 import {MatDialogModule} from '@angular/material/dialog';
-import { BloodDonorMenuComponent } from './blood-donor-menu/blood-donor-menu.component';
+import { BloodDonorMenuComponent } from '../blood-donor/blood-donor-menu/blood-donor-menu.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
-import { DonorSurveyComponent } from './donor-survey/donor-survey.component';
-import { SearchUsersComponent } from './search-users/search-users.component';
 
 
 @NgModule({
@@ -33,12 +31,7 @@ import { SearchUsersComponent } from './search-users/search-users.component';
     LoginComponent,
     RegisterComponent,
     HomepageMenuComponent,
-    BloodDonorMenuComponent,
-    MedicineStaffMenuComponent,
-    ValidationErrorComponent,
-    DonorSurveyComponent,
-    SystemAdministratorComponent,
-    SearchUsersComponent
+    ValidationErrorComponent
   ],
   imports: [
     CommonModule,
@@ -52,6 +45,7 @@ import { SearchUsersComponent } from './search-users/search-users.component';
     MatSelectModule,
     
     MatIconModule,
+    ReactiveFormsModule,
     
    
     MatRadioModule,
@@ -63,9 +57,6 @@ import { SearchUsersComponent } from './search-users/search-users.component';
   ],
   exports: [
     HomepageMenuComponent,
-    BloodDonorMenuComponent,
-    MedicineStaffMenuComponent,
-    SystemAdministratorComponent
   ]
 })
 export class HomepageModule { }
