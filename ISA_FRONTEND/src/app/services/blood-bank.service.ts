@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BloodBank } from '../model/bloodBank';
+import { BloodDonationAppointment } from '../model/bloodDonationAppointment';
 import { MedicineStaff } from '../model/medicineStaff';
 
 @Injectable({
@@ -23,6 +24,14 @@ export class BloodBankService {
 
   getMedicineStaffFromBloodBank(id: any): Observable<MedicineStaff[]> {
     return this.http.get<MedicineStaff[]>(this.apiHost + 'MedicineStaff/getMedicineStaffFromBloodBank/' + id, {headers: this.headers});
+  }
+
+  getAppointmentsFromBloodBank(id: any): Observable<BloodDonationAppointment[]> {
+    return this.http.get<BloodDonationAppointment[]>(this.apiHost + 'bloodDonationAppointment/bloodBank=' + id, {headers: this.headers});
+  }
+
+  createBloodDonationAppointment(bloodDonationAppointment: any): Observable<any> {
+    return this.http.post<any>(this.apiHost + 'bloodDonationAppointment/new', bloodDonationAppointment);
   }
 
   updateBloodBank(bloodBank: any): Observable<any> {

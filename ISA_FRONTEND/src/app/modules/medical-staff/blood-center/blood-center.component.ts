@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BloodBank } from 'src/app/model/bloodBank';
+import { BloodDonationAppointment } from 'src/app/model/bloodDonationAppointment';
 import { MedicineStaff } from 'src/app/model/medicineStaff';
 import { BloodBankService } from 'src/app/services/blood-bank.service';
 
@@ -16,6 +17,7 @@ export class BloodCenterComponent implements OnInit {
   bloodBank: BloodBank = new BloodBank;
   medicineStaff : MedicineStaff[] = []
   todoFree : MedicineStaff[] = []
+  appointments : BloodDonationAppointment[] = []
 
   constructor(private bloodBankService:BloodBankService,private route: ActivatedRoute) { }
 
@@ -23,6 +25,7 @@ export class BloodCenterComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id')
     this.getBloodBank(this.id);
     this.getMedicineStaffFromBloodBank(this.id);
+    this.getAppointmentFromBloodBank(this.id);
   }
   
   public getBloodBank(id:any): void {
@@ -37,8 +40,13 @@ export class BloodCenterComponent implements OnInit {
     })
   }
 
+  public getAppointmentFromBloodBank(id:any) {
+    this.bloodBankService.getAppointmentsFromBloodBank(id).subscribe(res => {
+      this.appointments = res;
+    })
+  }
+
   public numSequence(n: any): Array<number> {
     return Array(n);
   }
-
 }

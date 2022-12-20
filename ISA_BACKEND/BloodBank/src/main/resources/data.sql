@@ -15,8 +15,8 @@ insert into users (name, surname, gender, username, password, jmbg, enabled, mai
 
 insert into system_administrators (id) values (5);
 
-insert into blood_banks (name, address_id, description, average_grade, blood) values ('Kul Banka Krvi', 3, 'Kul opis', 5, 'AB');
-insert into blood_banks (name, address_id, description, average_grade, blood) values ('Losa Banka Krvi', 4, 'Los opis', 1, 'A');
+insert into blood_banks (name, address_id, description, average_grade, blood, work_time_start, work_time_end) values ('Kul Banka Krvi', 3, 'Kul opis', 5, 'AB', '08:00:00', '16:00:00');
+insert into blood_banks (name, address_id, description, average_grade, blood, work_time_start, work_time_end) values ('Losa Banka Krvi', 4, 'Los opis', 1, 'A', '10:00:00', '14:00:00');
 
 insert into blood_donors (category, loyality_points, penalty_points, id) values (0, 0, 0, 1);
 insert into blood_donors (category, loyality_points, penalty_points, id) values (0, 0, 0, 2);
@@ -26,9 +26,10 @@ insert into medicine_staffs (blood_bank_id, id) values (1, 2);
 insert into medicine_staffs (blood_bank_id, id) values (1, 3);
 insert into medicine_staffs (blood_bank_id, id) values (2, 4);
 
-insert into blood_donation_appointments (date,blood_bank_id) values ('12.12.2022.', 1);
-insert into blood_donation_appointments (date,blood_bank_id) values ('12.11.2022.', 1);
-insert into blood_donation_appointments (date,blood_bank_id) values ('11.11.2022.', 2);
+insert into blood_donation_appointments (start_date_time, duration, blood_bank_id) values ('12.12.2022. 12:00:00', 30, 1);
+insert into blood_donation_appointments (start_date_time, duration, blood_bank_id) values ('12.11.2022. 10:40:00', 20, 1);
+insert into blood_donation_appointments (start_date_time, duration, blood_bank_id) values ('11.11.2022. 13:15:00', 45, 2);
+
 insert into blood_donation_appointments_medicine_staffs (blood_donation_appointment_id, medicine_staffs_id) values (1, 2);
 insert into blood_donation_appointments_medicine_staffs (blood_donation_appointment_id, medicine_staffs_id) values (2, 3);
 insert into blood_donation_appointments_medicine_staffs (blood_donation_appointment_id, medicine_staffs_id) values (3, 4);
