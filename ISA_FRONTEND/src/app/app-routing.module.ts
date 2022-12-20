@@ -7,7 +7,6 @@ import { RegisterComponent } from './modules/homepage/register/register.componen
 import { DonorRootComponent } from './modules/blood-donor/donor-root/donor-root.component';
 import { AdministratorRootComponent } from './modules/administrator/administrator-root/administrator-root.component';
 import { MedicalRootComponent } from './modules/medical-staff/medical-root/medical-root.component';
-import { AddBloodDonationAppointmentComponent } from './modules/blood-bank-center/add-blood-donation-appointment/add-blood-donation-appointment.component';
 
 const routes: Routes = [
   { path: 'home', component: HomepageComponent},
@@ -44,7 +43,7 @@ const routes: Routes = [
         (m) => m.AdministratorRoutingModule
       ),
   },
-  { path: 'addBloodDonationAppointment/:id', component: AddBloodDonationAppointmentComponent},
+
 
 
   // ova linija mora biti zadnja, biti zadnja

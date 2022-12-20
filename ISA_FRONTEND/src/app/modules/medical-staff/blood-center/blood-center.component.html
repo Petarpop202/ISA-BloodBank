@@ -1,14 +1,15 @@
 
 <div>
     <!-- Header-->
+    <router-outlet></router-outlet>
         <header class="masthead text-center text-black">
             <div class="masthead-content">
                 <div class="container px-5 mb-1">
                     <h1 class="masthead-heading mb-1">Banka krvi</h1>
                     <div class="row">
                         <div class="col-sm-12 mb-2">
-                            <button  class="btn btn-outline-dark rounded-pill" [routerLink]="['/addBloodDonationAppointment', bloodBank.id]">Dodaj termin za davanje krvi</button>
-                            <button class="btn btn-outline-dark rounded-pill" [routerLink]="['/editBloodBank', bloodBank.id]">Izmijeni banku krvi</button>
+                            <button  class="btn btn-outline-dark rounded-pill" [routerLink]="['addBloodDonationAppointment', bloodBank.id]">Dodaj termin za davanje krvi</button>
+                            <button class="btn btn-outline-dark rounded-pill" [routerLink]="['editBloodBank', bloodBank.id]">Izmijeni banku krvi</button>
                         </div>
                     </div>
                 </div>

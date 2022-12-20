@@ -2,6 +2,7 @@ package com.example.bloodbank.Controller;
 
 import java.util.List;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,6 +37,7 @@ public class BloodDonationAppointmentController {
     }
     
     @GetMapping(value = "/bloodBank={id}")
+    @PreAuthorize("hasRole('ROLE_MEDICALWORKER')")
     public List<BloodDonationAppointment> getAllByBloodBank(@PathVariable long id) {
     	return bloodDonationAppointmentService.getAllByBloodBank(id);
     }
