@@ -17,7 +17,8 @@ export class LoginService {
   {
     var roleLandingPages = new Map<string, string>([
       ['ROLE_DONOR', 'donor'],
-      ['ROLE_ADMIN', 'admin']
+      ['ROLE_ADMIN', 'admin'],
+      ['ROLE_MEDICALWORKER','medicalworker']
     ]);
 
       const token = localStorage.getItem('jwt');

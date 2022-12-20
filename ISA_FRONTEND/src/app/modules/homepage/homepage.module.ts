@@ -6,7 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { HomepageMenuComponent } from './homepage-menu/homepage-menu.component';
-import { MedicineStaffMenuComponent } from './medicine-staff-menu/medicine-staff-menu.component';
+import { MedicineStaffMenuComponent } from '../medical-staff/medicine-staff-menu/medicine-staff-menu.component';
 import { SystemAdministratorComponent } from '../administrator/system-administrator/system-administrator.component';
 
 
@@ -31,7 +31,6 @@ import {MatSortModule} from '@angular/material/sort';
     LoginComponent,
     RegisterComponent,
     HomepageMenuComponent,
-    MedicineStaffMenuComponent,
     ValidationErrorComponent
   ],
   imports: [
@@ -58,7 +57,6 @@ import {MatSortModule} from '@angular/material/sort';
   ],
   exports: [
     HomepageMenuComponent,
-    MedicineStaffMenuComponent,
   ]
 })
 export class HomepageModule { }
