@@ -20,10 +20,9 @@ public class CenterVisit {
     @ManyToOne
     @JoinColumn(name = "blood_donor_id")
     private BloodDonor BloodDonor;
-    @ManyToOne
-    @JoinColumn(name = "blood_bank_id")
-    private BloodBank BloodBank;
+    @OneToOne
+    @JoinColumn(name = "blood_donation_id")
+    private BloodDonationAppointment BloodDonationAppointment;
     private float Price;
-    private Date VisitDate;
     private boolean isDone;
 }

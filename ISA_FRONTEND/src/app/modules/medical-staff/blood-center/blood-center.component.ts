@@ -49,4 +49,8 @@ export class BloodCenterComponent implements OnInit {
   public numSequence(n: any): Array<number> {
     return Array(n);
   }
+
+  public goToMyBank(): void {
+    
+  }
 }

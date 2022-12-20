@@ -3,6 +3,7 @@ package com.example.bloodbank.Controller;
 import com.example.bloodbank.Dto.JwtAuthenticationRequest;
 import com.example.bloodbank.Dto.UserRequest;
 import com.example.bloodbank.Dto.Jwt;
+import com.example.bloodbank.Model.BloodDonor;
 import com.example.bloodbank.Model.User;
 import com.example.bloodbank.Service.IUserService;
 import com.example.bloodbank.Util.TokenUtils;

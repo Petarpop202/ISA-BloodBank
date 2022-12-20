@@ -1,19 +1,65 @@
 package com.example.bloodbank.Dto;
 
+import com.example.bloodbank.Model.Address;
+import com.example.bloodbank.Model.GenderEnum;
+
+import javax.persistence.*;
+import java.sql.Timestamp;
+
 // DTO koji preuzima podatke iz HTML forme za registraciju
 public class UserRequest {
 
-	private Long id;
+	private long id;
+
+	private String name;
+
+	private String surname;
+
+	private String mail;
 
 	private String username;
 
 	private String password;
 
-	private String firstname;
+	private String phoneNumber;
 
-	private String lastname;
-	
-	private String email;
+	private String jmbg;
+
+	private GenderEnum gender;
+
+	private Address address;
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
 
 	public String getUsername() {
 		return username;
@@ -31,36 +77,35 @@ public class UserRequest {
 		this.password = password;
 	}
 
-	public String getFirstname() {
-		return firstname;
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
-	public String getLastname() {
-		return lastname;
+	public String getJmbg() {
+		return jmbg;
 	}
 
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public void setJmbg(String jmbg) {
+		this.jmbg = jmbg;
 	}
 
-	public Long getId() {
-		return id;
+	public GenderEnum getGender() {
+		return gender;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setGender(GenderEnum gender) {
+		this.gender = gender;
 	}
 
-	public String getEmail() {
-		return email;
+	public Address getAddress() {
+		return address;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setAddress(Address address) {
+		this.address = address;
 	}
-
 }
