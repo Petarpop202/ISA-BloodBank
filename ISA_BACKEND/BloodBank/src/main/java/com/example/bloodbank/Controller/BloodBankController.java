@@ -33,7 +33,6 @@ public class BloodBankController {
     }
     
     @GetMapping(value = "/get/{id}")
-    @PreAuthorize("hasRole('ROLE_MEDICALWORKER')")
     public BloodBank getBloodBankById(@PathVariable Long id){
         return bloodBankService.getById(id);
     }
