@@ -16,6 +16,8 @@ import { BloodDonorMenuComponent } from './blood-donor-menu/blood-donor-menu.com
 import { BloodDonorProfileComponent } from './blood-donor-profile/blood-donor-profile.component';
 import { EditBloodDonorProfileComponent } from './edit-blood-donor-profile/edit-blood-donor-profile.component';
 import { DonorSurveyComponent } from './donor-survey/donor-survey.component';
+import { RouterModule } from '@angular/router';
+
 
 
 @NgModule({
@@ -43,6 +45,8 @@ import { DonorSurveyComponent } from './donor-survey/donor-survey.component';
         MatDialogModule,
         MatTableModule,
         MatSortModule,
+        RouterModule
+        
     ]
 })
   export class BloodDonorModule { }

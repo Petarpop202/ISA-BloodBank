@@ -21,3 +21,7 @@ const routes: Routes = [
       exports: [RouterModule]
 })
 export class DonorRoutingModuleModule { }
+
+export const routingComponents = [
+  DonorRootComponent,
+]

@@ -19,6 +19,7 @@ import { BloodCenterComponent } from './blood-center/blood-center.component';
 import { EditBloodBankComponent } from './edit-blood-bank/edit-blood-bank.component';
 import { NewBloodBankComponent } from './new-blood-bank/new-blood-bank.component';
 import { MedicalRootComponent } from './medical-root/medical-root.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -52,7 +53,8 @@ import { MedicalRootComponent } from './medical-root/medical-root.component';
     FormsModule,
     MatDialogModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    RouterModule
 
   ],
   exports:[MedicineStaffMenuComponent]

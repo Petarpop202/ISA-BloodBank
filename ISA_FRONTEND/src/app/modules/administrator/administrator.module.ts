@@ -14,6 +14,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { AdministratorRootComponent } from './administrator-root/administrator-root.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { AdministratorRootComponent } from './administrator-root/administrator-r
     MatDialogModule,
     MatTableModule,
     MatSortModule,
+    SharedModule
   ]
 })
 export class AdministratorModule { }
