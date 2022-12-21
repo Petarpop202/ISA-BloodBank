@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DonorSurvey } from 'src/app/model/donorSurvey';
+import { SurveyDto } from 'src/app/model/surveyDto';
+import { LoginService } from 'src/app/services/login.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -9,10 +11,10 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class DonorSurveyComponent implements OnInit {
 
-  constructor(private userService : UserService) { }
+  constructor(private userService : UserService,private loginService: LoginService) { }
   isAvailable: boolean = true;
   num: number = 0;
-  survey : DonorSurvey = new DonorSurvey();
+  survey : SurveyDto = new SurveyDto();
   id:number = 1;
 
   ngOnInit(): void {
@@ -34,8 +36,8 @@ export class DonorSurveyComponent implements OnInit {
   }
 
   getUser():void{
-    this.userService.getUser(this.id).subscribe(res=>{
-      this.survey.bloodDonor = res;
+    this.loginService.whoAmI().subscribe(res=>{
+      this.survey.donorId = res.id;
       this.putSurvey();
     })
   }

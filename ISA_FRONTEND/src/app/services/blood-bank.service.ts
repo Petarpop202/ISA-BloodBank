@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BloodBank } from '../model/bloodBank';
 import { BloodDonationAppointment } from '../model/bloodDonationAppointment';
+import { CenterVisit } from '../model/centerVisit';
 import { MedicineStaff } from '../model/medicineStaff';
 
 @Injectable({
@@ -52,5 +53,21 @@ export class BloodBankService {
 
   isNameUnique(name: string): Observable<boolean> {
     return this.http.get<boolean>(this.apiHost + 'bloodBank/checkName=' + name, {headers: this.headers});
+  }
+
+  createVisit(centerVisit: any): Observable<any> {
+    return this.http.post<any>(this.apiHost + 'centerVisit/new', centerVisit);
+  }
+
+  getAppointmentByDonorId(id: any): Observable<CenterVisit[]> {
+    return this.http.get<CenterVisit[]>(this.apiHost + 'centerVisit/getByDonor/' + id, {headers: this.headers});
+  }
+
+  getVisitById(id: any): Observable<CenterVisit> {
+    return this.http.get<CenterVisit>(this.apiHost + 'centerVisit/get/' + id, {headers: this.headers});
+  }
+
+  deleteVisitCenter(object: any): Observable<any> {
+    return this.http.put<any>(this.apiHost + 'centerVisit/delete', object);
   }
 }

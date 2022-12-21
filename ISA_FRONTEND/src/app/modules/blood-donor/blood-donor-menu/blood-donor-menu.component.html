@@ -1,6 +1,7 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom text-bg-dark">
         <div class="container px-5">
+            <a class="navbar-brand text-warning" routerLink="/donor/bloodDonorHomepage">
             <a class="navbar-brand text-warning" routerLink="/donor">
                 <i class="bi bi-heart-pulse"></i>
                 Bankica krvi
@@ -9,6 +10,7 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="btn text-white" routerLink="bloodDonorProfile" routerLinkActive="active">Moj profil</a></li>
+                    <li class="nav-item"><a class="btn text-white" routerLink="scheduledAppointments" routerLinkActive="active">Zakazani termini</a></li>
                     <li class="nav-item"><a class="btn text-white" routerLink="scheduleAppointment" routerLinkActive="active">Zakaži termin</a></li>
                     <li class="nav-item"><button class="btn text-white" routerLink="donorSurvey">Anketa</button></li>
                     <li class="nav-item"><button class="btn text-white" (click)="logout()" >Odjavite se</button></li>

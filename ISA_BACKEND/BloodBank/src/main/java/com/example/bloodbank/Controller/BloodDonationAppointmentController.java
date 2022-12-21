@@ -39,7 +39,7 @@ public class BloodDonationAppointmentController {
     }
     
     @GetMapping(value = "/bloodBank={id}")
-    @PreAuthorize("hasRole('ROLE_MEDICALWORKER')")
+    @PreAuthorize("hasAnyRole('ROLE_MEDICALWORKER','ROLE_DONOR')")
     public List<BloodDonationAppointment> getAllByBloodBank(@PathVariable long id) {
     	return bloodDonationAppointmentService.getAllByBloodBank(id);
     }
@@ -58,5 +58,6 @@ public class BloodDonationAppointmentController {
     @PutMapping("/update")
     BloodDonationAppointment UpdateBloodDonationAppointment(@RequestBody BloodDonationAppointment updatedBloodDonationAppointment) {
         return bloodDonationAppointmentService.update(updatedBloodDonationAppointment);
-    }    
+    }
+
 }
