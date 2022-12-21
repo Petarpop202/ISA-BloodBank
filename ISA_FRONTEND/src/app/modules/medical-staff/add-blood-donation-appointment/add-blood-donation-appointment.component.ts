@@ -17,6 +17,7 @@ export class AddBloodDonationAppointmentComponent implements OnInit {
   appointment: BloodDonationAppointment = new BloodDonationAppointment
   appointments: BloodDonationAppointment[] = []
   selectedDate: Date = new Date()
+  minDate: Date = new Date()
   hours: number = 0
   minutes: number = 0
   duration: number = 10

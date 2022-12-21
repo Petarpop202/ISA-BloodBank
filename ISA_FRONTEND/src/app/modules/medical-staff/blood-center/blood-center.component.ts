@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BloodBank } from 'src/app/model/bloodBank';
 import { BloodDonationAppointment } from 'src/app/model/bloodDonationAppointment';
+import { CenterVisit } from 'src/app/model/centerVisit';
 import { MedicineStaff } from 'src/app/model/medicineStaff';
 import { BloodBankService } from 'src/app/services/blood-bank.service';
 
@@ -18,6 +19,7 @@ export class BloodCenterComponent implements OnInit {
   medicineStaff : MedicineStaff[] = []
   todoFree : MedicineStaff[] = []
   appointments : BloodDonationAppointment[] = []
+  centerVisits : CenterVisit[] = [] 
 
   constructor(private bloodBankService:BloodBankService,private route: ActivatedRoute) { }
 
@@ -26,6 +28,7 @@ export class BloodCenterComponent implements OnInit {
     this.getBloodBank(this.id);
     this.getMedicineStaffFromBloodBank(this.id);
     this.getAppointmentFromBloodBank(this.id);
+    this.getScheduledAppointmentsFromBloodBank(this.id);
   }
   
   public getBloodBank(id:any): void {
@@ -45,6 +48,15 @@ export class BloodCenterComponent implements OnInit {
       this.appointments = res;
       this.appointments.forEach(app => {
         app.startDateTime = new Date(Number(app.startDateTime[0]), Number(app.startDateTime[1]) - 1, Number(app.startDateTime[2]), Number(app.startDateTime[3]), Number(app.startDateTime[4]), 0).toISOString()
+      })
+    })
+  }
+
+  public getScheduledAppointmentsFromBloodBank(id:any) {
+    this.bloodBankService.getAppointmentsByBloodBankId(id).subscribe(res => {
+      this.centerVisits = res;
+      this.centerVisits.forEach(cv => {
+        cv.bloodDonationAppointment.startDateTime = new Date(Number(cv.bloodDonationAppointment.startDateTime[0]), Number(cv.bloodDonationAppointment.startDateTime[1]) - 1, Number(cv.bloodDonationAppointment.startDateTime[2]), Number(cv.bloodDonationAppointment.startDateTime[3]), Number(cv.bloodDonationAppointment.startDateTime[4]), 0).toISOString()
       })
     })
   }

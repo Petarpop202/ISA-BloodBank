@@ -25,8 +25,7 @@ public class EmailService implements IEmailService {
 
     public String sendSimpleMail(MailDetails details) throws MessagingException, UnsupportedEncodingException {
         MimeMessage message = javaMailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(message);
-
+        MimeMessageHelper helper = new MimeMessageHelper(message, "UTF-8");
         helper.setFrom(sender);
         helper.setTo(details.getRecipient());
         helper.setText(details.getMsgBody(),true);

@@ -63,7 +63,7 @@ public class BloodDonationAppointmentService implements IBloodDonationAppointmen
 	}
 	
 	public List<BloodDonationAppointment> getAllByDateTime(LocalDateTime datetime){
-		return bloodDonationAppointmentRepo.findAllByStartDateTime(datetime);
+		return bloodDonationAppointmentRepo.findAllByStartDateTimeAndIsFree(datetime, true);
 	}
 	
 	@Override

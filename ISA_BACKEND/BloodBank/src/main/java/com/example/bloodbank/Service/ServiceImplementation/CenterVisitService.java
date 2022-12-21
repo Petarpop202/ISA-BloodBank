@@ -69,4 +69,8 @@ public class CenterVisitService implements ICenterVisitService {
         }
         return newList;
     }
+    
+    public List<CenterVisit> getAllByBloodBankId(Long id) {
+        return _centerVisitRepostiory.findAllByBloodDonationAppointmentBloodBankId(id);
+    }
 }

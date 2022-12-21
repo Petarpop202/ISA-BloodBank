@@ -8,7 +8,7 @@
                             <div class="card-body">
                                 <div class="row mb-0">
                                     <div class="form-outline mb-0">
-                                        <input type="date" class="form-control form-control-lg" [(ngModel)]="selectedDate"/>
+                                        <input type="date" class="form-control form-control-lg" min="{{minDate | date:'yyyy-MM-dd'}}" [(ngModel)]="selectedDate"/>
                                         <label class="form-label">Datum početka termina</label>
                                     </div>
                                 </div>
@@ -36,10 +36,10 @@
                         </div>
                     </div>
                     <div *ngIf="!survey">
-                        <h2>Niste ispunili upitnik</h2>
+                        <h2 style="color: red">Niste ispunili anketu</h2>
                     </div>
                     <div *ngIf="survey">
-                        <h2>Ispunili ste upitnik</h2>
+                        <h2 style="color: green">Ispunili ste anketu</h2>
                     </div>
                     <div>
                         <h2 *ngIf="appointments.length">Slobodni termini</h2>
@@ -62,7 +62,8 @@
                                         <td>{{app.bloodBank.averageGrade}}</td>
                                         <td>{{app.startDateTime | date : 'dd.MM.yyyy. HH:mm'}}</td>
                                         <td>{{app.duration}}</td>
-                                        <td><button type="button" class="btn btn-warning" (click)="scheduleAppointment(app.id)">Zakaži</button></td>
+                                        <td *ngIf="survey"><button type="button" class="btn btn-warning" (click)="scheduleAppointment(app.id)">Zakaži</button></td>
+                                        <td *ngIf="!survey"><button type="button" class="btn btn-warning" routerLink="../donorSurvey">Popuni anketu</button></td>
                                     </tr>
                                 </ng-container>
                             </tbody>

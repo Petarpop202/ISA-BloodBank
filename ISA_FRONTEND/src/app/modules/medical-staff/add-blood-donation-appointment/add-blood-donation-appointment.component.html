@@ -8,7 +8,7 @@
                             <div class="card-body">
                                 <div class="row mb-0">
                                     <div class="form-outline mb-0">
-                                        <input type="date" class="form-control form-control-lg" [(ngModel)]="selectedDate"/>
+                                        <input type="date" class="form-control form-control-lg" min="{{minDate | date:'yyyy-MM-dd'}}" [(ngModel)]="selectedDate"/>
                                         <label class="form-label">Datum početka termina</label>
                                     </div>
                                 </div>

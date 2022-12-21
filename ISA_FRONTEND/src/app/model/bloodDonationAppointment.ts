@@ -7,6 +7,7 @@ export class BloodDonationAppointment {
     duration: number = 0;
     medicineStaffs: MedicineStaff[] = new Array();
     bloodBank: BloodBank = new BloodBank;
+    free: boolean = true
 
     public constructor(obj?: any) {
         if (obj) {
@@ -15,6 +16,7 @@ export class BloodDonationAppointment {
             this.duration = obj.duration;
             this.medicineStaffs = obj.medicineStaffs;
             this.bloodBank = obj.bloodBank;
+            this.free = obj.free;
         }
     }
 }

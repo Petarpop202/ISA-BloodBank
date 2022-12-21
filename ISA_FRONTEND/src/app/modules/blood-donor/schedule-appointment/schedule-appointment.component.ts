@@ -7,6 +7,10 @@ import { BloodDonationAppointment } from 'src/app/model/bloodDonationAppointment
 import { Sort } from '@angular/material/sort';
 import { UserService } from 'src/app/services/user.service';
 import { DonorSurvey } from 'src/app/model/donorSurvey';
+import { LoginService } from 'src/app/services/login.service';
+import { CenterVisit } from 'src/app/model/centerVisit';
+import { BloodDonor } from 'src/app/model/bloodDonor';
+import { CenterVisitDto } from 'src/app/model/centerVisitDto';
 
 @Component({
   selector: 'app-schedule-appointment',
@@ -20,6 +24,7 @@ export class ScheduleAppointmentComponent implements OnInit {
   appointment: BloodDonationAppointment = new BloodDonationAppointment
   appointments: BloodDonationAppointment[] = []
   selectedDate: Date = new Date()
+  minDate: Date = new Date()
   hours: number = 0
   minutes: number = 0
   appointmentDate: Date = new Date()
@@ -27,15 +32,17 @@ export class ScheduleAppointmentComponent implements OnInit {
   dateError?: String
   timeError?: String
   survey?: DonorSurvey
+
+  donor: BloodDonor = new BloodDonor()
   
-  constructor(private route: ActivatedRoute, private router: Router, private location: Location, private bloodBankService: BloodBankService, private userService: UserService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private location: Location, private bloodBankService: BloodBankService, private userService: UserService, private loginService: LoginService) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id')
-    
+    this.getSurvey()
   }
 
-  getAppointments(): void{
+  getAppointments(): void {
     this.bloodBankService.getAppointmentsByDateTime(this.appointmentDate.toISOString()).subscribe(res => {
       this.appointments = res
       this.appointments.forEach(app => {
@@ -44,9 +51,47 @@ export class ScheduleAppointmentComponent implements OnInit {
     })
   }
 
+  getScheduledAppointments(): void {
+    this.bloodBankService.getAppointmentByDonorId(this.donor.id).subscribe(res => {
+      if (res == null) {
+        this.minDate = new Date()
+        return
+      }
+
+      let scheduledAppointments: CenterVisit[] = res
+      let pastAppointments: CenterVisit[] = []
+      scheduledAppointments.forEach(app => {
+        if (new Date(Number(app.bloodDonationAppointment.startDateTime[0]), Number(app.bloodDonationAppointment.startDateTime[1]) - 1, Number(app.bloodDonationAppointment.startDateTime[2]), Number(app.bloodDonationAppointment.startDateTime[3]), Number(app.bloodDonationAppointment.startDateTime[4]), 0) <= new Date()){
+          pastAppointments.push(app)
+        }
+      })
+
+      if (!pastAppointments.length)
+        return
+
+      let appDate = pastAppointments[0].bloodDonationAppointment.startDateTime
+      let maxDate = new Date(Number(appDate[0]), Number(appDate[1]) - 1, Number(appDate[2]), Number(appDate[3]), Number(appDate[4]), 0)
+
+      pastAppointments.forEach(app => {
+        if (new Date(app.bloodDonationAppointment.startDateTime) > maxDate){
+          let appDate = app.bloodDonationAppointment.startDateTime
+          maxDate = new Date(Number(appDate[0]), Number(appDate[1]) - 1, Number(appDate[2]), Number(appDate[3]), Number(appDate[4]), 0)
+        }
+      })
+      let newDate = new Date(maxDate.setMonth(maxDate.getMonth() + 6))
+      if (newDate > this.minDate){
+        this.minDate = newDate
+      }
+    })
+  }
+
   getSurvey(): void {
-    this.userService.getSurveyByDonor(1).subscribe(res => {
-      this.survey = res
+    this.loginService.whoAmI().subscribe(res => {
+      this.donor = res
+      this.userService.getSurveyByDonor(this.donor.id).subscribe(res => {
+        this.survey = res
+      })
+      this.getScheduledAppointments()
     })
   }
 
@@ -57,9 +102,13 @@ export class ScheduleAppointmentComponent implements OnInit {
   }
 
   scheduleAppointment(id: string): void {
-    this.bloodBankService.getAppointment(id).subscribe(res =>{
-      this.appointment = res
-      console.log(this.appointment)
+    let centerVisit: CenterVisitDto = new CenterVisitDto()
+    centerVisit.appointmentId = id
+    centerVisit.donorId = this.donor.id
+    centerVisit.price = 0
+
+    this.bloodBankService.createVisit(centerVisit).subscribe(res => {
+      alert('Uspešno zakazan termin!')
     })
   }
 
