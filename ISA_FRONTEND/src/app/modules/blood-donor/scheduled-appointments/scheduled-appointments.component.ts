@@ -43,6 +43,7 @@ export class ScheduledAppointmentsComponent implements OnInit {
     this.bloodBankService.getVisitById(id).subscribe(res=>{
       this.appDto.appointmentId = res.bloodDonationAppointment.id;
       this.appDto.isCanceled = true;
+      this.appDto.id = id;
       this.bloodBankService.deleteVisitCenter(this.appDto).subscribe(res=>{
         alert("Uspesno otkazan termin !")
       })

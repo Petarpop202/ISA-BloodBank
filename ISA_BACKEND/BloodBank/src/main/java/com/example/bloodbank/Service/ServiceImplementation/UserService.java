@@ -1,6 +1,7 @@
 package com.example.bloodbank.Service.ServiceImplementation;
 
 import com.example.bloodbank.Dto.UserRequest;
+import com.example.bloodbank.Model.BloodDonor;
 import com.example.bloodbank.Model.Role;
 import com.example.bloodbank.Model.User;
 import com.example.bloodbank.Repository.IUserRepository;
@@ -49,7 +50,8 @@ public class UserService implements IUserService {
     @Override
     public User save(UserRequest userRequest) {
 
-        User u = new User();
+        //User u = new User();
+        BloodDonor u = new BloodDonor();
         u.setUsername(userRequest.getUsername());
         // pre nego sto postavimo lozinku u atribut hesiramo je kako bi se u bazi nalazila hesirana lozinka
         // treba voditi racuna da se koristi isi password encoder bean koji je postavljen u AUthenticationManager-u kako bi koristili isti algoritam
@@ -64,9 +66,9 @@ public class UserService implements IUserService {
         u.setMail(userRequest.getMail());
         u.setPhoneNumber(userRequest.getPhoneNumber());
         // u primeru se registruju samo obicni korisnici i u skladu sa tim im se i dodeljuje samo rola USER
-        Role roles = _roleService.findByName("ROLE_USER");
+        Role roles1 = _roleService.findByName("ROLE_DONOR");
         List<Role> r = new ArrayList<>();
-        r.add(roles);
+        r.add(roles1);
         u.setRoles(r);
 
         return this._userRepository.save(u);
@@ -74,15 +76,17 @@ public class UserService implements IUserService {
     @Override
     public User getByVerificationCode(String code){
         for(User u : _userRepository.findAll()){
-            if(u.getVerificationCode() == code)
+            if(u.getVerificationCode() != null)
+            if(u.getVerificationCode().compareTo(code) == 0)
                 return u;
         }
         return null;
     }
     @Override
     public User activate(User u){
-        u.setEnabled(true);
-        update(u);
-        return _userRepository.save(u);
+        User old = getById(u.getId());
+        old.setEnabled(true);
+        //update(u);
+        return _userRepository.save(old);
     }
 }

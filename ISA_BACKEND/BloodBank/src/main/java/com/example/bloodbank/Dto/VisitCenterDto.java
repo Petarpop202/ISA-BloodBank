@@ -1,6 +1,7 @@
 package com.example.bloodbank.Dto;
 
 public class VisitCenterDto {
+    private long Id;
     private long DonorId;
     private long AppointmentId;
     private int price;
@@ -35,5 +36,13 @@ public class VisitCenterDto {
 
     public void setCanceled(boolean canceled) {
         isCanceled = canceled;
+    }
+
+    public long getId() {
+        return Id;
+    }
+
+    public void setId(long id) {
+        Id = id;
     }
 }

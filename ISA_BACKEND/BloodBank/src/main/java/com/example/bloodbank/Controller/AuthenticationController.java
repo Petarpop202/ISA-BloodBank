@@ -89,8 +89,8 @@ public class AuthenticationController {
 	}
 
 	@GetMapping("/activate")
-	public ResponseEntity<User> activateUser(@Param("code") String id){
-		User existUser = this.userService.getByVerificationCode(id);
+	public ResponseEntity<User> activateUser(@RequestParam String code){
+		User existUser = this.userService.getByVerificationCode(code);
 		User u = userService.activate(existUser);
 		return new ResponseEntity<>(u, HttpStatus.CREATED);
 	}

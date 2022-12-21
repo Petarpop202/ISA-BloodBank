@@ -20,6 +20,6 @@ public class DonorSurvey {
     private long id;
     @OneToOne
     @JoinColumn(name = "blood_donor_id")
-    private BloodDonor BloodDonor;
+    private BloodDonor bloodDonor;
     private Boolean isAvailable;
 }
