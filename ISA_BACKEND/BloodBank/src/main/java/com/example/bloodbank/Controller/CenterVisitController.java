@@ -51,6 +51,7 @@ public class CenterVisitController {
         cv.setBloodDonor(_userService.getById(newBloodDonationAppointment.getDonorId()));
         cv.setBloodDonationAppointment(_bloodDonationAppointmentService.getById(newBloodDonationAppointment.getAppointmentId()));
         cv.setCanceled(true);
+        cv.setId(newBloodDonationAppointment.getId());
         return _centerVisitService.update(cv);
     }
 

@@ -1,6 +1,7 @@
 package com.example.bloodbank.Service.ServiceImplementation;
 
 import com.example.bloodbank.Dto.UserRequest;
+import com.example.bloodbank.Model.BloodDonor;
 import com.example.bloodbank.Model.Role;
 import com.example.bloodbank.Model.User;
 import com.example.bloodbank.Repository.IUserRepository;
@@ -74,15 +75,17 @@ public class UserService implements IUserService {
     @Override
     public User getByVerificationCode(String code){
         for(User u : _userRepository.findAll()){
-            if(u.getVerificationCode() == code)
+            if(u.getVerificationCode() != null)
+            if(u.getVerificationCode().compareTo(code) == 0)
                 return u;
         }
         return null;
     }
     @Override
     public User activate(User u){
-        u.setEnabled(true);
-        update(u);
-        return _userRepository.save(u);
+        User old = getById(u.getId());
+        old.setEnabled(true);
+        //update(u);
+        return _userRepository.save(old);
     }
 }

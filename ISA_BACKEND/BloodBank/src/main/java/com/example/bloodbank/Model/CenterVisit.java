@@ -16,6 +16,8 @@ import java.util.Date;
 @Setter
 public class CenterVisit {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private long Id;
     @ManyToOne
     @JoinColumn(name = "blood_donor_id")
