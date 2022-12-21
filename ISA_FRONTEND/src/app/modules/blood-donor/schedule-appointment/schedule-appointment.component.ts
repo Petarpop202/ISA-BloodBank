@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BloodBankService } from 'src/app/services/blood-bank.service';
 import { BloodDonationAppointment } from 'src/app/model/bloodDonationAppointment';
 import { Sort } from '@angular/material/sort';
+import { UserService } from 'src/app/services/user.service';
+import { DonorSurvey } from 'src/app/model/donorSurvey';
 
 @Component({
   selector: 'app-schedule-appointment',
@@ -24,19 +26,27 @@ export class ScheduleAppointmentComponent implements OnInit {
   error?: String
   dateError?: String
   timeError?: String
+  survey?: DonorSurvey
   
-  constructor(private route: ActivatedRoute, private router: Router, private location: Location, private bloodBankService:BloodBankService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private location: Location, private bloodBankService: BloodBankService, private userService: UserService) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id')
+    
   }
 
-  getAppointments() {
+  getAppointments(): void{
     this.bloodBankService.getAppointmentsByDateTime(this.appointmentDate.toISOString()).subscribe(res => {
       this.appointments = res
       this.appointments.forEach(app => {
         app.startDateTime = new Date(Number(app.startDateTime[0]), Number(app.startDateTime[1]) - 1, Number(app.startDateTime[2]), Number(app.startDateTime[3]), Number(app.startDateTime[4]), 0).toISOString()
       })
+    })
+  }
+
+  getSurvey(): void {
+    this.userService.getSurveyByDonor(1).subscribe(res => {
+      this.survey = res
     })
   }
 

@@ -35,6 +35,12 @@
                             </div>
                         </div>
                     </div>
+                    <div *ngIf="!survey">
+                        <h2>Niste ispunili upitnik</h2>
+                    </div>
+                    <div *ngIf="survey">
+                        <h2>Ispunili ste upitnik</h2>
+                    </div>
                     <div>
                         <h2 *ngIf="appointments.length">Slobodni termini</h2>
                         <table class="table" *ngIf="appointments.length" matSort (matSortChange)="sortData($event)">
