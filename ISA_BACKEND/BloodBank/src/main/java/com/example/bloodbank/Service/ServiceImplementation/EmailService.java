@@ -4,42 +4,36 @@ import com.example.bloodbank.Model.MailDetails;
 import com.example.bloodbank.Service.IEmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessagePreparator;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Service;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import java.io.UnsupportedEncodingException;
+
+@Service
 public class EmailService implements IEmailService {
-    @Autowired
-    private JavaMailSender javaMailSender;
 
+    @Autowired
+    private JavaMailSender javaMailSender ;
+
+    public EmailService(){
+    }
     @Value("${spring.mail.username}") private String sender;
 
-    // Method 1
-    // To send a simple email
-    public String sendSimpleMail(MailDetails details)
-    {
+    public String sendSimpleMail(MailDetails details) throws MessagingException, UnsupportedEncodingException {
+        MimeMessage message = javaMailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message);
 
-        // Try block to check for exceptions
-        try {
+        helper.setFrom(sender);
+        helper.setTo(details.getRecipient());
+        helper.setText(details.getMsgBody(),true);
+        helper.setSubject(details.getSubject());
 
-            // Creating a simple mail message
-            SimpleMailMessage mailMessage
-                    = new SimpleMailMessage();
-
-            // Setting up necessary details
-            mailMessage.setFrom(sender);
-            mailMessage.setTo(details.getRecipient());
-            mailMessage.setText(details.getMsgBody());
-            mailMessage.setSubject(details.getSubject());
-
-            // Sending the mail
-            javaMailSender.send(mailMessage);
-            return "Mail Sent Successfully...";
-        }
-
-        // Catch block to handle the exceptions
-        catch (Exception e) {
-            return "Error while Sending Mail";
-        }
+        javaMailSender.send(message);
+        return "Uspesno kreiran mejl";
     }
 
     @Override

@@ -28,6 +28,7 @@ public class UserRequest {
 	private GenderEnum gender;
 
 	private Address address;
+	private String verification;
 
 	public long getId() {
 		return id;
@@ -107,5 +108,13 @@ public class UserRequest {
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+
+	public String getVerification() {
+		return verification;
+	}
+
+	public void setVerification(String verification) {
+		this.verification = verification;
 	}
 }

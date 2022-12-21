@@ -11,7 +11,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -57,7 +56,8 @@ public class UserService implements IUserService {
         u.setPassword(passwordEncoder.encode(userRequest.getPassword()));
         u.setName(userRequest.getName());
         u.setSurname(userRequest.getSurname());
-        u.setEnabled(true);
+        u.setEnabled(false);
+        u.setVerificationCode(userRequest.getVerification());
         u.setAddress(userRequest.getAddress());
         u.setJmbg(userRequest.getJmbg());
         u.setGender(userRequest.getGender());
@@ -70,5 +70,19 @@ public class UserService implements IUserService {
         u.setRoles(r);
 
         return this._userRepository.save(u);
+    }
+    @Override
+    public User getByVerificationCode(String code){
+        for(User u : _userRepository.findAll()){
+            if(u.getVerificationCode() == code)
+                return u;
+        }
+        return null;
+    }
+    @Override
+    public User activate(User u){
+        u.setEnabled(true);
+        update(u);
+        return _userRepository.save(u);
     }
 }

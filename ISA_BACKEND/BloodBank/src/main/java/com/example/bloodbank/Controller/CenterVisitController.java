@@ -3,13 +3,14 @@ package com.example.bloodbank.Controller;
 import com.example.bloodbank.Dto.VisitCenterDto;
 import com.example.bloodbank.Model.BloodDonationAppointment;
 import com.example.bloodbank.Model.CenterVisit;
-import com.example.bloodbank.Service.ServiceImplementation.BloodDonationAppointmentService;
-import com.example.bloodbank.Service.ServiceImplementation.BloodDonorService;
-import com.example.bloodbank.Service.ServiceImplementation.CenterVisitService;
-import com.example.bloodbank.Service.ServiceImplementation.UserService;
+import com.example.bloodbank.Model.MailDetails;
+import com.example.bloodbank.Service.ServiceImplementation.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 @RestController
@@ -20,6 +21,8 @@ public class CenterVisitController {
     private CenterVisitService _centerVisitService;
     private BloodDonorService _userService;
     private BloodDonationAppointmentService _bloodDonationAppointmentService;
+    @Autowired
+    private EmailService _emailService;
 
     public CenterVisitController(CenterVisitService centerVisitService,BloodDonorService userService, BloodDonationAppointmentService bloodDonationAppointmentService){
         _centerVisitService = centerVisitService;
@@ -53,7 +56,7 @@ public class CenterVisitController {
 
     @PostMapping("/new")
     @PreAuthorize("hasRole('ROLE_DONOR')")
-    CenterVisit CreateBloodDonationAppointment(@RequestBody VisitCenterDto newBloodDonationAppointment) {
+    CenterVisit CreateBloodDonationAppointment(@RequestBody VisitCenterDto newBloodDonationAppointment) throws MessagingException, UnsupportedEncodingException {
         CenterVisit cv = new CenterVisit();
         cv.setBloodDonor(_userService.getById(newBloodDonationAppointment.getDonorId()));
         cv.setBloodDonationAppointment(_bloodDonationAppointmentService.getById(newBloodDonationAppointment.getAppointmentId()));
@@ -62,6 +65,11 @@ public class CenterVisitController {
         bda.setFree(false);
         CenterVisit center = _centerVisitService.create(cv);
         if(center != null) {
+            MailDetails newMail = new MailDetails();
+            newMail.setRecipient(cv.getBloodDonor().getMail());
+            newMail.setMsgBody("Uspesno zakazan termin !");
+            newMail.setSubject("Zakazivanje termina !");
+            _emailService.sendSimpleMail(newMail);
             _bloodDonationAppointmentService.update(bda);
             return center;
         }
