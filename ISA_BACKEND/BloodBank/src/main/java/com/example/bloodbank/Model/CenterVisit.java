@@ -24,5 +24,5 @@ public class CenterVisit {
     @JoinColumn(name = "blood_donation_id")
     private BloodDonationAppointment BloodDonationAppointment;
     private float Price;
-    private boolean isDone;
+    private boolean isCanceled;
 }

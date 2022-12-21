@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
+import { Observable } from 'rxjs';
 import { ConstSettings } from '../model/const-settings';
 import { Jwt } from '../model/jwt';
 import { LoginDto } from '../model/loginDto';
@@ -45,6 +46,10 @@ export class LoginService {
      }  
    }
    );
+}
+
+whoAmI(): Observable<any> {
+  return this.http.get<any>(ConstSettings.apiHost + 'auth/whoami');
 }
 
 

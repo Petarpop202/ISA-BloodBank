@@ -18,6 +18,8 @@ import { EditBloodDonorProfileComponent } from './edit-blood-donor-profile/edit-
 import { DonorSurveyComponent } from './donor-survey/donor-survey.component';
 import { RouterModule } from '@angular/router';
 import { AppointmentDialogComponent } from './donor-root/appointment-dialog/appointment-dialog.component';
+import { ScheduledAppointmentsComponent } from './scheduled-appointments/scheduled-appointments.component';
+import { BloodDonorHomepageComponent } from './blood-donor-homepage/blood-donor-homepage.component';
 
 
 
@@ -29,6 +31,8 @@ import { AppointmentDialogComponent } from './donor-root/appointment-dialog/appo
         EditBloodDonorProfileComponent,
         DonorSurveyComponent,
         AppointmentDialogComponent,
+        ScheduledAppointmentsComponent,
+        BloodDonorHomepageComponent,
     ],
     exports: [
         BloodDonorMenuComponent,
