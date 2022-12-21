@@ -7,7 +7,7 @@ insert into addresses (city, country, street, street_num) values ('Kraljevo', 'S
 
 --Sifre su 123 !
 
-insert into users (name, surname, gender, username, password, jmbg, enabled, mail, phone_number, address_id) values ('Danilo', 'Bulatović', 0, 'Danilo123', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', '123456789123', true, 'danilo@gmail.com', '065/123-456', 1);
+insert into users (name, surname, gender, username, password, jmbg, enabled, mail, phone_number, address_id) values ('Danilo', 'Bulatović', 0, 'Danilo123', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', '123456789123', true, 'petarpop2001@gmail.com', '065/123-456', 1);
 insert into users (name, surname, gender, username, password, jmbg, enabled, mail, phone_number, address_id) values ('Đorđe', 'Lipovčić', 0, 'plaoludastruja', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', '123456789123', true, 'pls@gmail.com', '065/123-456', 2);
 insert into users (name, surname, gender, username, password, jmbg, enabled, mail, phone_number, address_id) values ('Đorđe1', 'Lipovčić1', 0, 'plaoludastruja1', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', '123456789123', true, 'pls@gmail.com', '065/123-456', 3);
 insert into users (name, surname, gender, username, password, jmbg, enabled, mail, phone_number, address_id) values ('Đorđe2', 'Lipovčić2', 0, 'plaoludastruja2', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', '123456789123', true, 'pls@gmail.com', '065/123-456', 4);
@@ -26,9 +26,9 @@ insert into medicine_staffs (blood_bank_id, id) values (1, 2);
 insert into medicine_staffs (blood_bank_id, id) values (1, 3);
 insert into medicine_staffs (blood_bank_id, id) values (2, 4);
 
-insert into blood_donation_appointments (start_date_time, duration, blood_bank_id) values ('12.12.2022. 12:00:00', 30, 1);
-insert into blood_donation_appointments (start_date_time, duration, blood_bank_id) values ('12.11.2022. 10:40:00', 20, 1);
-insert into blood_donation_appointments (start_date_time, duration, blood_bank_id) values ('11.11.2022. 13:15:00', 45, 2);
+insert into blood_donation_appointments (start_date_time, duration, blood_bank_id, is_free) values ('12.12.2022. 12:00:00', 30, 1, true);
+insert into blood_donation_appointments (start_date_time, duration, blood_bank_id, is_free) values ('12.11.2022. 10:40:00', 20, 1, true);
+insert into blood_donation_appointments (start_date_time, duration, blood_bank_id, is_free) values ('11.11.2022. 13:15:00', 45, 2, true);
 
 insert into blood_donation_appointments_medicine_staffs (blood_donation_appointment_id, medicine_staffs_id) values (1, 2);
 insert into blood_donation_appointments_medicine_staffs (blood_donation_appointment_id, medicine_staffs_id) values (2, 3);

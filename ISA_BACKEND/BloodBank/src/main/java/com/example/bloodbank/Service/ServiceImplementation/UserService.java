@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -47,21 +48,41 @@ public class UserService implements IUserService {
     }
     @Override
     public User save(UserRequest userRequest) {
+
         User u = new User();
         u.setUsername(userRequest.getUsername());
-
         // pre nego sto postavimo lozinku u atribut hesiramo je kako bi se u bazi nalazila hesirana lozinka
         // treba voditi racuna da se koristi isi password encoder bean koji je postavljen u AUthenticationManager-u kako bi koristili isti algoritam
         u.setPassword(passwordEncoder.encode(userRequest.getPassword()));
-        u.setName(userRequest.getFirstname());
-        u.setSurname(userRequest.getLastname());
-        u.setEnabled(true);
-        //u.setEmail(userRequest.getEmail());
-
+        u.setName(userRequest.getName());
+        u.setSurname(userRequest.getSurname());
+        u.setEnabled(false);
+        u.setVerificationCode(userRequest.getVerification());
+        u.setAddress(userRequest.getAddress());
+        u.setJmbg(userRequest.getJmbg());
+        u.setGender(userRequest.getGender());
+        u.setMail(userRequest.getMail());
+        u.setPhoneNumber(userRequest.getPhoneNumber());
         // u primeru se registruju samo obicni korisnici i u skladu sa tim im se i dodeljuje samo rola USER
         Role roles = _roleService.findByName("ROLE_USER");
-        //u.setRoles(roles);
+        List<Role> r = new ArrayList<>();
+        r.add(roles);
+        u.setRoles(r);
 
         return this._userRepository.save(u);
+    }
+    @Override
+    public User getByVerificationCode(String code){
+        for(User u : _userRepository.findAll()){
+            if(u.getVerificationCode() == code)
+                return u;
+        }
+        return null;
+    }
+    @Override
+    public User activate(User u){
+        u.setEnabled(true);
+        update(u);
+        return _userRepository.save(u);
     }
 }
