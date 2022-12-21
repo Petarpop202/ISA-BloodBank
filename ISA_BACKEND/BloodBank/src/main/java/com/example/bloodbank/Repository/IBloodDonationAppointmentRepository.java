@@ -12,5 +12,5 @@ import com.example.bloodbank.Model.BloodDonationAppointment;
 public interface IBloodDonationAppointmentRepository extends JpaRepository<BloodDonationAppointment, Long> {
 	
 	public List<BloodDonationAppointment> findAllByBloodBankId(long id);
-	public List<BloodDonationAppointment> findAllByStartDateTime(LocalDateTime datetime);
+	public List<BloodDonationAppointment> findAllByStartDateTimeAndIsFree(LocalDateTime datetime, boolean free);
 }

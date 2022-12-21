@@ -67,6 +67,10 @@ export class BloodBankService {
     return this.http.get<CenterVisit>(this.apiHost + 'centerVisit/get/' + id, {headers: this.headers});
   }
 
+  getAppointmentsByBloodBankId(id: any): Observable<CenterVisit[]> {
+    return this.http.get<CenterVisit[]>(this.apiHost + 'centerVisit/getByBank/' + id, {headers: this.headers});
+  }
+
   deleteVisitCenter(object: any): Observable<any> {
     return this.http.put<any>(this.apiHost + 'centerVisit/delete', object);
   }

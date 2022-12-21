@@ -18,13 +18,13 @@ public class CenterVisit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private long Id;
+    private long id;
     @ManyToOne
     @JoinColumn(name = "blood_donor_id")
-    private BloodDonor BloodDonor;
+    private BloodDonor bloodDonor;
     @OneToOne
     @JoinColumn(name = "blood_donation_id")
-    private BloodDonationAppointment BloodDonationAppointment;
-    private float Price;
+    private BloodDonationAppointment bloodDonationAppointment;
+    private float price;
     private boolean isCanceled;
 }

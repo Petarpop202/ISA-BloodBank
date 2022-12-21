@@ -42,7 +42,7 @@ export class UserService {
   }
 
   getSurveyByDonor(id: any): Observable<DonorSurvey> {
-    return this.http.get<DonorSurvey>(this.apiHost + '/survey/' + id, {headers: this.headers});
+    return this.http.get<DonorSurvey>(this.apiHost + 'user/survey/' + id, {headers: this.headers});
   }
 
   createSurvey(survey: any): Observable<any> {

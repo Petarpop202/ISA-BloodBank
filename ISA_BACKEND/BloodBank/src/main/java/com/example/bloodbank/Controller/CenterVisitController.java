@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
 import java.io.UnsupportedEncodingException;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
@@ -44,6 +45,11 @@ public class CenterVisitController {
     public List<CenterVisit> getCenterVisitByDonorId(@PathVariable Long id){
         return _centerVisitService.getAllByBloodDonorId(id);
     }
+    
+    @GetMapping(value = "/getByBank/{id}")
+    public List<CenterVisit> getCenterVisitsByBankId(@PathVariable Long id){
+        return _centerVisitService.getAllByBloodBankId(id);
+    }
 
     @PutMapping(value = "/delete")
     public CenterVisit cancelVisit(@RequestBody VisitCenterDto newBloodDonationAppointment){
@@ -68,8 +74,8 @@ public class CenterVisitController {
         if(center != null) {
             MailDetails newMail = new MailDetails();
             newMail.setRecipient(cv.getBloodDonor().getMail());
-            newMail.setMsgBody("Uspesno zakazan termin !");
-            newMail.setSubject("Zakazivanje termina !");
+            newMail.setMsgBody("Pozdrav " + cv.getBloodDonor().getName() + "!<br>Vaš termin davanja krvi dana <b>" + cv.getBloodDonationAppointment().getStartDateTime().toLocalDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy.")) + "</b> u <b>"+ cv.getBloodDonationAppointment().getStartDateTime().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm")) + "h</b> u banci krvi <b>" + cv.getBloodDonationAppointment().getBloodBank().getName() + "</b> je uspešno zakazan.");
+            newMail.setSubject("Uspešno zakazivanje termina!");
             _emailService.sendSimpleMail(newMail);
             _bloodDonationAppointmentService.update(bda);
             return center;
