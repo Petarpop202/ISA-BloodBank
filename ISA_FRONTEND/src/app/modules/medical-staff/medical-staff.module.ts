@@ -21,6 +21,7 @@ import { MedicalRootComponent } from './medical-root/medical-root.component';
 import { RouterModule } from '@angular/router';
 import { AddBloodDonationAppointmentComponent } from './add-blood-donation-appointment/add-blood-donation-appointment.component';
 import { SchedulerComponent } from './scheduler/scheduler.component';
+import { CalendarComponent } from './calendar/calendar.component';
 
 
 
@@ -33,7 +34,8 @@ import { SchedulerComponent } from './scheduler/scheduler.component';
     EditBloodBankComponent,    
     MedicalRootComponent,
     AddBloodDonationAppointmentComponent,
-    SchedulerComponent
+    SchedulerComponent,
+    CalendarComponent
   ],
   imports: [
     CommonModule,
