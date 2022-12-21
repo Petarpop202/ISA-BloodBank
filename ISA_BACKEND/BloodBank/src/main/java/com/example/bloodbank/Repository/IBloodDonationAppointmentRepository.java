@@ -1,5 +1,6 @@
 package com.example.bloodbank.Repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,4 +12,5 @@ import com.example.bloodbank.Model.BloodDonationAppointment;
 public interface IBloodDonationAppointmentRepository extends JpaRepository<BloodDonationAppointment, Long> {
 	
 	public List<BloodDonationAppointment> findAllByBloodBankId(long id);
+	public List<BloodDonationAppointment> findAllByStartDateTime(LocalDateTime datetime);
 }

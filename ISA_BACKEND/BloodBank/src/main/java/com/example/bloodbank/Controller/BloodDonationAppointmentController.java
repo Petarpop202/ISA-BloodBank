@@ -1,7 +1,9 @@
 package com.example.bloodbank.Controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,9 +39,15 @@ public class BloodDonationAppointmentController {
     }
     
     @GetMapping(value = "/bloodBank={id}")
-    @PreAuthorize("hasRole('ROLE_MEDICALWORKER')")
+    @PreAuthorize("hasAnyRole('ROLE_MEDICALWORKER','ROLE_DONOR')")
     public List<BloodDonationAppointment> getAllByBloodBank(@PathVariable long id) {
     	return bloodDonationAppointmentService.getAllByBloodBank(id);
+    }
+    
+    @GetMapping(value = "/datetime={datetime}")
+    @PreAuthorize("hasAnyRole('ROLE_MEDICALWORKER', 'ROLE_DONOR')")
+    public List<BloodDonationAppointment> getAllByDateTime(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime datetime) {
+    	return bloodDonationAppointmentService.getAllByDateTime(datetime);
     }
     
     @PostMapping("/new")
@@ -50,5 +58,6 @@ public class BloodDonationAppointmentController {
     @PutMapping("/update")
     BloodDonationAppointment UpdateBloodDonationAppointment(@RequestBody BloodDonationAppointment updatedBloodDonationAppointment) {
         return bloodDonationAppointmentService.update(updatedBloodDonationAppointment);
-    }    
+    }
+
 }

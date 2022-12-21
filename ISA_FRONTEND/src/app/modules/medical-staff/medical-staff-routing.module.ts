@@ -14,9 +14,9 @@ const routes: Routes = [
   { path: 'myBloodBank/:id', component: BloodCenterComponent},
   { path: 'editBloodBank/:id', component: EditBloodBankComponent},
   { path: 'newBloodBank', component: NewBloodBankComponent},
-  { path: 'addBloodDonationAppointment/:id', component: AddBloodDonationAppointmentComponent},
   { path: 'scheduler', component: SchedulerComponent},
-    ];
+  { path: 'myBloodBank/:id/addBloodDonationAppointment/:id', component: AddBloodDonationAppointmentComponent}
+];
   
   
   @NgModule({

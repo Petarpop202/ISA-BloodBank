@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { BloodBank } from 'src/app/model/bloodBank';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BloodBankService } from 'src/app/services/blood-bank.service';
@@ -23,7 +24,7 @@ export class AddBloodDonationAppointmentComponent implements OnInit {
   dateError?: String
   timeError?: String
   
-  constructor(private route: ActivatedRoute, private router: Router, private bloodBankService:BloodBankService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private location: Location, private bloodBankService:BloodBankService) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id')
@@ -52,7 +53,7 @@ export class AddBloodDonationAppointmentComponent implements OnInit {
           this.error = ''
           this.appointment = res;
           console.log(this.appointment)
-          this.router.navigate(['/myBloodBank', this.bloodBank.id])
+          this.location.back()
         }
       })
     }
@@ -78,8 +79,8 @@ export class AddBloodDonationAppointmentComponent implements OnInit {
   }
 
   isInWorkTime() : boolean {
-    let workStartTime = this.bloodBank.workTimeStart?.split(':')
-    let workEndTime = this.bloodBank.workTimeEnd?.split(':')
+    let workStartTime = this.bloodBank.workTimeStart
+    let workEndTime = this.bloodBank.workTimeEnd
 
     let appStartTime = [this.hours, this.minutes]
     let appEndTime = [this.hours, this.minutes + this.duration]

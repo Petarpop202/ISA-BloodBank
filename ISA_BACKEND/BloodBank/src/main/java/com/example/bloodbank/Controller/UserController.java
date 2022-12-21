@@ -1,9 +1,12 @@
 package com.example.bloodbank.Controller;
 
+import com.example.bloodbank.Dto.DonorSurveyDto;
 import com.example.bloodbank.Model.BloodDonor;
 import com.example.bloodbank.Model.DonorSurvey;
 import com.example.bloodbank.Service.ServiceImplementation.BloodDonorService;
 import com.example.bloodbank.Service.ServiceImplementation.DonorSurveyService;
+
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -47,9 +50,17 @@ public class UserController {
     	else
     		return null;
     }
+    
+    @GetMapping(value = "/survey/{id}")
+    DonorSurvey GetSurveyByDonor(@PathVariable Long id){
+        return _surveyService.getByDonor(id);
+    }
 
     @PostMapping("/createSurvey")
-    DonorSurvey CreateSurvey(@RequestBody DonorSurvey newSurvey){
-        return _surveyService.create(newSurvey);
+    DonorSurvey CreateSurvey(@RequestBody DonorSurveyDto newSurvey){
+        DonorSurvey ds = new DonorSurvey();
+        ds.setBloodDonor(_userService.getById(newSurvey.getDonorId()));
+        ds.setIsAvailable(newSurvey.isAvailable());
+        return _surveyService.create(ds);
     }
 }

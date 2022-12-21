@@ -43,10 +43,17 @@ export class BloodCenterComponent implements OnInit {
   public getAppointmentFromBloodBank(id:any) {
     this.bloodBankService.getAppointmentsFromBloodBank(id).subscribe(res => {
       this.appointments = res;
+      this.appointments.forEach(app => {
+        app.startDateTime = new Date(Number(app.startDateTime[0]), Number(app.startDateTime[1]) - 1, Number(app.startDateTime[2]), Number(app.startDateTime[3]), Number(app.startDateTime[4]), 0).toISOString()
+      })
     })
   }
 
   public numSequence(n: any): Array<number> {
     return Array(n);
+  }
+
+  public goToMyBank(): void {
+    
   }
 }

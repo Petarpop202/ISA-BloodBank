@@ -32,4 +32,5 @@ public class BloodDonationAppointment {
     @ManyToOne()
     @JoinColumn(name = "bloodBank_id", referencedColumnName = "id")
     private BloodBank bloodBank;
+    private boolean isFree;
 }

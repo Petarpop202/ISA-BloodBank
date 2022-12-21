@@ -21,6 +21,10 @@ public class DonorSurveyService implements IDonorSurveyService {
     public DonorSurvey getById(Long id) {
         return null;
     }
+    
+    public DonorSurvey getByDonor(long id) {
+    	return _donorRepository.findAllByBloodDonorId(id);
+    }
 
     @Override
     public DonorSurvey create(DonorSurvey entity) {

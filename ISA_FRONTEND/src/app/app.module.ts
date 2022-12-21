@@ -16,7 +16,7 @@ import { MedicalStaffModule } from './modules/medical-staff/medical-staff.module
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,

@@ -3,13 +3,19 @@ package com.example.bloodbank.Controller;
 import com.example.bloodbank.Dto.JwtAuthenticationRequest;
 import com.example.bloodbank.Dto.UserRequest;
 import com.example.bloodbank.Dto.Jwt;
+import com.example.bloodbank.Model.BloodDonor;
+import com.example.bloodbank.Model.MailDetails;
 import com.example.bloodbank.Model.User;
 import com.example.bloodbank.Service.IUserService;
+import com.example.bloodbank.Service.ServiceImplementation.EmailService;
 import com.example.bloodbank.Util.TokenUtils;
+import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -17,7 +23,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletResponse;
+import java.io.UnsupportedEncodingException;
+import java.security.Principal;
 
 
 //Kontroler zaduzen za autentifikaciju korisnika
@@ -33,6 +42,8 @@ public class AuthenticationController {
 
 	@Autowired
 	private IUserService userService;
+	@Autowired
+	EmailService _emailService;
 	
 	// Prvi endpoint koji pogadja korisnik kada se loguje.
 	// Tada zna samo svoje korisnicko ime i lozinku i to prosledjuje na backend.
@@ -60,15 +71,34 @@ public class AuthenticationController {
 
 	// Endpoint za registraciju novog korisnika
 	@PostMapping("/signup")
-	public ResponseEntity<User> addUser(@RequestBody UserRequest userRequest, UriComponentsBuilder ucBuilder) {
+	public ResponseEntity<User> addUser(@RequestBody UserRequest userRequest, UriComponentsBuilder ucBuilder) throws MessagingException, UnsupportedEncodingException {
 		User existUser = this.userService.findByUsername(userRequest.getUsername());
 
 		if (existUser != null) {
 			return new ResponseEntity<>(HttpStatus.CONFLICT);
 		}
-
+		String verification = RandomString.make();
+		userRequest.setVerification(verification);
 		User user = this.userService.save(userRequest);
-
+		MailDetails mail = new MailDetails();
+		mail.setRecipient(user.getMail());
+		mail.setSubject("Verifikacija naloga !");
+		mail.setMsgBody("http://localhost:8081/auth/activate?code=" + verification);
+		_emailService.sendSimpleMail(mail);
 		return new ResponseEntity<>(user, HttpStatus.CREATED);
+	}
+
+	@GetMapping("/activate")
+	public ResponseEntity<User> activateUser(@RequestParam String code){
+		User existUser = this.userService.getByVerificationCode(code);
+		User u = userService.activate(existUser);
+		return new ResponseEntity<>(u, HttpStatus.CREATED);
+	}
+
+
+	@GetMapping("/whoami")
+	@PreAuthorize("hasRole('ROLE_DONOR')")
+	public User user(Principal user) {
+		return this.userService.findByUsername(user.getName());
 	}
 }

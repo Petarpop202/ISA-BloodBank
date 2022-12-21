@@ -16,14 +16,15 @@ import java.util.Date;
 @Setter
 public class CenterVisit {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private long Id;
     @ManyToOne
     @JoinColumn(name = "blood_donor_id")
     private BloodDonor BloodDonor;
-    @ManyToOne
-    @JoinColumn(name = "blood_bank_id")
-    private BloodBank BloodBank;
+    @OneToOne
+    @JoinColumn(name = "blood_donation_id")
+    private BloodDonationAppointment BloodDonationAppointment;
     private float Price;
-    private Date VisitDate;
-    private boolean isDone;
+    private boolean isCanceled;
 }

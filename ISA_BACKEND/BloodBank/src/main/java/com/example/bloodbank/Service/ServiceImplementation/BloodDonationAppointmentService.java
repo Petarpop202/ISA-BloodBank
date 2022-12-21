@@ -1,6 +1,8 @@
 package com.example.bloodbank.Service.ServiceImplementation;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -41,6 +43,7 @@ public class BloodDonationAppointmentService implements IBloodDonationAppointmen
 
 		oldBloodDonationAppointment.setStartDateTime(entity.getStartDateTime());
 		oldBloodDonationAppointment.setDuration(entity.getDuration());
+		oldBloodDonationAppointment.setFree(entity.isFree());
 		oldBloodDonationAppointment.setMedicineStaffs(entity.getMedicineStaffs());
 		return bloodDonationAppointmentRepo.save(oldBloodDonationAppointment);
 	}
@@ -51,7 +54,16 @@ public class BloodDonationAppointmentService implements IBloodDonationAppointmen
 	}
 
 	public List<BloodDonationAppointment> getAllByBloodBank(Long id){
-		return bloodDonationAppointmentRepo.findAllByBloodBankId(id);
+		List<BloodDonationAppointment> newList = new ArrayList<BloodDonationAppointment>();
+		for(BloodDonationAppointment b : bloodDonationAppointmentRepo.findAllByBloodBankId(id)){
+			if(b.isFree())
+				newList.add(b);
+		}
+		return newList;
+	}
+	
+	public List<BloodDonationAppointment> getAllByDateTime(LocalDateTime datetime){
+		return bloodDonationAppointmentRepo.findAllByStartDateTime(datetime);
 	}
 	
 	@Override
