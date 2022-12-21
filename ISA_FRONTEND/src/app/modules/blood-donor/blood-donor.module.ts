@@ -20,6 +20,7 @@ import { RouterModule } from '@angular/router';
 import { AppointmentDialogComponent } from './donor-root/appointment-dialog/appointment-dialog.component';
 import { ScheduledAppointmentsComponent } from './scheduled-appointments/scheduled-appointments.component';
 import { BloodDonorHomepageComponent } from './blood-donor-homepage/blood-donor-homepage.component';
+import { ScheduleAppointmentComponent } from './schedule-appointment/schedule-appointment.component';
 
 
 
@@ -33,6 +34,7 @@ import { BloodDonorHomepageComponent } from './blood-donor-homepage/blood-donor-
         AppointmentDialogComponent,
         ScheduledAppointmentsComponent,
         BloodDonorHomepageComponent,
+        ScheduleAppointmentComponent
     ],
     exports: [
         BloodDonorMenuComponent,

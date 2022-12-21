@@ -5,6 +5,7 @@ import { User } from '../model/user';
 import { BloodDonor } from "../model/bloodDonor"
 import { Test } from '../model/test';
 import { MedicineStaff } from '../model/medicineStaff';
+import { DonorSurvey } from '../model/donorSurvey';
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +41,10 @@ export class UserService {
     return this.http.put<any>(this.apiHost + 'user/update', user);
   }
 
+  getSurveyByDonor(id: any): Observable<DonorSurvey> {
+    return this.http.get<DonorSurvey>(this.apiHost + '/survey/' + id, {headers: this.headers});
+  }
+
   createSurvey(survey: any): Observable<any> {
     return this.http.post<any>(this.apiHost + 'user/createSurvey', survey);
   }
@@ -50,7 +55,6 @@ export class UserService {
 
   updateMedicineStaff(user: any): Observable<any> {
     return this.http.put<any>(this.apiHost + 'MedicineStaff/update', user);
-
   }
 
   findByNameAndSurname(name: string, surname: string): Observable<BloodDonor[]>{
