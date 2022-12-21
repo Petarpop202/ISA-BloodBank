@@ -5,6 +5,8 @@ import com.example.bloodbank.Model.BloodDonor;
 import com.example.bloodbank.Model.DonorSurvey;
 import com.example.bloodbank.Service.ServiceImplementation.BloodDonorService;
 import com.example.bloodbank.Service.ServiceImplementation.DonorSurveyService;
+
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -47,6 +49,11 @@ public class UserController {
     		return _userService.update(updatedUser);
     	else
     		return null;
+    }
+    
+    @GetMapping(value = "/survey/{id}")
+    DonorSurvey GetSurveyByDonor(@PathVariable Long id){
+        return _surveyService.getByDonor(id);
     }
 
     @PostMapping("/createSurvey")

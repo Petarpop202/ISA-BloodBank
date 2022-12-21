@@ -27,12 +27,16 @@ export class BloodBankService {
     return this.http.get<MedicineStaff[]>(this.apiHost + 'MedicineStaff/getMedicineStaffFromBloodBank/' + id, {headers: this.headers});
   }
 
+  getAppointment(id: any): Observable<BloodDonationAppointment> {
+    return this.http.get<BloodDonationAppointment>(this.apiHost + 'bloodDonationAppointment/get/' + id, {headers: this.headers});
+  }
+
   getAppointmentsFromBloodBank(id: any): Observable<BloodDonationAppointment[]> {
     return this.http.get<BloodDonationAppointment[]>(this.apiHost + 'bloodDonationAppointment/bloodBank=' + id, {headers: this.headers});
   }
 
-  getAppointmentById(id: any): Observable<BloodDonationAppointment> {
-    return this.http.get<BloodDonationAppointment>(this.apiHost + 'bloodDonationAppointment/get/' + id, {headers: this.headers});
+  getAppointmentsByDateTime(datetime: string): Observable<BloodDonationAppointment[]> {
+    return this.http.get<BloodDonationAppointment[]>(this.apiHost + 'bloodDonationAppointment/datetime=' + datetime, {headers: this.headers});
   }
 
   createBloodDonationAppointment(bloodDonationAppointment: any): Observable<any> {

@@ -8,15 +8,16 @@ import { EditBloodDonorProfileComponent } from './edit-blood-donor-profile/edit-
 import { DonorSurveyComponent } from './donor-survey/donor-survey.component';
 import { ScheduledAppointmentsComponent } from './scheduled-appointments/scheduled-appointments.component';
 import { BloodDonorHomepageComponent } from './blood-donor-homepage/blood-donor-homepage.component';
+import { ScheduleAppointmentComponent } from './schedule-appointment/schedule-appointment.component';
 
 const routes: Routes = [
   { path: 'bloodDonorProfile', component: BloodDonorProfileComponent},
+  { path: 'scheduleAppointment', component: ScheduleAppointmentComponent},
   { path: 'editBloodDonorProfile', component: EditBloodDonorProfileComponent},
   { path: 'donorSurvey', component: DonorSurveyComponent},
   { path: 'scheduledAppointments', component: ScheduledAppointmentsComponent},
   { path: 'bloodDonorHomepage', component: BloodDonorHomepageComponent}
   ];
-
 
 @NgModule({
     imports: [
