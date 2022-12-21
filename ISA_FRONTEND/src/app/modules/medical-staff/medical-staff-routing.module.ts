@@ -2,7 +2,6 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { BloodCenterComponent } from "./blood-center/blood-center.component";
 import { EditBloodBankComponent } from "./edit-blood-bank/edit-blood-bank.component";
-import { NewBloodBankComponent } from "./new-blood-bank/new-blood-bank.component";
 import { EditMedicineStaffProfileComponent } from "./edit-medicine-staff-profile/edit-medicine-staff-profile.component";
 import { MedicineStaffProfileComponent } from "./medicine-staff-profile/medicine-staff-profile.component";
 import { AddBloodDonationAppointmentComponent } from "./add-blood-donation-appointment/add-blood-donation-appointment.component";
@@ -15,6 +14,7 @@ const routes: Routes = [
   { path: 'editBloodBank/:id', component: EditBloodBankComponent},
   { path: 'newBloodBank', component: NewBloodBankComponent},
   { path: 'scheduler', component: SchedulerComponent},
+
   { path: 'myBloodBank/:id/addBloodDonationAppointment/:id', component: AddBloodDonationAppointmentComponent}
 ];
   

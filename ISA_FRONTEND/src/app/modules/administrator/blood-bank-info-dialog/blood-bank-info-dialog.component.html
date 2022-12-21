@@ -1,0 +1,25 @@
+<div class="container mt-2 ml-5" >
+    <h2><p>Informacije o banci</p></h2>
+    <div class="container mt-2">
+        <b><label>Naziv banke :</label></b>
+        <p [innerText]="bloodBank.name"></p>        
+        
+    </div>
+    <div class="container mt-2">
+        <b><label>Prosecna ocena :</label></b>
+        <p [innerText]="bloodBank.averageGrade"></p>        
+        
+    </div>
+    <div class="container mt-2">
+        <b><label>Adresa :</label></b>
+        <p [innerText]="bloodBank.address.city"></p>        
+        
+    </div>
+    <div class="container mt-2">
+        <b><label>Administratori centra :</label></b>
+        <li *ngFor="let a of medicineStaff">
+            {{a.name + ' ' + a.surname + ' (' + a.username + ')'}}
+        </li>        
+        
+    </div>
+</div>

@@ -27,12 +27,14 @@ public class BloodBankController {
 	}
 	
     @GetMapping("/get")
-    @PreAuthorize("hasRole('ROLE_DONOR')")
+    @PreAuthorize("hasAnyRole('ROLE_DONOR', 'ROLE_ADMIN')")
     public List<BloodBank> getAll(){
         return bloodBankService.getAll();
     }
     
     @GetMapping(value = "/get/{id}")
+
+    @PreAuthorize("hasAnyRole('ROLE_DONOR', 'ROLE_ADMIN', 'ROLE_MEDICALWORKER')")
     public BloodBank getBloodBankById(@PathVariable Long id){
         return bloodBankService.getById(id);
     }

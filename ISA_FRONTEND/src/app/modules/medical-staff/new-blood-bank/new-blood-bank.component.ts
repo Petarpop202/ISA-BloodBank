@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BloodBank } from 'src/app/model/bloodBank';
 import { BloodBankService } from 'src/app/services/blood-bank.service';
+import { NewAdminDialogComponent } from '../../administrator/new-admin-dialog/new-admin-dialog.component';
 
 @Component({
   selector: 'app-new-blood-bank',
@@ -10,7 +12,7 @@ import { BloodBankService } from 'src/app/services/blood-bank.service';
 })
 export class NewBloodBankComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private router: Router, private bloodBankService: BloodBankService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private bloodBankService: BloodBankService, public dialog: MatDialog) { }
 
   public newBloodBank:BloodBank = new BloodBank;
   banks: BloodBank[] = [];
@@ -35,7 +37,7 @@ export class NewBloodBankComponent implements OnInit {
     } else {
       this.bloodBankService.createBloodBank(this.newBloodBank).subscribe(res => {
         this.newBloodBank = res;
-        this.router.navigate(['/systemAdministrator']);
+        this.openNewAdminDialog(this.newBloodBank);
       })
     }
     
@@ -58,6 +60,14 @@ export class NewBloodBankComponent implements OnInit {
       return true;      
     }
     return false;
+  }
+
+  public openNewAdminDialog(bb: any): void{
+    const dialogRef = this.dialog.open(NewAdminDialogComponent, {  
+      data: {bloodBank: bb},    
+      height: '900px',
+      width: '1000px',
+    })
   }
 
 

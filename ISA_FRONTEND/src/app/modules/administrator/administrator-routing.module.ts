@@ -2,10 +2,12 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { SearchUsersComponent } from "./search-users/search-users.component";
 import { SystemAdministratorComponent } from "./system-administrator/system-administrator.component";
+import { NewBloodBankComponent } from "../medical-staff/new-blood-bank/new-blood-bank.component";
 
 const routes: Routes = [
     { path: 'systemAdministrator', component: SystemAdministratorComponent},
-    { path: 'searchUsers', component: SearchUsersComponent},
+    { path: 'systemAdministrator/searchUsers', component: SearchUsersComponent},
+    { path: 'systemAdministrator/newBloodBank', component: NewBloodBankComponent},
     ];
   
   @NgModule({

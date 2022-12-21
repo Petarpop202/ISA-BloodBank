@@ -4,6 +4,12 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { BloodBank } from 'src/app/model/bloodBank';
 import { BloodBankService } from 'src/app/services/blood-bank.service';
+import { LoginService } from 'src/app/services/login.service';
+import { SystemAdministrator } from 'src/app/model/systemAdministrator';
+import { MatDialog } from '@angular/material/dialog';
+import { BloodBankInfoDialogComponent } from '../blood-bank-info-dialog/blood-bank-info-dialog.component';
+import { NewAdminDialogComponent } from '../new-admin-dialog/new-admin-dialog.component';
+
 
 
 @Component({
@@ -13,7 +19,7 @@ import { BloodBankService } from 'src/app/services/blood-bank.service';
 })
 export class SystemAdministratorComponent implements OnInit {
 
-  constructor(private bloodBankService: BloodBankService, private _liveAnnouncer: LiveAnnouncer) { }
+  constructor(private bloodBankService: BloodBankService, private _liveAnnouncer: LiveAnnouncer, private loginService: LoginService, public dialog: MatDialog) { }
 
   
   @ViewChild(MatSort)
@@ -21,7 +27,9 @@ export class SystemAdministratorComponent implements OnInit {
 
   public dataSource = new MatTableDataSource<BloodBank>();
   banks: BloodBank[] = [];
-  displayedColumns: string[] = ['id', 'name', 'averageGrade', 'city'];
+  admin: SystemAdministrator = new SystemAdministrator;
+
+  displayedColumns: string[] = ['id', 'name', 'averageGrade', 'city', 'info', 'newAdmin'];
   addresses: string[] = ['Sve']
   filteredValues = {
     search: '',
@@ -32,6 +40,7 @@ export class SystemAdministratorComponent implements OnInit {
 
   ngOnInit(): void {
     this.getBanks();
+    this.loggedAdmin();
   }
 
   ngAfterViewInit() {
@@ -82,6 +91,29 @@ export class SystemAdministratorComponent implements OnInit {
     this.filteredValues.gradeTo = 5.0;
     this.filteredValues.selectedCity = 'Sve';
     this.applyFilter();
+  }
+
+  loggedAdmin(){
+    this.loginService.whoAmI().subscribe(res => {
+      this.admin = res;
+      console.log(this.admin.name);
+    })
+  }
+
+  public openBloodBankInfoDialog(bbId: any): void{
+    const dialogRef = this.dialog.open(BloodBankInfoDialogComponent, {
+      data: {bloodBankId: bbId},
+      height: '500px',
+      width: '400px',
+    })
+  }
+
+  public openNewAdminDialog(bb: any): void{
+    const dialogRef = this.dialog.open(NewAdminDialogComponent, {  
+      data: {bloodBank: bb},    
+      height: '900px',
+      width: '1000px',
+    })
   }
 
 }
