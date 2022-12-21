@@ -1,0 +1,12 @@
+<div>
+    <div class="form-outline">
+        <mat-form-field appearance="fill">
+            <mat-label>Donori</mat-label>
+            <mat-select>
+                <mat-option *ngFor="let donor of donors"
+                [value]="donor.id">{{donor.name + ' ' + donor.surname}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</div>
+
