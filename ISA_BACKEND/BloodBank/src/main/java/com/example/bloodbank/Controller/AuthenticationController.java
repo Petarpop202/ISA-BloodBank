@@ -97,7 +97,7 @@ public class AuthenticationController {
 
 
 	@GetMapping("/whoami")
-	@PreAuthorize("hasRole('ROLE_DONOR')")
+	@PreAuthorize("hasAnyRole('ROLE_DONOR', 'ROLE_ADMIN')")
 	public User user(Principal user) {
 		return this.userService.findByUsername(user.getName());
 	}

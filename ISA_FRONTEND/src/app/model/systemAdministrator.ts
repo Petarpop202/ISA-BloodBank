@@ -1,6 +1,6 @@
 import { Address } from "./address";
 
-export class systemAdministrator {
+export class SystemAdministrator {
     id: string = '';
     name : string = '';
     surname : string = '';

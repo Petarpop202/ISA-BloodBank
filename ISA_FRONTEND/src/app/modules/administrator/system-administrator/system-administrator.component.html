@@ -1,28 +1,15 @@
-<nav class="navbar navbar-expand-lg navbar-dark navbar-custom text-bg-dark">
-    <div class="container px-5">
-        <a class="navbar-brand text-warning" routerLink="/systemAdministrator">
-            <i class="bi bi-heart-pulse"></i>
-            Bankica krvi
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><button class="btn text-white" >Moj profil</button></li>
-                <li class="nav-item"><button class="btn text-white" routerLink="/login" >Odjavite se</button></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+
 
 <div>
     <h1 class="m-3" >Prikaz svih centara za doniranje krvi</h1>
     <div class="d-flex float-end justify-content-center align-items-center mat-app-background">
         <div class="float-end m-3">
-            <button type="button" class="btn btn-warning btn-lg justify-content-center" routerLink="/newBloodBank">Nova banka krvi</button>
+            <button type="button" class="btn btn-warning btn-lg justify-content-center" routerLink="newBloodBank">Nova banka krvi</button>
           </div>
           <div class="float-end">
-            <button type="button" class="btn btn-warning btn-lg justify-content-center" routerLink="/searchUsers">Pregled korisnika</button>
+            <button type="button" class="btn btn-warning btn-lg justify-content-center" routerLink="searchUsers">Pregled korisnika</button>
           </div>
+          
       <div class="float-end">
         <mat-form-field appearance="fill" class="mx-2 mt-3">
           <mat-label>Mesto</mat-label>
@@ -85,6 +72,18 @@
           Grad
         </th>
         <td mat-cell *matCellDef="let element"> {{element.address.city}} </td>
+      </ng-container>
+      <ng-container matColumnDef="info">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by city">
+          Info
+        </th>
+        <td mat-cell *matCellDef="let element"> <button type="button" (click)="openBloodBankInfoDialog(element)">INFO</button>  </td>
+      </ng-container>
+      <ng-container matColumnDef="newAdmin">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by city">
+          New Admin
+        </th>
+        <td mat-cell *matCellDef="let element"> <button type="button" (click)="openNewAdminDialog(element)">NEW ADMIN</button>  </td>
       </ng-container>
     
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

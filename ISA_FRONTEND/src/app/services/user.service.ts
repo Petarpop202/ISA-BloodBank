@@ -48,6 +48,10 @@ export class UserService {
     return this.http.get<MedicineStaff>(this.apiHost + 'MedicineStaff/get/' + id, {headers: this.headers});
   }
 
+  createMedicineStaff(bloodDonationAppointment: any): Observable<any> {
+    return this.http.post<any>(this.apiHost + 'MedicineStaff/new',bloodDonationAppointment);
+  }
+
   updateMedicineStaff(user: any): Observable<any> {
     return this.http.put<any>(this.apiHost + 'MedicineStaff/update', user);
 

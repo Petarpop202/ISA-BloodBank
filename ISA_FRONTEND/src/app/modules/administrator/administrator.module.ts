@@ -15,13 +15,21 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { AdministratorRootComponent } from './administrator-root/administrator-root.component';
 import { SharedModule } from '../shared/shared.module';
+import { NewBloodBankComponent } from '../medical-staff/new-blood-bank/new-blood-bank.component';
+import { BloodBankInfoDialogComponent } from './blood-bank-info-dialog/blood-bank-info-dialog.component';
+import { NewAdminDialogComponent } from './new-admin-dialog/new-admin-dialog.component';
+
 
 
 @NgModule({
   declarations: [
     SearchUsersComponent,
     SystemAdministratorComponent,
-    AdministratorRootComponent],
+    AdministratorRootComponent,
+    NewBloodBankComponent,
+    BloodBankInfoDialogComponent,
+    NewAdminDialogComponent],
+    
   imports: [
     CommonModule,
     MatFormFieldModule,

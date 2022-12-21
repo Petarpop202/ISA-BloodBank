@@ -17,7 +17,6 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { BloodCenterComponent } from './blood-center/blood-center.component';
 import { EditBloodBankComponent } from './edit-blood-bank/edit-blood-bank.component';
-import { NewBloodBankComponent } from './new-blood-bank/new-blood-bank.component';
 import { MedicalRootComponent } from './medical-root/medical-root.component';
 import { RouterModule } from '@angular/router';
 import { AddBloodDonationAppointmentComponent } from './add-blood-donation-appointment/add-blood-donation-appointment.component';
@@ -30,8 +29,7 @@ import { AddBloodDonationAppointmentComponent } from './add-blood-donation-appoi
     EditMedicineStaffProfileComponent,
     MedicineStaffProfileComponent,
     BloodCenterComponent,
-    EditBloodBankComponent,
-    NewBloodBankComponent,
+    EditBloodBankComponent,    
     MedicalRootComponent,
     AddBloodDonationAppointmentComponent
   ],
