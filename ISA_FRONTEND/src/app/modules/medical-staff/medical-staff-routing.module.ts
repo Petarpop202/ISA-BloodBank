@@ -11,8 +11,7 @@ const routes: Routes = [
   { path: 'medicineStaffProfile/:id', component: MedicineStaffProfileComponent},
   { path: 'editMedicineStaffProfile/:id', component: EditMedicineStaffProfileComponent},
   { path: 'myBloodBank/:id', component: BloodCenterComponent},
-  { path: 'editBloodBank/:id', component: EditBloodBankComponent},
-  { path: 'newBloodBank', component: NewBloodBankComponent},
+  { path: 'editBloodBank/:id', component: EditBloodBankComponent},  
   { path: 'scheduler', component: SchedulerComponent},
 
   { path: 'myBloodBank/:id/addBloodDonationAppointment/:id', component: AddBloodDonationAppointmentComponent}
