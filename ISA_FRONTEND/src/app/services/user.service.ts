@@ -6,6 +6,7 @@ import { BloodDonor } from "../model/bloodDonor"
 import { Test } from '../model/test';
 import { MedicineStaff } from '../model/medicineStaff';
 import { DonorSurvey } from '../model/donorSurvey';
+import { SystemAdministrator } from '../model/systemAdministrator';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,7 @@ export class UserService {
     return this.http.get<BloodDonor[]>(this.apiHost + 'user/get', {headers: this.headers});
   }
 
-  getUser(id: number): Observable<BloodDonor> {
+  getUser(id: any): Observable<BloodDonor> {
     return this.http.get<BloodDonor>(this.apiHost + 'user/get/' + id, {headers: this.headers});
   }
 
@@ -55,6 +56,18 @@ export class UserService {
 
   createMedicineStaff(bloodDonationAppointment: any): Observable<any> {
     return this.http.post<any>(this.apiHost + 'MedicineStaff/new',bloodDonationAppointment);
+  }
+
+  createSystemAdministrator(bloodDonationAppointment: any): Observable<any> {
+    return this.http.post<any>(this.apiHost + 'systemAdministrator/new',bloodDonationAppointment);
+  }
+
+  systemAdministratorChangePassword(id: any, password: any): Observable<any> {
+    return this.http.put<any>(this.apiHost + 'systemAdministrator/update/id=' + id + '+pw=' + password, {headers: this.headers});
+  }
+
+  getSystemAdministratorById(id: any): Observable<any>{
+    return this.http.get<SystemAdministrator>(this.apiHost + 'systemAdministrator/get/' + id, {headers: this.headers})
   }
 
   updateMedicineStaff(user: any): Observable<any> {

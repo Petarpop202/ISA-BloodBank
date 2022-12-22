@@ -7,9 +7,10 @@ export class SystemAdministrator {
     mail : string = '';
     username : string = '';
     password : string = '';
+    lastPasswordResetDate: string = '';
     phoneNumber : string = '';
     jmbg : string = '';
-    gender : string = '';
-    adress : Address = new Address();
+    gender : string = '';    
+    address : Address = new Address();
 
 }

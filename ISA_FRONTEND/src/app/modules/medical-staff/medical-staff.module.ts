@@ -21,9 +21,10 @@ import { MedicalRootComponent } from './medical-root/medical-root.component';
 import { RouterModule } from '@angular/router';
 import { AddBloodDonationAppointmentComponent } from './add-blood-donation-appointment/add-blood-donation-appointment.component';
 import { SchedulerComponent } from './scheduler/scheduler.component';
-import { CalendarComponent } from './calendar/calendar.component';
+import { CalendarComponent } from './calendar/calendar.component'; 
 import { BrowserModule } from "@angular/platform-browser";
 import { FullCalendarModule } from "@fullcalendar/angular";
+
 
 
 

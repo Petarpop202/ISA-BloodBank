@@ -18,6 +18,9 @@ import { SharedModule } from '../shared/shared.module';
 import { NewBloodBankComponent } from '../medical-staff/new-blood-bank/new-blood-bank.component';
 import { BloodBankInfoDialogComponent } from './blood-bank-info-dialog/blood-bank-info-dialog.component';
 import { NewAdminDialogComponent } from './new-admin-dialog/new-admin-dialog.component';
+import { NewSystemAdminDialogComponent } from './new-system-admin-dialog/new-system-admin-dialog.component';
+import { ChangePasswordDialogComponent } from './change-password-dialog/change-password-dialog.component';
+
 
 
 
@@ -28,7 +31,10 @@ import { NewAdminDialogComponent } from './new-admin-dialog/new-admin-dialog.com
     AdministratorRootComponent,
     NewBloodBankComponent,
     BloodBankInfoDialogComponent,
-    NewAdminDialogComponent],
+    NewAdminDialogComponent,
+    NewSystemAdminDialogComponent,
+    ChangePasswordDialogComponent],
+    
     
   imports: [
     CommonModule,
