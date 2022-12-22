@@ -6,6 +6,9 @@ import { EditMedicineStaffProfileComponent } from "./edit-medicine-staff-profile
 import { MedicineStaffProfileComponent } from "./medicine-staff-profile/medicine-staff-profile.component";
 import { AddBloodDonationAppointmentComponent } from "./add-blood-donation-appointment/add-blood-donation-appointment.component";
 import { SchedulerComponent } from "./scheduler/scheduler.component";
+import { CalendarComponent } from "./calendar/calendar.component";
+import { BrowserModule } from "@angular/platform-browser";
+import { FullCalendarModule } from "@fullcalendar/angular";
 
 const routes: Routes = [
   { path: 'medicineStaffProfile/:id', component: MedicineStaffProfileComponent},
@@ -14,7 +17,8 @@ const routes: Routes = [
   { path: 'editBloodBank/:id', component: EditBloodBankComponent},  
   { path: 'scheduler', component: SchedulerComponent},
 
-  { path: 'myBloodBank/:id/addBloodDonationAppointment/:id', component: AddBloodDonationAppointmentComponent}
+  { path: 'myBloodBank/:id/addBloodDonationAppointment/:id', component: AddBloodDonationAppointmentComponent},
+  { path: 'myBloodBank/:id/calendar/:id', component: CalendarComponent},
 ];
   
   
