@@ -1,25 +1,3 @@
-<section id="scroll">
-    <div class="container px-5">
-        <h1 class="masthead-heading mb-1">Zakazani termini</h1>
-        <div class="row gx-5 align-items-center">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Korisnik</th>
-                        <th>Datum početka</th>
-                        <th>Trajanje</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <ng-container *ngFor="let visit of centerVisits">
-                        <tr>
-                            <td>{{visit.bloodDonor.name}} {{visit.bloodDonor.surname}}</td>
-                            <td>{{visit.bloodDonationAppointment.startDateTime | date : 'dd.MM.yyyy. HH:mm'}}</td>
-                            <td>{{visit.bloodDonationAppointment.duration}}</td>
-                        </tr>
-                    </ng-container>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</section>
+<full-calendar [options]="calendarOptions">
+    
+</full-calendar>
