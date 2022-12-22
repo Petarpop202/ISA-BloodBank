@@ -9,6 +9,10 @@ import { SystemAdministrator } from 'src/app/model/systemAdministrator';
 import { MatDialog } from '@angular/material/dialog';
 import { BloodBankInfoDialogComponent } from '../blood-bank-info-dialog/blood-bank-info-dialog.component';
 import { NewAdminDialogComponent } from '../new-admin-dialog/new-admin-dialog.component';
+import { NewSystemAdminDialogComponent } from '../new-system-admin-dialog/new-system-admin-dialog.component';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/model/user';
+import { ChangePasswordDialogComponent } from '../change-password-dialog/change-password-dialog.component';
 
 
 
@@ -19,7 +23,7 @@ import { NewAdminDialogComponent } from '../new-admin-dialog/new-admin-dialog.co
 })
 export class SystemAdministratorComponent implements OnInit {
 
-  constructor(private bloodBankService: BloodBankService, private _liveAnnouncer: LiveAnnouncer, private loginService: LoginService, public dialog: MatDialog) { }
+  constructor(private bloodBankService: BloodBankService, private _liveAnnouncer: LiveAnnouncer, private loginService: LoginService, public dialog: MatDialog, private userService: UserService) { }
 
   
   @ViewChild(MatSort)
@@ -28,6 +32,7 @@ export class SystemAdministratorComponent implements OnInit {
   public dataSource = new MatTableDataSource<BloodBank>();
   banks: BloodBank[] = [];
   admin: SystemAdministrator = new SystemAdministrator;
+  user: User = new User;
 
   displayedColumns: string[] = ['id', 'name', 'averageGrade', 'city', 'info', 'newAdmin'];
   addresses: string[] = ['Sve']
@@ -96,7 +101,18 @@ export class SystemAdministratorComponent implements OnInit {
   loggedAdmin(){
     this.loginService.whoAmI().subscribe(res => {
       this.admin = res;
-      console.log(this.admin.name);
+      if(this.admin.lastPasswordResetDate == null && this.admin.username != "plaoludastruja1"){
+        this.openChangePasswordDialog(res);
+      }
+     
+    })
+  }
+
+  public openChangePasswordDialog(adm: any): void{
+    const dialogRef = this.dialog.open(ChangePasswordDialogComponent, {  
+      data: {admin: adm},    
+      height: '500px',
+      width: '400px',
     })
   }
 
@@ -111,6 +127,14 @@ export class SystemAdministratorComponent implements OnInit {
   public openNewAdminDialog(bb: any): void{
     const dialogRef = this.dialog.open(NewAdminDialogComponent, {  
       data: {bloodBank: bb},    
+      height: '900px',
+      width: '1000px',
+    })
+  }
+
+  public openNewSystemAdminDialog(): void{
+    const dialogRef = this.dialog.open(NewSystemAdminDialogComponent, {  
+        
       height: '900px',
       width: '1000px',
     })

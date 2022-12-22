@@ -6,9 +6,8 @@ import { EditMedicineStaffProfileComponent } from "./edit-medicine-staff-profile
 import { MedicineStaffProfileComponent } from "./medicine-staff-profile/medicine-staff-profile.component";
 import { AddBloodDonationAppointmentComponent } from "./add-blood-donation-appointment/add-blood-donation-appointment.component";
 import { SchedulerComponent } from "./scheduler/scheduler.component";
-import { CalendarComponent } from "./calendar/calendar.component";
-import { BrowserModule } from "@angular/platform-browser";
-import { FullCalendarModule } from "@fullcalendar/angular";
+import { CalendarComponent } from "./calendar/calendar.component"; 
+
 
 const routes: Routes = [
   { path: 'medicineStaffProfile/:id', component: MedicineStaffProfileComponent},
