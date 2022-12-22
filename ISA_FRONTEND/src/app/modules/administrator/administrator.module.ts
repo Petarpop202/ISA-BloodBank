@@ -20,6 +20,7 @@ import { BloodBankInfoDialogComponent } from './blood-bank-info-dialog/blood-ban
 import { NewAdminDialogComponent } from './new-admin-dialog/new-admin-dialog.component';
 import { NewSystemAdminDialogComponent } from './new-system-admin-dialog/new-system-admin-dialog.component';
 import { ChangePasswordDialogComponent } from './change-password-dialog/change-password-dialog.component';
+import { ZalbeComponent } from './zalbe/zalbe.component';
 
 
 
@@ -33,7 +34,8 @@ import { ChangePasswordDialogComponent } from './change-password-dialog/change-p
     BloodBankInfoDialogComponent,
     NewAdminDialogComponent,
     NewSystemAdminDialogComponent,
-    ChangePasswordDialogComponent],
+    ChangePasswordDialogComponent,
+    ZalbeComponent],
     
     
   imports: [
