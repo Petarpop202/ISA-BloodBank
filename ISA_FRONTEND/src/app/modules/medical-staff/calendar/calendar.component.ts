@@ -43,39 +43,48 @@ export class CalendarComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
     this.getScheduledAppointmentsFromBloodBank(this.id);
-    this.setTermins();
     this.setEvents();
     
-    // this.calendarOptions = {
-    //   initialView: 'dayGridMonth',
-    //   plugins: [dayGridPlugin],
-    //   events: this.eventss
-    // }
-    //console.log(this.eventss[0].title);
-    this.showCalendar();
+    
+    this.calendarOptions = {
+      initialView: 'dayGridMonth',
+      plugins: [dayGridPlugin],
+      events: this.eventss,
+    }
+    
+    
   }
 
 
   public getScheduledAppointmentsFromBloodBank(id:any) {
     this.bloodBankService.getAppointmentsByBloodBankId(id).subscribe(res => {
-      this.centerVisits = res;                         
-      this.centerVisits.forEach(cv => {
-        cv.bloodDonationAppointment.startDateTime = new Date(Number(cv.bloodDonationAppointment.startDateTime[0]), Number(cv.bloodDonationAppointment.startDateTime[1]) - 1, Number(cv.bloodDonationAppointment.startDateTime[2]), Number(cv.bloodDonationAppointment.startDateTime[3]), Number(cv.bloodDonationAppointment.startDateTime[4]), 0).toISOString()
-             
-      });
+      this.centerVisits = res;   
+        
       
+      this.centerVisits.forEach(cv => {
+        cv.bloodDonationAppointment.startDateTime = new Date(Number(cv.bloodDonationAppointment.startDateTime[0]), Number(cv.bloodDonationAppointment.startDateTime[1]) - 1, Number(cv.bloodDonationAppointment.startDateTime[2]), Number(cv.bloodDonationAppointment.startDateTime[3]), Number(cv.bloodDonationAppointment.startDateTime[4]), 0).toISOString();
+        
+      })
     })
-    
   }
 
-  public setTermins(){
+  
+  // public setTermins(){
     
-    for(let a of this.centerVisits){
-      this.termin.title = a.bloodDonor.name;
-      this.termin.date = a.bloodDonationAppointment.startDateTime;
-      this.termins.push(this.termin);
-      // this.eventss.push({title: a.bloodDonor.name + ' ' + a.bloodDonor.surname, date: a.bloodDonationAppointment.startDateTime})
-      // this.eventss.push(this.termin);
+  //   for(let a of this.centerVisits){
+  //     this.termin.title = a.bloodDonor.name;
+  //     this.termin.date = a.bloodDonationAppointment.startDateTime;
+  //     this.termins.push(this.termin);
+  //     // this.eventss.push({title: a.bloodDonor.name + ' ' + a.bloodDonor.surname, date: a.bloodDonationAppointment.startDateTime})
+  //     // this.eventss.push(this.termin);
+  //   }
+  // }
+
+  public setEvents2(){
+    this.eventss = [];
+    for(var a of this.centerVisits){
+      console.log(a.bloodDonor.name);
+      this.eventss.push({title: a.bloodDonor.name, date: a.bloodDonationAppointment.startDateTime});
     }
   }
 
@@ -96,7 +105,7 @@ export class CalendarComponent implements OnInit {
     this.calendarOptions = {
       initialView: 'dayGridMonth',
       plugins: [dayGridPlugin],
-      events: this.eventss
+      
     }
   }
 }

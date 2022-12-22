@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'scheduler', component: SchedulerComponent},
 
   { path: 'myBloodBank/:id/addBloodDonationAppointment/:id', component: AddBloodDonationAppointmentComponent},
-  { path: 'myBloodBank/:id/calendar/:id', component: CalendarComponent},
+  { path: 'myBloodBank/:id/calendar', component: CalendarComponent},
 ];
   
   
