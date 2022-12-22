@@ -27,7 +27,6 @@ public class BloodBankController {
 	}
 	
     @GetMapping("/get")
-    @PreAuthorize("hasAnyRole('ROLE_DONOR', 'ROLE_ADMIN')")
     public List<BloodBank> getAll(){
         return bloodBankService.getAll();
     }
