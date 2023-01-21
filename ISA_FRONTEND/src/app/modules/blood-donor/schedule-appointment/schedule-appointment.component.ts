@@ -59,6 +59,7 @@ export class ScheduleAppointmentComponent implements OnInit {
           })
         })
         this.createAppointments(freeBloodbanks)
+        this.appointments = this.appointments.filter(app => app.free === true)
       })
     })
   }
@@ -71,7 +72,27 @@ export class ScheduleAppointmentComponent implements OnInit {
       newAppointment.duration = 30
       newAppointment.startDateTime = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate(), this.hours, this.minutes, 0).toISOString()
       newAppointment.free = true
-      this.appointments.push(newAppointment)
+      
+      let appStart = new Date(newAppointment.startDateTime)
+      let appEnd = new Date(appStart.getTime() + newAppointment.duration * 60000)
+      let appointmentStartDate = new Date(appStart.getFullYear(), appStart.getMonth(), appStart.getDate(), 0, 0, 0)
+
+      this.bloodBankService.getAppointmentsFromBloodBank(bb.id).subscribe(res => {
+        let overlaps: boolean = false
+        let appointments = res
+        appointments.forEach(app => {
+          let appStartTime = new Date(Number(app.startDateTime[0]), Number(app.startDateTime[1]) - 1, Number(app.startDateTime[2]), Number(app.startDateTime[3]), Number(app.startDateTime[4]), 0)
+          let appEndTime = new Date(appStartTime.getTime() + app.duration * 60000)
+          let appStartDate = new Date(appStartTime.getFullYear(), appStartTime.getMonth(), appStartTime.getDate(), 0, 0, 0)
+
+          if (appStart < appEndTime && appEnd > appStartTime && appointmentStartDate.getTime() == appStartDate.getTime()){
+            overlaps = true
+          }
+        })
+        if (overlaps === false){
+          this.appointments.push(newAppointment)
+        }
+      })
     })
   }
 
@@ -133,6 +154,8 @@ export class ScheduleAppointmentComponent implements OnInit {
         if (res !== null){
           appointment = res
           this.createCenterVisit(appointment);
+        }else{
+          console.log("Nije moguće kreirati termin!")
         }
       })
     }
@@ -147,7 +170,7 @@ export class ScheduleAppointmentComponent implements OnInit {
     centerVisit.price = 0
 
     this.bloodBankService.createVisit(centerVisit).subscribe(res => {
-      alert('Uspešno zakazan termin!')
+      this.router.navigate(['donor/scheduledAppointments'])
     })
   }
 

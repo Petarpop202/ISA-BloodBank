@@ -44,6 +44,12 @@ public class BloodDonationAppointmentController {
     	return bloodDonationAppointmentService.getAllByBloodBank(id);
     }
     
+    @GetMapping(value = "/bloodBankFree={id}")
+    @PreAuthorize("hasAnyRole('ROLE_MEDICALWORKER','ROLE_DONOR')")
+    public List<BloodDonationAppointment> getAllFreeByBloodBank(@PathVariable long id) {
+    	return bloodDonationAppointmentService.getAllFreeByBloodBank(id);
+    }
+    
     @GetMapping(value = "/datetime={datetime}")
     @PreAuthorize("hasAnyRole('ROLE_MEDICALWORKER', 'ROLE_DONOR')")
     public List<BloodDonationAppointment> getAllByDateTime(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime datetime) {
