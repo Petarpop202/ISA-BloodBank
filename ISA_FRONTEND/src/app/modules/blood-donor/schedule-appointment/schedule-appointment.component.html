@@ -62,7 +62,7 @@
                                         <td>{{app.bloodBank.averageGrade}}</td>
                                         <td>{{app.startDateTime | date : 'dd.MM.yyyy. HH:mm'}}</td>
                                         <td>{{app.duration}}</td>
-                                        <td *ngIf="survey"><button type="button" class="btn btn-warning" (click)="scheduleAppointment(app.id)">Zakaži</button></td>
+                                        <td *ngIf="survey"><button type="button" class="btn btn-warning" (click)="scheduleAppointment(app)">Zakaži</button></td>
                                         <td *ngIf="!survey"><button type="button" class="btn btn-warning" routerLink="../donorSurvey">Popuni anketu</button></td>
                                     </tr>
                                 </ng-container>

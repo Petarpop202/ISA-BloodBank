@@ -2,14 +2,10 @@ package com.example.bloodbank.Service.ServiceImplementation;
 
 import java.util.List;
 
-import com.example.bloodbank.Model.MedicineStaff;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.example.bloodbank.Model.BloodBank;
-import com.example.bloodbank.Model.BloodDonor;
 import com.example.bloodbank.Repository.IBloodBankRepository;
-import com.example.bloodbank.Repository.ITestRepository;
 import com.example.bloodbank.Service.IBloodBankService;
 
 @Service
