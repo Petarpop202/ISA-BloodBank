@@ -48,6 +48,30 @@ export class ScheduleAppointmentComponent implements OnInit {
       this.appointments.forEach(app => {
         app.startDateTime = new Date(Number(app.startDateTime[0]), Number(app.startDateTime[1]) - 1, Number(app.startDateTime[2]), Number(app.startDateTime[3]), Number(app.startDateTime[4]), 0).toISOString()
       })
+      this.bloodBankService.getBloodBanks().subscribe(res => {
+        let bloodbanks = res
+        let freeBloodbanks = res
+        bloodbanks.forEach(bb => {
+          this.appointments.forEach(app => {
+            if (app.bloodBank.id === bb.id){
+              freeBloodbanks = freeBloodbanks.filter(fbb => fbb.id !== bb.id)
+            }
+          })
+        })
+        this.createAppointments(freeBloodbanks)
+      })
+    })
+  }
+
+  createAppointments(bloodbanks: BloodBank[]): void {
+    bloodbanks.forEach(bb => {
+      let newAppointment = new BloodDonationAppointment()
+      let selectedDate = new Date(this.selectedDate)
+      newAppointment.bloodBank = bb
+      newAppointment.duration = 30
+      newAppointment.startDateTime = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate(), this.hours, this.minutes, 0).toISOString()
+      newAppointment.free = true
+      this.appointments.push(newAppointment)
     })
   }
 
@@ -101,9 +125,24 @@ export class ScheduleAppointmentComponent implements OnInit {
     this.getAppointments()
   }
 
-  scheduleAppointment(id: string): void {
+  scheduleAppointment(appointment: BloodDonationAppointment): void {
+    if (appointment.id === ''){
+      let selectedDate = new Date(this.selectedDate)
+      appointment.startDateTime = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate(), this.hours + 1, this.minutes, 0).toISOString()
+      this.bloodBankService.createBloodDonationAppointment(appointment).subscribe(res => {
+        if (res !== null){
+          appointment = res
+          this.createCenterVisit(appointment);
+        }
+      })
+    }
+    else {
+      this.createCenterVisit(appointment)
+    }
+  }
+  createCenterVisit(appointment: BloodDonationAppointment): void {
     let centerVisit: CenterVisitDto = new CenterVisitDto()
-    centerVisit.appointmentId = id
+    centerVisit.appointmentId = appointment.id
     centerVisit.donorId = this.donor.id
     centerVisit.price = 0
 

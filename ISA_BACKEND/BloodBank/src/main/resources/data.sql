@@ -28,7 +28,7 @@ insert into medicine_staffs (blood_bank_id, id) values (2, 4);
 
 insert into blood_donation_appointments (start_date_time, duration, blood_bank_id, is_free) values ('28.06.2022. 12:00:00', 30, 1, false);
 insert into blood_donation_appointments (start_date_time, duration, blood_bank_id, is_free) values ('12.01.2023. 12:00:00', 30, 1, true);
-insert into blood_donation_appointments (start_date_time, duration, blood_bank_id, is_free) values ('15.01.2023. 10:40:00', 20, 1, true);
+insert into blood_donation_appointments (start_date_time, duration, blood_bank_id, is_free) values ('22.01.2023. 10:40:00', 20, 1, true);
 insert into blood_donation_appointments (start_date_time, duration, blood_bank_id, is_free) values ('11.02.2023. 13:15:00', 45, 2, true);
 insert into blood_donation_appointments (start_date_time, duration, blood_bank_id, is_free) values ('12.01.2023. 12:00:00', 30, 2, true);
 

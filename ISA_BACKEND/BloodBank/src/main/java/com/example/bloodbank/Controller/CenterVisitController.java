@@ -5,13 +5,20 @@ import com.example.bloodbank.Model.BloodDonationAppointment;
 import com.example.bloodbank.Model.CenterVisit;
 import com.example.bloodbank.Model.MailDetails;
 import com.example.bloodbank.Service.ServiceImplementation.*;
+import com.example.bloodbank.Util.QRCodeGenerator;
+import com.google.zxing.WriterException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
+import javax.mail.util.ByteArrayDataSource;
+
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.time.format.DateTimeFormatter;
+import java.util.Base64;
 import java.util.List;
 
 @RestController
@@ -72,15 +79,46 @@ public class CenterVisitController {
         bda.setFree(false);
         CenterVisit center = _centerVisitService.create(cv);
         if(center != null) {
+        	String qrCode = generateQRCode(center);
+        	
             MailDetails newMail = new MailDetails();
             newMail.setRecipient(cv.getBloodDonor().getMail());
-            newMail.setMsgBody("Pozdrav " + cv.getBloodDonor().getName() + "!<br>Vaš termin davanja krvi dana <b>" + cv.getBloodDonationAppointment().getStartDateTime().toLocalDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy.")) + "</b> u <b>"+ cv.getBloodDonationAppointment().getStartDateTime().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm")) + "h</b> u banci krvi <b>" + cv.getBloodDonationAppointment().getBloodBank().getName() + "</b> je uspešno zakazan.");
+            newMail.setMsgBody("Pozdrav " + cv.getBloodDonor().getName() +
+            				"!<br>Vaš termin davanja krvi dana <b>" +
+            				cv.getBloodDonationAppointment().getStartDateTime().toLocalDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy.")) +
+            				"</b> u <b>"+ cv.getBloodDonationAppointment().getStartDateTime().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm")) +
+            				"h</b> u banci krvi <b>" + cv.getBloodDonationAppointment().getBloodBank().getName() +
+            				"</b> je uspešno zakazan.<br>");
             newMail.setSubject("Uspešno zakazivanje termina!");
-            _emailService.sendSimpleMail(newMail);
+            _emailService.sendMailWithImage(newMail, qrCode);
             _bloodDonationAppointmentService.update(bda);
             return center;
         }
         return null;
+    }
+    
+    private String generateQRCode(CenterVisit center) {
+    	String bloodDonor = center.getBloodDonor().getName() + ' ' + center.getBloodDonor().getSurname();
+    	String bloodBank = center.getBloodDonationAppointment().getBloodBank().getName();
+    	String date = center.getBloodDonationAppointment().getStartDateTime().toLocalDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy."));
+    	String time = center.getBloodDonationAppointment().getStartDateTime().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm"));
+    	String duration = String.valueOf(center.getBloodDonationAppointment().getDuration());
+    	
+    	String qrCodeText = "Termin davanja krvi: \n-Davalac: " + bloodDonor + 
+    						"\n-Banka krvi: " + bloodBank +
+    						"\n-Datum: " + date + 
+    						"\n-Vreme: " + time + 
+    						"\n-Trajanje: " + duration + " minuta";
+    	
+    	byte[] image = new byte[0];
+        try {
+
+            image = QRCodeGenerator.getQRCodeImage(qrCodeText,250,250);
+
+        } catch (WriterException | IOException e) {
+            e.printStackTrace();
+        }
+        return Base64.getEncoder().encodeToString(image);
     }
 
 }

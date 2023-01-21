@@ -17,7 +17,6 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  // ovo je nako napravljeno bezveze
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.apiHost + 'user/get', {headers: this.headers});
   }

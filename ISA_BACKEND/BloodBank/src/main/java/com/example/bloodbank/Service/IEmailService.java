@@ -11,6 +11,10 @@ public interface IEmailService {
     String sendSimpleMail(MailDetails details) throws MessagingException, UnsupportedEncodingException;
 
     // Method
+    // To send an email with image
+    String sendMailWithImage(MailDetails details, String base64Image);
+    
+    // Method
     // To send an email with attachment
     String sendMailWithAttachment(MailDetails details);
 }
