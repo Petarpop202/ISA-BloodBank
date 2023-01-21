@@ -35,6 +35,10 @@ export class BloodBankService {
     return this.http.get<BloodDonationAppointment[]>(this.apiHost + 'bloodDonationAppointment/bloodBank=' + id, {headers: this.headers});
   }
 
+  getFreeAppointmentsFromBloodBank(id: any): Observable<BloodDonationAppointment[]> {
+    return this.http.get<BloodDonationAppointment[]>(this.apiHost + 'bloodDonationAppointment/bloodBankFree=' + id, {headers: this.headers});
+  }
+
   getAppointmentsByDateTime(datetime: string): Observable<BloodDonationAppointment[]> {
     return this.http.get<BloodDonationAppointment[]>(this.apiHost + 'bloodDonationAppointment/datetime=' + datetime, {headers: this.headers});
   }

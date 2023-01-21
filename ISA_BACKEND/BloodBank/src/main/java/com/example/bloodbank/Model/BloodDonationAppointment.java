@@ -33,4 +33,6 @@ public class BloodDonationAppointment {
     @JoinColumn(name = "bloodBank_id", referencedColumnName = "id")
     private BloodBank bloodBank;
     private boolean isFree;
+    @Version
+	private Integer version;
 }

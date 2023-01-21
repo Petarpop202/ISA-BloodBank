@@ -44,7 +44,7 @@ export class DonorSurveyComponent implements OnInit {
 
   putSurvey():void{
     this.userService.createSurvey(this.survey).subscribe(res=>{
-      alert("Anketa je registrovana !" + res.bloodDonor.name + " ");
+      alert("Anketa je registrovana " + res.bloodDonor.name + "!");
     })
   }
 }

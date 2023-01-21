@@ -54,6 +54,10 @@ public class BloodDonationAppointmentService implements IBloodDonationAppointmen
 	}
 
 	public List<BloodDonationAppointment> getAllByBloodBank(Long id){
+		return bloodDonationAppointmentRepo.findAllByBloodBankId(id);
+	}
+	
+	public List<BloodDonationAppointment> getAllFreeByBloodBank(Long id){
 		List<BloodDonationAppointment> newList = new ArrayList<BloodDonationAppointment>();
 		for(BloodDonationAppointment b : bloodDonationAppointmentRepo.findAllByBloodBankId(id)){
 			if(b.isFree())
@@ -63,7 +67,7 @@ public class BloodDonationAppointmentService implements IBloodDonationAppointmen
 	}
 	
 	public List<BloodDonationAppointment> getAllByDateTime(LocalDateTime datetime){
-		return bloodDonationAppointmentRepo.findAllByStartDateTimeAndIsFree(datetime, true);
+		return bloodDonationAppointmentRepo.findAllByStartDateTime(datetime);
 	}
 	
 	@Override
