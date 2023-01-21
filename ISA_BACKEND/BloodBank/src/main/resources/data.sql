@@ -7,7 +7,7 @@ insert into addresses (city, country, street, street_num) values ('Kraljevo', 'S
 
 --Sifre su 123 !
 
-insert into users (name, surname, gender, username, password, jmbg, enabled, mail, phone_number, address_id) values ('Danilo', 'Bulatović', 0, 'Danilo123', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', '123456789123', true, 'pppppppp@gmail.com', '065/123-456', 1);
+insert into users (name, surname, gender, username, password, jmbg, enabled, mail, phone_number, address_id) values ('Danilo', 'Bulatović', 0, 'Danilo123', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', '123456789123', true, 'danilobulatovic.private@gmail.com', '065/123-456', 1);
 insert into users (name, surname, gender, username, password, jmbg, enabled, mail, phone_number, address_id) values ('Đorđe', 'Lipovčić', 0, 'plaoludastruja', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', '123456789123', true, 'pls@gmail.com', '065/123-456', 2);
 insert into users (name, surname, gender, username, password, jmbg, enabled, mail, phone_number, address_id) values ('Đorđe1', 'Lipovčić1', 0, 'plaoludastruja1', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', '123456789123', true, 'pls@gmail.com', '065/123-456', 3);
 insert into users (name, surname, gender, username, password, jmbg, enabled, mail, phone_number, address_id) values ('Đorđe2', 'Lipovčić2', 0, 'plaoludastruja2', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', '123456789123', true, 'pls@gmail.com', '065/123-456', 4);

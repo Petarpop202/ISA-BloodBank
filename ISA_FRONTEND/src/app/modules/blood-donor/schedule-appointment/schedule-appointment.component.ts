@@ -55,7 +55,6 @@ export class ScheduleAppointmentComponent implements OnInit {
           this.appointments.forEach(app => {
             if (app.bloodBank.id === bb.id){
               freeBloodbanks = freeBloodbanks.filter(fbb => fbb.id !== bb.id)
-              console.log(bb.name)
             }
           })
         })
