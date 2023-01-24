@@ -2,18 +2,12 @@ package com.example.bloodbank.Controller;
 
 import java.util.List;
 
-import com.example.bloodbank.Model.MedicineStaff;
-import com.example.bloodbank.Model.SystemAdministrator;
-
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import org.springframework.web.bind.annotation.*;
 
 import com.example.bloodbank.Model.BloodBank;
 import com.example.bloodbank.Service.ServiceImplementation.BloodBankService;
-
-import javax.annotation.security.DeclareRoles;
 
 @RestController
 @RequestMapping("bloodBank")
