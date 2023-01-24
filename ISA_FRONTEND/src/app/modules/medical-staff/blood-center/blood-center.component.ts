@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BloodBank } from 'src/app/model/bloodBank';
 import { BloodDonationAppointment } from 'src/app/model/bloodDonationAppointment';
 import { CenterVisit } from 'src/app/model/centerVisit';
 import { MedicineStaff } from 'src/app/model/medicineStaff';
 import { BloodBankService } from 'src/app/services/blood-bank.service';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-blood-center',
   templateUrl: './blood-center.component.html',
-  styleUrls: ['./blood-center.component.css']
+  styleUrls: ['./blood-center.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class BloodCenterComponent implements OnInit {
 
@@ -21,16 +23,24 @@ export class BloodCenterComponent implements OnInit {
   appointments : BloodDonationAppointment[] = []
   centerVisits : CenterVisit[] = [] 
 
-  constructor(private bloodBankService:BloodBankService,private route: ActivatedRoute) { }
+  constructor(private loginService:LoginService, private bloodBankService:BloodBankService,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.paramMap.get('id')
-    this.getBloodBank(this.id);
-    this.getMedicineStaffFromBloodBank(this.id);
-    this.getAppointmentFromBloodBank(this.id);
-    this.getScheduledAppointmentsFromBloodBank(this.id);
+    //this.id = this.route.snapshot.paramMap.get('id')
+    this.getMedicineWorkerBloodBank()
+    
   }
   
+  public getMedicineWorkerBloodBank(): void {    
+    this.bloodBankService.getMedicineWorkerBloodBank().subscribe(res => {
+      this.id = res;
+      this.getBloodBank(this.id);
+      this.getMedicineStaffFromBloodBank(this.id);
+      this.getAppointmentFromBloodBank(this.id);
+      this.getScheduledAppointmentsFromBloodBank(this.id);
+    })
+  }
+
   public getBloodBank(id:any): void {
     this.bloodBankService.getBloodBank(id).subscribe(res => {
       this.bloodBank = res;
