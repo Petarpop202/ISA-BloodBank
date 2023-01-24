@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Sort } from '@angular/material/sort';
 import { ActivatedRoute } from '@angular/router';
 import { BloodBank } from 'src/app/model/bloodBank';
 import { BloodDonationAppointment } from 'src/app/model/bloodDonationAppointment';
@@ -78,4 +79,30 @@ export class BloodCenterComponent implements OnInit {
   public goToMyBank(): void {
     
   }
+
+  sortData(sort: Sort) {
+    const data = this.centerVisits.slice();
+    if (!sort.active || sort.direction === '') {
+      this.centerVisits = data;
+      return;
+    }
+
+    this.centerVisits = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'name':
+          return compare(a.bloodDonor.name, b.bloodDonor.name, isAsc);
+        case 'calories':
+          return compare(a.bloodDonationAppointment.startDateTime, b.bloodDonationAppointment.startDateTime, isAsc);
+        case 'fat':
+          return compare(a.bloodDonationAppointment.duration, b.bloodDonationAppointment.duration, isAsc);
+        default:
+          return 0;
+      }
+    });
+  }
+}
+
+function compare(a: number | string, b: number | string, isAsc: boolean) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }

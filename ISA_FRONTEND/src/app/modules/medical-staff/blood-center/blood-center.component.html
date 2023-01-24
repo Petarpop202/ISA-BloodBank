@@ -87,12 +87,12 @@
                 <div class="container px-5">
                     <h1 class="masthead-heading mb-1">Zakazani termini</h1>
                     <div class="row gx-5 align-items-center">
-                        <table class="table">
+                        <table class="table" matSort (matSortChange)="sortData($event)">
                             <thead>
                                 <tr>
-                                    <th>Korisnik</th>
-                                    <th>Datum početka</th>
-                                    <th>Trajanje</th>
+                                    <th mat-sort-header="name">Korisnik</th>
+                                    <th mat-sort-header="calories">Datum početka</th>
+                                    <th mat-sort-header="fat">Trajanje</th>
                                 </tr>
                             </thead>
                             <tbody>
