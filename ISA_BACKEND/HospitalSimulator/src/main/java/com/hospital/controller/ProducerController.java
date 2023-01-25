@@ -1,4 +1,4 @@
-package com.example.bloodbank.Controller;
+package com.hospital.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -8,18 +8,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.bloodbank.Util.BloodProducer;
+import com.hospital.ContractProducer;
 
 @RestController
 @RequestMapping(value = "api")
 public class ProducerController {
 	
 	@Autowired
-	private BloodProducer producer;
+	private ContractProducer producer;
 	
-	@PostMapping(value="/{queue}", consumes = "text/json")
-	public ResponseEntity<String> sendMessage(@PathVariable("queue") String queue, @RequestBody String message) {
-		producer.sendTo(queue, message);
+	@PostMapping(value="/{exchange}/{queue}", consumes = "text/plain")
+	public ResponseEntity<String> sendMessageToExchange(@PathVariable("exchange") String exchange, @PathVariable("queue") String queue, @RequestBody String message) {
+		producer.sendToExchange(exchange, queue, message);
 		return ResponseEntity.ok().build();
 	}
 }
