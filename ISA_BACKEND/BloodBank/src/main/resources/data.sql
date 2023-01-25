@@ -26,7 +26,10 @@ insert into medicine_staffs (blood_bank_id, id) values (1, 2);
 insert into medicine_staffs (blood_bank_id, id) values (1, 3);
 insert into medicine_staffs (blood_bank_id, id) values (2, 4);
 
-insert into complains (id, description, response, blood_bank_id, blood_donor_id, system_administrator_id) values (1, 'Ne valja nista', null, 1, 5, null);
+insert into complains (description, response, blood_bank_id, blood_donor_id, system_administrator_id) values ('Ne valja nista', null, 1, 5, null);
+insert into complains (description, response, blood_bank_id, blood_donor_id, system_administrator_id) values ('Sve je super', null, 1, 5, null);
+insert into complains (description, response, blood_bank_id, blood_donor_id, system_administrator_id) values ('Osoblje uzasno', null, 1, 5, null);
+insert into complains (description, response, blood_bank_id, blood_donor_id, system_administrator_id) values ('Moze to i bolje', null, 1, 5, null);
 
 insert into blood_donation_appointments (start_date_time, duration, blood_bank_id, is_free, version) values ('2022-06-22 12:00:00', 30, 1, false, 1);
 insert into blood_donation_appointments (start_date_time, duration, blood_bank_id, is_free, version) values ('2023-01-12 12:00:00', 30, 1, true, 1);
