@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.bloodbank.Model.Complains;
+import com.example.bloodbank.Model.SystemAdministrator;
 import com.example.bloodbank.Service.ServiceImplementation.ComplainService;
 
 @RestController
@@ -35,4 +36,17 @@ public class ComplainController {
 	Complains UpdateComplain(@RequestBody Complains updatedComplain) {
 		return _complainService.update(updatedComplain);
 	}
+	
+	@PutMapping(value = "/updateResponse/id={id}+response={response}")
+	Complains UpdateComplain(@PathVariable Long id, @PathVariable String response) {
+		return _complainService.updateResponse(id, response);
+	}
+	
+	@PutMapping(value = "/updateResponse/id={id}+admin={admin}+user={user}")
+	Complains UpdateComplain(@PathVariable Long id, @PathVariable Long admin, @PathVariable Long user) {
+		
+		return _complainService.updateSystemAdministrator(id, admin, user);
+	}
+	
+	
 }

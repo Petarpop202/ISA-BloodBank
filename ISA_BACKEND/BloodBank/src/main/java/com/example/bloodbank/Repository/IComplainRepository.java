@@ -7,7 +7,7 @@ import com.example.bloodbank.Model.Complains;
 
 @Repository
 public interface IComplainRepository extends JpaRepository<Complains, Long> {
-
+	
 }
 
 

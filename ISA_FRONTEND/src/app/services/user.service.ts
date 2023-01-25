@@ -85,4 +85,14 @@ export class UserService {
   getComplains(): Observable<Complains[]> {
     return this.http.get<Complains[]>(this.apiHost + 'Complains/get', {headers: this.headers});
   }
+
+  updateComplains(complain: any): Observable<any> {
+    return this.http.put<any>(this.apiHost + 'Complains/update', complain);
+  }
+  updateComplainResponse(id: any, response: any): Observable<any> {
+    return this.http.put<any>(this.apiHost + 'Complains/updateResponse/id=' + id + '+response=' + response, {headers: this.headers});
+  }
+  updateComplainAdmin(id: any, admin: any, user: any): Observable<any> {
+    return this.http.put<any>(this.apiHost + 'Complains/updateResponse/id=' + id + '+admin=' + admin + '+user=' + user, {headers: this.headers});
+  }
 }

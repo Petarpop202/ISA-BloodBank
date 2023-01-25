@@ -8,7 +8,7 @@ export class Complains {
     bloodBank: BloodBank = new BloodBank;
     description: string = '';
     response: string = '';
-    systemAdministrator = new SystemAdministrator;
+    systemAdministrator: SystemAdministrator = new SystemAdministrator;
 
     public constructor(obj?: any) {
         if (obj) {

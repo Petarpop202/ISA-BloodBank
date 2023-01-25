@@ -11,7 +11,7 @@ insert into users (name, surname, gender, username, password, jmbg, enabled, mai
 insert into users (name, surname, gender, username, password, jmbg, enabled, mail, phone_number, address_id) values ('Đorđe', 'Lipovčić', 0, 'doktor', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', '123456789123', true, 'pls@gmail.com', '065/123-456', 2);
 insert into users (name, surname, gender, username, password, jmbg, enabled, mail, phone_number, address_id) values ('Đorđe1', 'Lipovčić1', 0, 'admin', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', '123456789123', true, 'pls@gmail.com', '065/123-456', 3);
 insert into users (name, surname, gender, username, password, jmbg, enabled, mail, phone_number, address_id) values ('Đorđe2', 'Lipovčić2', 0, 'plaoludastruja2', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', '123456789123', true, 'pls@gmail.com', '065/123-456', 4);
-insert into users (name, surname, gender, username, password, jmbg, enabled, mail, phone_number, address_id) values ('Stefan', 'Lepsanovic', 0, 'stefan', 'stefan', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', true, 'stefan@gmail.com', '065/123-456', 5);
+insert into users (name, surname, gender, username, password, jmbg, enabled, mail, phone_number, address_id) values ('Stefan', 'Lepsanovic', 0, 'stefan', 'stefan', '$2a$04$Vbug2lwwJGrvUXTj6z7ff.97IzVBkrJ1XfApfGNl.Z695zqcnPYra', true, 'najdobarsrb@gmail.com', '065/123-456', 5);
 
 insert into system_administrators (id) values (3);
 
@@ -20,11 +20,13 @@ insert into blood_banks (name, address_id, description, average_grade, blood, wo
 
 insert into blood_donors (category, loyality_points, penalty_points, id) values (0, 0, 0, 1);
 insert into blood_donors (category, loyality_points, penalty_points, id) values (0, 0, 0, 2);
-insert into blood_donors (category, loyality_points, penalty_points, id) values (0, 0, 0, 3);
+insert into blood_donors (category, loyality_points, penalty_points, id) values (0, 0, 0, 5);
 insert into blood_donors (category, loyality_points, penalty_points, id) values (0, 0, 0, 4);
 insert into medicine_staffs (blood_bank_id, id) values (1, 2);
 insert into medicine_staffs (blood_bank_id, id) values (1, 3);
 insert into medicine_staffs (blood_bank_id, id) values (2, 4);
+
+insert into complains (id, description, response, blood_bank_id, blood_donor_id, system_administrator_id) values (1, 'Ne valja nista', null, 1, 5, null);
 
 insert into blood_donation_appointments (start_date_time, duration, blood_bank_id, is_free, version) values ('2022-06-22 12:00:00', 30, 1, false, 1);
 insert into blood_donation_appointments (start_date_time, duration, blood_bank_id, is_free, version) values ('2023-01-12 12:00:00', 30, 1, true, 1);
