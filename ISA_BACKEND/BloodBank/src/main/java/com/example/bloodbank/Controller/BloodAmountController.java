@@ -1,9 +1,6 @@
 package com.example.bloodbank.Controller;
 
-import com.example.bloodbank.Model.BloodAmount;
-import com.example.bloodbank.Model.BloodBank;
-import com.example.bloodbank.Model.MedicineStaff;
-import com.example.bloodbank.Model.User;
+import com.example.bloodbank.Model.*;
 import com.example.bloodbank.Service.ServiceImplementation.BloodAmountService;
 import com.example.bloodbank.Service.ServiceImplementation.BloodBankService;
 import com.example.bloodbank.Service.ServiceImplementation.MedicineStaffService;
@@ -33,5 +30,15 @@ public class BloodAmountController {
         return bloodAmountService.getAllByBloodBank(id);
     }
 
+    @GetMapping(value = "/getAllBloodTypes")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MEDICALWORKER')")
+    public List<BloodType> getAllBloodTypes(){
+        return bloodAmountService.getAllBloodTypes();
+    }
+
+    @PostMapping("/addBloodDonation")
+    BloodAmount addBloodDonation(@RequestBody BloodAmount newBloodAmount) {
+        return bloodAmountService.addBloodDonation(newBloodAmount);
+    }
 
 }

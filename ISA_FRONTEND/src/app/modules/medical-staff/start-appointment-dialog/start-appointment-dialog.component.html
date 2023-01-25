@@ -4,13 +4,23 @@
             <div class="row mb-0">
                 <div class="col-md-6 mb-0">
                     <div class="form-outline">
-                        <input  type="text" class="form-control form-control-lg" />
+                        <select class="form-control form-control-lg dropdown-toggle" [(ngModel)]="bloodTypeValue"
+                        data-toggle="dropdown">
+                        <option class="dropdown-item" value="A_PLUS">A+</option>
+                        <option class="dropdown-item" value="A_MINUS">A-</option>
+                        <option class="dropdown-item" value="B_PLUS">B+</option>
+                        <option class="dropdown-item" value="B_MINUS">B-</option>
+                        <option class="dropdown-item" value="AB_PLUS">AB+</option>
+                        <option class="dropdown-item" value="AB_MINUS">AB-</option>
+                        <option class="dropdown-item" value="O_PLUS">O+</option>
+                        <option class="dropdown-item" value="O_MINUS">O-</option>
+                    </select>
                         <label class="form-label">Krvna grupa</label>
                     </div>
                 </div>
                 <div class="col-md-6 mb-0">
                     <div class="form-outline">
-                        <input  type="text" class="form-control form-control-lg" />
+                        <input  type="number" class="form-control form-control-lg" [(ngModel)]="bloodAmountValue"/>
                         <label class="form-label">Kolicina uzete krvi</label>
                     </div>
                 </div>
@@ -34,7 +44,7 @@
             </div>
 
             <div class="form-outline mb-0">
-                <input type="password" class="form-control form-control-lg" />
+                <input type="text" class="form-control form-control-lg" />
                 <label class="form-label">Srce</label>
             </div>
             <div style="color: red;" id="greska"></div>

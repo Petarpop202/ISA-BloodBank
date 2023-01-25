@@ -94,4 +94,16 @@ export class BloodBankService {
   getBloodAMountByBank(id: any): Observable<BloodAmount[]> {
     return this.http.get<BloodAmount[]>(this.apiHost + 'bloodAmount/getAllByBloodBank/' + id, {headers: this.headers});
   }
+
+  getCenterVisit(id: any): Observable<CenterVisit> {
+    return this.http.get<CenterVisit>(this.apiHost + 'centerVisit/get/' + id, {headers: this.headers});
+  }
+
+  getAllBloodTypes(): Observable<string[]> {
+    return this.http.get<string[]>(this.apiHost + 'bloodAmount/getAllBloodTypes', {headers: this.headers});
+  }
+
+  addBloodDonation(bloodAmount: BloodAmount): Observable<any> {
+    return this.http.post<BloodAmount>(this.apiHost + 'bloodAmount/addBloodDonation', bloodAmount);
+  }
 }
