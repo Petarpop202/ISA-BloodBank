@@ -48,6 +48,9 @@ public class BloodProducer {
 		Runnable periodicTask = new Runnable() {
 		    public void run() {
 		    	if (contract == null) return;
+		    	//if (!shouldDeliver(contract.getDateTime())) return;
+		    	if (!LocalDateTime.now().toLocalDate().equals(contract.getDateTime().toLocalDate())) return;
+		    	
 		    	BloodDelivery bd = new BloodDelivery();
 				bd.setReceivingHospital(contract.getHospital());
 				bd.setBloodType(contract.getBloodType());
@@ -61,7 +64,26 @@ public class BloodProducer {
 				}
 		    }
 		};
+		//executor.scheduleAtFixedRate(periodicTask, 0, 1, TimeUnit.DAYS);
 		executor.scheduleAtFixedRate(periodicTask, 0, 10, TimeUnit.SECONDS);
+	}
+	
+	private boolean shouldDeliver(LocalDateTime contractDate) {
+		int today = LocalDateTime.now().getDayOfMonth();
+    	int contractDay = contractDate.getDayOfMonth();
+    	boolean shouldDeliver = false;
+    	
+    	if (contractDay < 28 && contractDay == today) {
+    		shouldDeliver = true;
+    	}
+    	else if (contractDay >= 28 && today == 28) {
+    		shouldDeliver = true;
+    	}
+    	
+    	if (contractDate.isAfter(LocalDateTime.now())) {
+    		shouldDeliver = false;
+    	}
+    	return shouldDeliver;
 	}
 
 	public void sendTo(String routingkey, String message){
