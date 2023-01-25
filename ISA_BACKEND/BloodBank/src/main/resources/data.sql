@@ -45,3 +45,6 @@ INSERT INTO role (name) VALUES ('ROLE_ADMIN');
 INSERT INTO USER_ROLE (user_id, role_id) VALUES (1, 1); -- user-u dodeljujemo rolu DONOR
 INSERT INTO USER_ROLE (user_id, role_id) VALUES (2, 2); -- user-u dodeljujemo rolu MW
 INSERT INTO USER_ROLE (user_id, role_id) VALUES (3, 3); -- user-u dodeljujemo rolu ADMIN
+
+INSERT INTO blood_amount(amount, blood_type, blood_bank_id) VALUES (100, 0, 1);
+INSERT INTO blood_amount(amount, blood_type, blood_bank_id) VALUES (200, 1, 1);

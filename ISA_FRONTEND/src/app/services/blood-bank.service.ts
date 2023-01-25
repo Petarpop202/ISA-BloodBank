@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { BloodAmount } from '../model/bloodAmount';
 import { BloodBank } from '../model/bloodBank';
 import { BloodDonationAppointment } from '../model/bloodDonationAppointment';
 import { CenterVisit } from '../model/centerVisit';
@@ -88,5 +89,9 @@ export class BloodBankService {
 
   updateHasReport(id: any): Observable<any> {
     return this.http.put<any>(this.apiHost + 'centerVisit/updateReport/' + id, {headers: this.headers});
+  }
+
+  getBloodAMountByBank(id: any): Observable<BloodAmount[]> {
+    return this.http.get<BloodAmount[]>(this.apiHost + 'bloodAmount/getAllByBloodBank/' + id, {headers: this.headers});
   }
 }

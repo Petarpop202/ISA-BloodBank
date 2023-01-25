@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Sort } from '@angular/material/sort';
 import { ActivatedRoute } from '@angular/router';
+import { BloodAmount } from 'src/app/model/bloodAmount';
 import { BloodBank } from 'src/app/model/bloodBank';
 import { BloodDonationAppointment } from 'src/app/model/bloodDonationAppointment';
 import { CenterVisit } from 'src/app/model/centerVisit';
@@ -23,6 +24,7 @@ export class BloodCenterComponent implements OnInit {
   todoFree : MedicineStaff[] = []
   appointments : BloodDonationAppointment[] = []
   centerVisits : CenterVisit[] = [] 
+  bloodAmountInBank: BloodAmount[] = []
 
   constructor(private loginService:LoginService, private bloodBankService:BloodBankService,private route: ActivatedRoute) { }
 
@@ -39,6 +41,7 @@ export class BloodCenterComponent implements OnInit {
       this.getMedicineStaffFromBloodBank(this.id);
       this.getAppointmentFromBloodBank(this.id);
       this.getScheduledAppointmentsFromBloodBank(this.id);
+      this.getBloodAmountByBank(this.id);
     })
   }
 
@@ -69,6 +72,12 @@ export class BloodCenterComponent implements OnInit {
       this.centerVisits.forEach(cv => {
         cv.bloodDonationAppointment.startDateTime = new Date(Number(cv.bloodDonationAppointment.startDateTime[0]), Number(cv.bloodDonationAppointment.startDateTime[1]) - 1, Number(cv.bloodDonationAppointment.startDateTime[2]), Number(cv.bloodDonationAppointment.startDateTime[3]), Number(cv.bloodDonationAppointment.startDateTime[4]), 0).toISOString()
       })
+    })
+  }
+
+  public getBloodAmountByBank(id:any) {
+    this.bloodBankService.getBloodAMountByBank(id).subscribe(res => {
+      this.bloodAmountInBank = res;
     })
   }
 
