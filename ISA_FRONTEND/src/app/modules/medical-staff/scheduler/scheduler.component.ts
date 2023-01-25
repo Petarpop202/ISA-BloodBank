@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { BloodDonor } from 'src/app/model/bloodDonor';
 import { CenterVisit } from 'src/app/model/centerVisit';
 import { BloodBankService } from 'src/app/services/blood-bank.service';
 import { UserService } from 'src/app/services/user.service';
+import { StartAppointmentDialogComponent } from '../start-appointment-dialog/start-appointment-dialog.component';
 
 @Component({
   selector: 'app-scheduler',
@@ -16,7 +18,7 @@ export class SchedulerComponent implements OnInit {
   centerVisits : CenterVisit[] = [] 
   searchObject: CenterVisit[] = [] 
   searchInput:string = ''
-  constructor(private donorService: UserService, private bloodBankService:BloodBankService) { }
+  constructor(private donorService: UserService, private bloodBankService:BloodBankService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getBloodDonors();
@@ -47,7 +49,16 @@ export class SchedulerComponent implements OnInit {
   }
 
   startAppointment(id:string):void{
-
+      const dialogRef = this.dialog.open(StartAppointmentDialogComponent, {
+        data: {centerVisitId: id},
+        height: '550px',
+        width: '600px',
+        //data: {name: this.name, animal: this.animal},
+      });    
+  
+      dialogRef.afterClosed().subscribe(result => {
+        this.getScheduledAppointmentsFromBloodBank(this.id);
+      });
   }
   didntShowAppointment(id:string):void{
     this.donorService.didntShowAppointment(id).subscribe(res=>{
