@@ -11,6 +11,7 @@ import java.util.concurrent.Future;
 
 import javax.mail.MessagingException;
 
+import com.example.bloodbank.Model.MedicineStaff;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Propagation;
@@ -140,6 +141,18 @@ public class CenterVisitController {
             e.printStackTrace();
         }
         return Base64.getEncoder().encodeToString(image);
+    }
+
+    @PutMapping("/updateReport/{id}")
+    @PreAuthorize("hasRole('ROLE_MEDICALWORKER')")
+    public CenterVisit updateReport(@PathVariable Long id) {
+        return _centerVisitService.updateReport(id);
+    }
+
+    @GetMapping("/getBloodDonorsToReportByBank/{id}")
+    @PreAuthorize("hasRole('ROLE_MEDICALWORKER')")
+    public List<CenterVisit> getBloodDonorsToReportByBank(@PathVariable Long id){
+        return  _centerVisitService.getBloodDonorsToReportByBank(id);
     }
 
 }

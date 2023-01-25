@@ -3,9 +3,6 @@ package com.example.bloodbank.Dto;
 import com.example.bloodbank.Model.Address;
 import com.example.bloodbank.Model.GenderEnum;
 
-import javax.persistence.*;
-import java.sql.Timestamp;
-
 // DTO koji preuzima podatke iz HTML forme za registraciju
 public class UserRequest {
 

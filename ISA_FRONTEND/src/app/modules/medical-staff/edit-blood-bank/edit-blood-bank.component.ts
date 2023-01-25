@@ -37,7 +37,7 @@ export class EditBloodBankComponent implements OnInit {
         })
       ).subscribe(res => {
         this.bloodBank = res;
-        this.router.navigate(['/myBloodBank', this.bloodBank.id]);
+        this.router.navigate(['medicalworker/myBloodBank', this.bloodBank.id]);
       })
     }
   }

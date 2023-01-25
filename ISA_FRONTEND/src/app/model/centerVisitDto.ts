@@ -7,6 +7,7 @@ export class CenterVisitDto {
     donorId: string = "";
     price : number = 0;
     isCanceled : boolean = false;
+    hasReport : boolean = false;
 
     public constructor(obj?: any) {
         if (obj) {

@@ -1,6 +1,5 @@
 package com.example.bloodbank.Controller;
 
-import java.io.Console;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,9 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.bloodbank.Model.BloodDonor;
 import com.example.bloodbank.Model.SystemAdministrator;
-import com.example.bloodbank.Model.User;
 import com.example.bloodbank.Service.ServiceImplementation.SystemAdministratorService;
 
 @RestController

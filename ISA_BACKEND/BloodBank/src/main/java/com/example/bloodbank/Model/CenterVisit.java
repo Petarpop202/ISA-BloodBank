@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 @Table(name = "CenterVisit")
@@ -27,4 +26,5 @@ public class CenterVisit {
     private BloodDonationAppointment bloodDonationAppointment;
     private float price;
     private boolean isCanceled;
+    private boolean hasReport;
 }

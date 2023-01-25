@@ -36,7 +36,7 @@ export class EditMedicineStaffProfileComponent implements OnInit {
       )
       .subscribe(res => {
         this.medicineStaff = res;
-        this.router.navigate(['/medicineStaffProfile', this.medicineStaff.id]);
+        this.router.navigate(['medicalworker/medicineStaffProfile', this.medicineStaff.id]);
       })
     }
   }
