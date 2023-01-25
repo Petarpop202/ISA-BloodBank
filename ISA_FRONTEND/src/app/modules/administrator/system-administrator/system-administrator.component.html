@@ -1,20 +1,22 @@
 
 
 <div>
-    <h1 class="m-3" >Prikaz svih centara za doniranje krvi</h1>
-    <div class="d-flex float-end justify-content-center align-items-center mat-app-background">
-        <div class="float-end m-3">
-            <button type="button" class="btn btn-warning btn-lg justify-content-center" routerLink="newBloodBank">Nova banka krvi</button>
-          </div>
-          <div class="float-end m-3">
-            <button type="button" class="btn btn-warning btn-lg justify-content-center" routerLink="searchUsers">Pregled korisnika</button>
-          </div>
-          <div class="float-end m-3">
-            <button type="button" class="btn btn-warning btn-lg justify-content-center" routerLink="zalbe">Zalbe</button>
-          </div>
-          <div class="float-end m-3">
-            <button type="button" class="btn btn-warning btn-lg justify-content-center" (click)="openNewSystemAdminDialog()">Novi Sistem Admin</button>
-          </div>
+  <header class="masthead text-center text-black">
+    <div class="masthead-content">
+        <div class="container px-5 mb-1 mt-3">
+            <div class="row">
+                <div class="col-sm-12 mb-2">
+                    <button  class="btn btn-outline-dark rounded-pill" routerLink="newBloodBank" >Nova banka krvi</button>
+                    <button class="btn btn-outline-dark rounded-pill" routerLink="searchUsers">Pregled korisnika</button>
+                    <button class="btn btn-outline-dark rounded-pill" routerLink="zalbe">Zalbe</button>
+                    <button class="btn btn-outline-dark rounded-pill" (click)="openNewSystemAdminDialog()">Novi sistem admin</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+    <div class="w-100 d-flex float-end justify-content-center align-items-center mat-app-background">
+
           
       <div class="float-end">
         <mat-form-field appearance="fill" class="mx-2 mt-3">
@@ -83,13 +85,13 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by city">
           Info
         </th>
-        <td mat-cell *matCellDef="let element"> <button type="button" (click)="openBloodBankInfoDialog(element)">INFO</button>  </td>
+        <td mat-cell *matCellDef="let element"> <button type="button" class="btn btn-dark text-white" (click)="openBloodBankInfoDialog(element)">INFO</button>  </td>
       </ng-container>
       <ng-container matColumnDef="newAdmin">
         <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by city">
           New Admin
         </th>
-        <td mat-cell *matCellDef="let element"> <button type="button" (click)="openNewAdminDialog(element)">NEW ADMIN</button>  </td>
+        <td mat-cell *matCellDef="let element"> <button type="button" class="btn btn-dark text-white" (click)="openNewAdminDialog(element)">NEW ADMIN</button>  </td>
       </ng-container>
     
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
