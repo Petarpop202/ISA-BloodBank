@@ -21,6 +21,8 @@ import { NewAdminDialogComponent } from './new-admin-dialog/new-admin-dialog.com
 import { NewSystemAdminDialogComponent } from './new-system-admin-dialog/new-system-admin-dialog.component';
 import { ChangePasswordDialogComponent } from './change-password-dialog/change-password-dialog.component';
 import { ZalbeComponent } from './zalbe/zalbe.component';
+import { ComplainsResponseDialogComponent } from './complains-response-dialog/complains-response-dialog/complains-response-dialog.component';
+import { ComplainsViewDialogComponent } from './complains-view-dialog/complains-view-dialog/complains-view-dialog.component';
 
 
 
@@ -35,7 +37,9 @@ import { ZalbeComponent } from './zalbe/zalbe.component';
     NewAdminDialogComponent,
     NewSystemAdminDialogComponent,
     ChangePasswordDialogComponent,
-    ZalbeComponent],
+    ZalbeComponent,
+    ComplainsResponseDialogComponent,
+    ComplainsViewDialogComponent],
     
     
   imports: [

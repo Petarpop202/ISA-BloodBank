@@ -1,0 +1,10 @@
+<div class="card text-center" style="color:black;">
+    <div class="card-header">{{bloodBank.name}}</div>
+    <div class="card-body">
+      <h5 class="card-title">{{user.name + " " + user.surname}}</h5>
+      <p class="card-text">{{selectedComplain.description}}</p>      
+      <textarea class="mb-3" rows="3" [(ngModel)]="response"></textarea>
+      <a class="btn btn-primary" (click)="confirm()">Potvrdi</a>
+    </div>
+    
+  </div>

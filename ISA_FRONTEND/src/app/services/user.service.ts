@@ -7,6 +7,7 @@ import { Test } from '../model/test';
 import { MedicineStaff } from '../model/medicineStaff';
 import { DonorSurvey } from '../model/donorSurvey';
 import { SystemAdministrator } from '../model/systemAdministrator';
+import { Complains } from '../model/complain';
 
 @Injectable({
   providedIn: 'root'
@@ -79,5 +80,27 @@ export class UserService {
 
   didntShowAppointment(id: any): Observable<any> {
     return this.http.put<any>(this.apiHost + 'user/didntShowAppointment/' + id, {headers: this.headers});
+  }
+
+  getComplains(): Observable<Complains[]> {
+    return this.http.get<Complains[]>(this.apiHost + 'Complains/get', {headers: this.headers});
+  }
+
+  updateComplains(complain: any): Observable<any> {
+    return this.http.put<any>(this.apiHost + 'Complains/update', complain);
+  }
+  updateComplainResponse(id: any, response: any): Observable<any> {
+    return this.http.put<any>(this.apiHost + 'Complains/updateResponse/id=' + id + '+response=' + response, {headers: this.headers});
+  }
+  updateComplainAdmin(id: any, admin: any, user: any): Observable<any> {
+    return this.http.put<any>(this.apiHost + 'Complains/updateResponse/id=' + id + '+admin=' + admin + '+user=' + user, {headers: this.headers});
+  }
+
+  getComplainsWithNoResponse(): Observable<Complains[]> {
+    return this.http.get<Complains[]>(this.apiHost + 'Complains/getComplainsWithNoResponse', {headers: this.headers});
+  }
+
+  getComplainsWithResponse(id: any): Observable<Complains[]> {
+    return this.http.get<Complains[]>(this.apiHost + 'Complains/getComplainsWithResponse/' + id, {headers: this.headers});
   }
 }
