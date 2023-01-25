@@ -78,4 +78,15 @@ export class BloodBankService {
   deleteVisitCenter(object: any): Observable<any> {
     return this.http.put<any>(this.apiHost + 'centerVisit/delete', object);
   }
+  getMedicineWorkerBloodBank(): Observable<string> {
+    return this.http.get<string>(this.apiHost + 'bloodBank/getBloodBankFromRegisteredMedicineWorker');
+  }
+
+  getBloodDonorsToReportByBank(id: any): Observable<CenterVisit[]> {
+    return this.http.get<CenterVisit[]>(this.apiHost + 'centerVisit/getBloodDonorsToReportByBank/' + id, {headers: this.headers});
+  }
+
+  updateHasReport(id: any): Observable<any> {
+    return this.http.put<any>(this.apiHost + 'centerVisit/updateReport/' + id, {headers: this.headers});
+  }
 }

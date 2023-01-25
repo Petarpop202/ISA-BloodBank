@@ -13,7 +13,7 @@ import { ScheduleAppointmentComponent } from './schedule-appointment/schedule-ap
 const routes: Routes = [
   { path: 'bloodDonorProfile', component: BloodDonorProfileComponent},
   { path: 'scheduleAppointment', component: ScheduleAppointmentComponent},
-  { path: 'editBloodDonorProfile', component: EditBloodDonorProfileComponent},
+  { path: 'bloodDonorProfile/editBloodDonorProfile', component: EditBloodDonorProfileComponent},
   { path: 'donorSurvey', component: DonorSurveyComponent},
   { path: 'scheduledAppointments', component: ScheduledAppointmentsComponent},
   { path: 'bloodDonorHomepage', component: BloodDonorHomepageComponent}

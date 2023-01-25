@@ -27,4 +27,5 @@ public class CenterVisit {
     private BloodDonationAppointment bloodDonationAppointment;
     private float price;
     private boolean isCanceled;
+    private boolean hasReport;
 }

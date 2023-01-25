@@ -168,6 +168,7 @@ export class ScheduleAppointmentComponent implements OnInit {
     centerVisit.appointmentId = appointment.id
     centerVisit.donorId = this.donor.id
     centerVisit.price = 0
+    centerVisit.hasReport = false
 
     this.bloodBankService.createVisit(centerVisit).subscribe(res => {
       this.router.navigate(['donor/scheduledAppointments'])
