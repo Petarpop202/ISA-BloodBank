@@ -45,7 +45,9 @@ export class ScheduledAppointmentsComponent implements OnInit {
       this.appDto.isCanceled = true;
       this.appDto.id = id;
       this.bloodBankService.deleteVisitCenter(this.appDto).subscribe(res=>{
-        alert("Uspesno otkazan termin !")
+        if(res != null)
+          alert("Uspesno otkazan termin !")
+        else alert("Termin je za manje od 24h")
       })
     })
 

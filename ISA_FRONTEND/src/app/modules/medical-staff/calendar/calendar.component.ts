@@ -49,7 +49,7 @@ export class CalendarComponent implements OnInit {
     this.calendarOptions = {
       initialView: 'dayGridMonth',
       plugins: [dayGridPlugin],
-      events: this.eventss,
+      //events: this.eventss,
     }
     
     

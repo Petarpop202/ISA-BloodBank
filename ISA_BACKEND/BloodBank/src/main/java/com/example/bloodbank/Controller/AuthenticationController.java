@@ -25,6 +25,9 @@ import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
 import java.security.Principal;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 
 //Kontroler zaduzen za autentifikaciju korisnika
@@ -78,11 +81,25 @@ public class AuthenticationController {
 		String verification = RandomString.make();
 		userRequest.setVerification(verification);
 		User user = this.userService.save(userRequest);
-		MailDetails mail = new MailDetails();
-		mail.setRecipient(user.getMail());
-		mail.setSubject("Verifikacija naloga !");
-		mail.setMsgBody("http://localhost:8081/auth/activate?code=" + verification);
-		_emailService.sendSimpleMail(mail);
+
+		ExecutorService executor = Executors.newFixedThreadPool(2);
+		Future<?> future = executor.submit(new Runnable() {
+			@Override
+			public void run() {
+					MailDetails mail = new MailDetails();
+					mail.setRecipient(user.getMail());
+					mail.setSubject("Verifikacija naloga !");
+					mail.setMsgBody("Kako biste verifikovali vas nalog potrebno je da odete na sledeci link :" +
+							" http://localhost:8081/auth/activate?code=" + verification);
+				try {
+					_emailService.sendSimpleMail(mail);
+				} catch (MessagingException e) {
+					throw new RuntimeException(e);
+				} catch (UnsupportedEncodingException e) {
+					throw new RuntimeException(e);
+				}
+			}
+		});
 		return new ResponseEntity<>(user, HttpStatus.CREATED);
 	}
 
