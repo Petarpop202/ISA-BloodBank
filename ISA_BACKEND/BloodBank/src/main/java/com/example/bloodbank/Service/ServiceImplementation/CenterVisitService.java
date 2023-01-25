@@ -12,7 +12,11 @@ import com.example.bloodbank.Service.ICenterVisitService;
 import com.example.bloodbank.Service.IDonorSurveyService;
 import org.springframework.stereotype.Service;
 
+import javax.xml.crypto.Data;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -72,5 +76,26 @@ public class CenterVisitService implements ICenterVisitService {
     
     public List<CenterVisit> getAllByBloodBankId(Long id) {
         return _centerVisitRepostiory.findAllByBloodDonationAppointmentBloodBankId(id);
+    }
+
+    public CenterVisit updateReport(Long id) {
+        CenterVisit oldEntity = getById(id);
+        oldEntity.setHasReport(true);
+        return _centerVisitRepostiory.save(oldEntity);
+    }
+
+    public List<CenterVisit> getBloodDonorsToReportByBank(Long id) {
+        List<CenterVisit> centerVisits =  new ArrayList<CenterVisit>();
+        for (CenterVisit cv:getAllByBloodBankId(id)) {
+            if (!cv.isHasReport()
+                    && cv.getBloodDonationAppointment().getStartDateTime().isBefore(LocalDateTime.now()) ){
+                centerVisits.add(cv);
+            }
+        }
+        return centerVisits;
+    }
+
+    public CenterVisit didntShowAppointment(Long centerVisitId) {
+        return  updateReport(centerVisitId);
     }
 }

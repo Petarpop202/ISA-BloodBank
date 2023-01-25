@@ -11,9 +11,9 @@ import { CalendarComponent } from "./calendar/calendar.component";
 
 const routes: Routes = [
   { path: 'medicineStaffProfile/:id', component: MedicineStaffProfileComponent},
-  { path: 'editMedicineStaffProfile/:id', component: EditMedicineStaffProfileComponent},
+  { path: 'medicineStaffProfile/:id/editMedicineStaffProfile/:id', component: EditMedicineStaffProfileComponent},
   { path: 'myBloodBank/:id', component: BloodCenterComponent},
-  { path: 'editBloodBank/:id', component: EditBloodBankComponent},  
+  { path: 'myBloodBank/:id/editBloodBank/:id', component: EditBloodBankComponent},  
   { path: 'scheduler', component: SchedulerComponent},
 
   { path: 'myBloodBank/:id/addBloodDonationAppointment/:id', component: AddBloodDonationAppointmentComponent},

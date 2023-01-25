@@ -69,11 +69,15 @@ export class UserService {
     return this.http.get<SystemAdministrator>(this.apiHost + 'systemAdministrator/get/' + id, {headers: this.headers})
   }
 
+  findByNameAndSurname(name: string, surname: string): Observable<BloodDonor[]>{
+    return this.http.get<BloodDonor[]>(this.apiHost + 'user/findByNameAndSurname/name=' + name + '+surname=' + surname, {headers: this.headers});
+  }
+
   updateMedicineStaff(user: any): Observable<any> {
     return this.http.put<any>(this.apiHost + 'MedicineStaff/update', user);
   }
 
-  findByNameAndSurname(name: string, surname: string): Observable<BloodDonor[]>{
-    return this.http.get<BloodDonor[]>(this.apiHost + 'user/findByNameAndSurname/name=' + name + '+surname=' + surname, {headers: this.headers});
+  didntShowAppointment(id: any): Observable<any> {
+    return this.http.put<any>(this.apiHost + 'user/didntShowAppointment/' + id, {headers: this.headers});
   }
 }

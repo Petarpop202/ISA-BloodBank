@@ -67,4 +67,10 @@ public class BloodDonorService implements IBloodDonorService {
     	}
     	return result;
     }
+
+    public void punishBloodDonor(long id) {
+        BloodDonor bloodDonor = getById(id);
+        bloodDonor.setPenaltyPoints(bloodDonor.getPenaltyPoints() + 1);
+        _bloodDonorRepository.save(bloodDonor);
+    }
 }

@@ -6,6 +6,7 @@ export class CenterVisit {
     bloodDonationAppointment: BloodDonationAppointment = new BloodDonationAppointment;
     bloodDonor : BloodDonor = new BloodDonor;
     price : number = 0;
+    hasReport : boolean = false;
 
     public constructor(obj?: any) {
         if (obj) {
