@@ -118,7 +118,7 @@ public class CenterVisitController {
         }
         return null;
     }
-    
+
     private String generateQRCode(CenterVisit center) {
     	String bloodDonor = center.getBloodDonor().getName() + ' ' + center.getBloodDonor().getSurname();
     	String bloodBank = center.getBloodDonationAppointment().getBloodBank().getName();

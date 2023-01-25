@@ -3,7 +3,6 @@ package com.example.bloodbank.Controller;
 import com.example.bloodbank.Dto.JwtAuthenticationRequest;
 import com.example.bloodbank.Dto.UserRequest;
 import com.example.bloodbank.Dto.Jwt;
-import com.example.bloodbank.Model.BloodDonor;
 import com.example.bloodbank.Model.MailDetails;
 import com.example.bloodbank.Model.User;
 import com.example.bloodbank.Service.IUserService;
@@ -11,7 +10,6 @@ import com.example.bloodbank.Service.ServiceImplementation.EmailService;
 import com.example.bloodbank.Util.TokenUtils;
 import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +25,9 @@ import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
 import java.security.Principal;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 
 //Kontroler zaduzen za autentifikaciju korisnika
@@ -80,11 +81,25 @@ public class AuthenticationController {
 		String verification = RandomString.make();
 		userRequest.setVerification(verification);
 		User user = this.userService.save(userRequest);
-		MailDetails mail = new MailDetails();
-		mail.setRecipient(user.getMail());
-		mail.setSubject("Verifikacija naloga !");
-		mail.setMsgBody("http://localhost:8081/auth/activate?code=" + verification);
-		_emailService.sendSimpleMail(mail);
+
+		ExecutorService executor = Executors.newFixedThreadPool(2);
+		Future<?> future = executor.submit(new Runnable() {
+			@Override
+			public void run() {
+					MailDetails mail = new MailDetails();
+					mail.setRecipient(user.getMail());
+					mail.setSubject("Verifikacija naloga !");
+					mail.setMsgBody("Kako biste verifikovali vas nalog potrebno je da odete na sledeci link :" +
+							" http://localhost:8081/auth/activate?code=" + verification);
+				try {
+					_emailService.sendSimpleMail(mail);
+				} catch (MessagingException e) {
+					throw new RuntimeException(e);
+				} catch (UnsupportedEncodingException e) {
+					throw new RuntimeException(e);
+				}
+			}
+		});
 		return new ResponseEntity<>(user, HttpStatus.CREATED);
 	}
 

@@ -11,13 +11,10 @@ import com.example.bloodbank.Service.ServiceImplementation.MedicineStaffService;
 import com.example.bloodbank.Service.ServiceImplementation.UserService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.access.prepost.PreAuthorize;
-
 import org.springframework.web.bind.annotation.*;
 
 import com.example.bloodbank.Model.BloodBank;
 import com.example.bloodbank.Service.ServiceImplementation.BloodBankService;
-
-import javax.annotation.security.DeclareRoles;
 
 @RestController
 @RequestMapping("bloodBank")

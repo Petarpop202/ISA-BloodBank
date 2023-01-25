@@ -12,8 +12,6 @@ import com.example.bloodbank.Service.ICenterVisitService;
 import com.example.bloodbank.Service.IDonorSurveyService;
 import org.springframework.stereotype.Service;
 
-import javax.xml.crypto.Data;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -53,11 +51,14 @@ public class CenterVisitService implements ICenterVisitService {
     @Override
     public CenterVisit update(CenterVisit entity) {
         BloodDonationAppointment bda = _bloodDonatingAppointment.getById(entity.getBloodDonationAppointment().getId());
+        if(LocalDateTime.now().isBefore(bda.getStartDateTime().minusHours(24)) && LocalDateTime.now().isBefore(bda.getStartDateTime())){
         bda.setFree(true);
         _bloodDonatingAppointment.update(bda);
         CenterVisit oldEntity = getById(entity.getId());
         oldEntity.setCanceled(entity.isCanceled());
         return _centerVisitRepostiory.save(oldEntity);
+        }
+        else return null;
     }
 
     @Override
