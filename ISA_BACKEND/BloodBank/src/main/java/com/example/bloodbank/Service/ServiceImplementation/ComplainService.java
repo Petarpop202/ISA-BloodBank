@@ -1,6 +1,7 @@
 package com.example.bloodbank.Service.ServiceImplementation;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -109,5 +110,26 @@ public class ComplainService implements IComplainService {
 //		}
     	
     	return _complainRepository.save(oldComplains);
+    }
+    
+    public List<Complains> getComplainsWithNoResponse(){
+    	List<Complains> ret = new ArrayList<Complains>();
+    	for(Complains complain : getAll()) {    		
+    		if(complain.getResponse() == null) {
+    			ret.add(complain);
+    		}
+    	}
+    	return ret;
+    }
+    
+    public List<Complains> getComplainsWithResponse(long adminId){
+    	List<Complains> ret = new ArrayList<Complains>();
+    	SystemAdministrator admin = _systemAdministratorService.getById(adminId);
+    	for(Complains complain : getAll()) {
+    		if(complain.getSystemAdministrator() != null && complain.getSystemAdministrator().getId()  == adminId) {
+    			ret.add(complain);
+    		}
+    	}
+    	return ret;
     }
 }

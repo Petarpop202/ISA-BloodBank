@@ -32,6 +32,16 @@ public class ComplainController {
 		return _complainService.getById(id);
 	}
 	
+	@GetMapping("/getComplainsWithNoResponse")
+	public List<Complains> getComplainsWithNoResponse(){
+		return _complainService.getComplainsWithNoResponse();
+	}
+	
+	@GetMapping(value = "/getComplainsWithResponse/{id}")
+	public List<Complains> getComplainsWithResponse(@PathVariable Long id){
+		return _complainService.getComplainsWithResponse(id);
+	}
+	
 	@PutMapping("/update")
 	Complains UpdateComplain(@RequestBody Complains updatedComplain) {
 		return _complainService.update(updatedComplain);

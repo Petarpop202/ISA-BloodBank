@@ -95,4 +95,12 @@ export class UserService {
   updateComplainAdmin(id: any, admin: any, user: any): Observable<any> {
     return this.http.put<any>(this.apiHost + 'Complains/updateResponse/id=' + id + '+admin=' + admin + '+user=' + user, {headers: this.headers});
   }
+
+  getComplainsWithNoResponse(): Observable<Complains[]> {
+    return this.http.get<Complains[]>(this.apiHost + 'Complains/getComplainsWithNoResponse', {headers: this.headers});
+  }
+
+  getComplainsWithResponse(id: any): Observable<Complains[]> {
+    return this.http.get<Complains[]>(this.apiHost + 'Complains/getComplainsWithResponse/' + id, {headers: this.headers});
+  }
 }
