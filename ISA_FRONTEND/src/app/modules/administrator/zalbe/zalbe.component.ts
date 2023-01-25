@@ -1,18 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { Complains } from 'src/app/model/complain';
 import { SystemAdministrator } from 'src/app/model/systemAdministrator';
+import { UserService } from 'src/app/services/user.service';
 
-export interface Zalba {
-  korisnik: string;
-  naslov: string;
-  datum: string;  
-}
 
-const ELEMENT_DATA: Zalba[] = [
-  {korisnik: 'Marko Markovic', naslov: 'Zalba na osoblje', datum: '12.22.2022'},
-  {korisnik: 'Pera Peric', naslov: 'Zalba na centar', datum: '15.22.2022'},
-]
 
 @Component({
   selector: 'app-zalbe',
@@ -21,11 +14,16 @@ const ELEMENT_DATA: Zalba[] = [
 })
 export class ZalbeComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private userService: UserService) { }
 
-  displayedColumns = ['korisnik', 'naslov', 'datum', 'pogledaj'];
-   dataSource = ELEMENT_DATA;
+  complains: Complains[] = []; 
+  displayedColumns = ['korisnik', 'sadrzaj', 'pogledaj'];
+  public dataSource = new MatTableDataSource<Complains>();
   ngOnInit(): void {
+    this.userService.getComplains().subscribe(res=>{
+      this.complains = res;
+      this.dataSource.data = this.complains;      
+    })
   }
 
 }

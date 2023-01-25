@@ -7,6 +7,7 @@ import { Test } from '../model/test';
 import { MedicineStaff } from '../model/medicineStaff';
 import { DonorSurvey } from '../model/donorSurvey';
 import { SystemAdministrator } from '../model/systemAdministrator';
+import { Complains } from '../model/complain';
 
 @Injectable({
   providedIn: 'root'
@@ -79,5 +80,9 @@ export class UserService {
 
   didntShowAppointment(id: any): Observable<any> {
     return this.http.put<any>(this.apiHost + 'user/didntShowAppointment/' + id, {headers: this.headers});
+  }
+
+  getComplains(): Observable<Complains[]> {
+    return this.http.get<Complains[]>(this.apiHost + 'Complains/get', {headers: this.headers});
   }
 }

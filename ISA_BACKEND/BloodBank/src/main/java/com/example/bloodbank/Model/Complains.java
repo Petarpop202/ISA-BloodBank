@@ -26,4 +26,9 @@ public class Complains {
     private BloodBank BloodBank;
     @Column
     private String Description;
+    @Column
+    private String Response;
+    @OneToOne
+    @JoinColumn(name = "system_administrator_id")
+    private SystemAdministrator SystemAdministrator;
 }
