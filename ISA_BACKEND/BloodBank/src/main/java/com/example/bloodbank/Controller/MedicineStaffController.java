@@ -1,12 +1,9 @@
 package com.example.bloodbank.Controller;
 
-import com.example.bloodbank.Model.BloodDonor;
 import com.example.bloodbank.Model.MedicineStaff;
-import com.example.bloodbank.Service.ServiceImplementation.BloodDonorService;
 import com.example.bloodbank.Service.ServiceImplementation.MedicineStaffService;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.module.ModuleDescriptor;
 import java.util.List;
 
 @RestController
@@ -42,6 +39,4 @@ public class MedicineStaffController {
     public List<MedicineStaff> getMedicineStaffFromBloodBank(@PathVariable Long id){
         return _medicineStaffService.getMedicineStaffFromBloodBank(id);
     }
-
-
 }
