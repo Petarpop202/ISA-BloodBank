@@ -24,8 +24,10 @@ import { SchedulerComponent } from './scheduler/scheduler.component';
 import { CalendarComponent } from './calendar/calendar.component'; 
 import { BrowserModule } from "@angular/platform-browser";
 import { FullCalendarModule } from "@fullcalendar/angular";
+import { NavigationComponent } from './navigation/navigation.component';
+import { AgmCoreModule } from '@agm/core';
 import { StartAppointmentDialogComponent } from './start-appointment-dialog/start-appointment-dialog.component';
-
+import { EditPasswordComponent } from './edit-medicine-staff-profile/edit-password/edit-password.component';
 
 
 
@@ -40,14 +42,15 @@ import { StartAppointmentDialogComponent } from './start-appointment-dialog/star
     AddBloodDonationAppointmentComponent,
     SchedulerComponent,
     CalendarComponent,
-    StartAppointmentDialogComponent
+    NavigationComponent,
+    StartAppointmentDialogComponent,
+    EditPasswordComponent
+
   ],
   imports: [
     CommonModule,
     SharedModule,
 
-    
-    
     MatFormFieldModule,
     MatNativeDateModule,
     MatInputModule,
@@ -55,8 +58,6 @@ import { StartAppointmentDialogComponent } from './start-appointment-dialog/star
     
     MatIconModule,
     ReactiveFormsModule,
-    
-   
     MatRadioModule,
     MatGridListModule,
     FormsModule,
@@ -64,9 +65,11 @@ import { StartAppointmentDialogComponent } from './start-appointment-dialog/star
     MatTableModule,
     MatSortModule,
     RouterModule,
-
     BrowserModule,
-    FullCalendarModule
+    FullCalendarModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCDXPNYO6kyyF0S5qO5cjQaBiWPzCd_J8I'
+    })
 
   ],
   exports:[MedicineStaffMenuComponent]

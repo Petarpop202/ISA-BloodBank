@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { BloodBank } from 'src/app/model/bloodBank';
 import { BloodBankService } from 'src/app/services/blood-bank.service';
 import { NewAdminDialogComponent } from '../../administrator/new-admin-dialog/new-admin-dialog.component';
@@ -27,6 +28,7 @@ export class NewBloodBankComponent implements OnInit {
         this.banks = res;        
       })
   }
+
 
   public createBloodBank(): void {
     

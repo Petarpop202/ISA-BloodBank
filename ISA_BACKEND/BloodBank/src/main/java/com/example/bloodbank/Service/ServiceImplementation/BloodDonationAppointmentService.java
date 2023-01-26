@@ -5,11 +5,16 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.dialect.lock.OptimisticEntityLockException;
+import org.jetbrains.annotations.NotNull;
+import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
 import com.example.bloodbank.Model.BloodDonationAppointment;
 import com.example.bloodbank.Repository.IBloodDonationAppointmentRepository;
 import com.example.bloodbank.Service.IBloodDonationAppointmentService;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class BloodDonationAppointmentService implements IBloodDonationAppointmentService {
@@ -31,8 +36,9 @@ public class BloodDonationAppointmentService implements IBloodDonationAppointmen
 	}
 
 	@Override
-	public BloodDonationAppointment create(BloodDonationAppointment entity) {
-		if (!isAppointmentValid(entity) || overlapsWithAnotherAppointment(entity)) 
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	public BloodDonationAppointment create(BloodDonationAppointment entity){
+		if (!isAppointmentValid(entity) || overlapsWithAnotherAppointment(entity))
 			return null;
 		return bloodDonationAppointmentRepo.save(entity);
 	}

@@ -59,8 +59,7 @@ public class BloodDonationAppointmentController {
     }
     
     @PostMapping("/new")
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
-    BloodDonationAppointment CreateBloodDonationAppointment(@RequestBody BloodDonationAppointment newBloodDonationAppointment) {
+    BloodDonationAppointment CreateBloodDonationAppointment(@RequestBody BloodDonationAppointment newBloodDonationAppointment){
     	return bloodDonationAppointmentService.create(newBloodDonationAppointment);
     }
 

@@ -4,9 +4,11 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import com.example.bloodbank.Model.Navigation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -33,6 +35,7 @@ public class BloodProducer {
 	private RabbitTemplate rabbitTemplate;
 	
 	private HospitalContract contract;
+	private Navigation navigation;
 	
 	@EventListener(ApplicationReadyEvent.class)
 	public void sendInitialMessages() {
@@ -40,6 +43,7 @@ public class BloodProducer {
 		this.rabbitTemplate.convertAndSend("blood-queue", "Initial blood queue message");
 		
 		sendBlood();
+		//sendLatitude();
 	}
 	
 	public void sendBlood() {
@@ -67,7 +71,29 @@ public class BloodProducer {
 		//executor.scheduleAtFixedRate(periodicTask, 0, 1, TimeUnit.DAYS);
 		executor.scheduleAtFixedRate(periodicTask, 0, 10, TimeUnit.SECONDS);
 	}
-	
+
+	public void sendLatitude(String a, String b) {
+		ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
+		navigation = new Navigation(Double.parseDouble(b),Double.parseDouble(a));
+		Future<?> future = executor.submit(new Runnable() {
+			public void run() {
+
+				try {
+					String json = new ObjectMapper().registerModule(new JavaTimeModule()).writeValueAsString(navigation);
+					sendTo("navigation-queue", json);
+				} catch (JsonProcessingException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		executor.shutdown();
+
+		//executor.scheduleAtFixedRate(periodicTask, 0, 1, TimeUnit.DAYS);
+		//executor.scheduleAtFixedRate(periodicTask, 0, 1, TimeUnit.MINUTES);
+	}
+	public Navigation getNavigation(){
+		return navigation;
+	}
 	private boolean shouldDeliver(LocalDateTime contractDate) {
 		int today = LocalDateTime.now().getDayOfMonth();
     	int contractDay = contractDate.getDayOfMonth();
@@ -90,7 +116,7 @@ public class BloodProducer {
 		log.info("Sending> ... Message=[ " + message + " ] RoutingKey=[" + routingkey + "]");
 		this.rabbitTemplate.convertAndSend(routingkey, message);
 	}
-	
+
 	@RabbitListener(queues="${contractqueue}")
 	public void handler(String message) {
 		if (message.equals("Initial contract queue message")) {
@@ -99,6 +125,27 @@ public class BloodProducer {
 			try {
 				contract = new ObjectMapper().registerModule(new JavaTimeModule()).readValue(message, HospitalContract.class);
 				log.info("Contract Consumer> " + contract.getHospital() + " created a contract for " + contract.getAmount() + " ml of blood type " + contract.getBloodType() + " on " + contract.getDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+			} catch (JsonParseException e) {
+				e.printStackTrace();
+			} catch (JsonMappingException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	@RabbitListener(queues="${navigationqueue}")
+	public void newNavigation(String message) {
+		if (message.equals("Initial contract queue message")) {
+			log.info("Contract Consumer> " + message);
+		}else {
+			try {
+				navigation = new ObjectMapper().registerModule(new JavaTimeModule()).readValue(message, Navigation.class);
+				log.info("New Longitude> " + navigation.getLongitude() + " LLLLLLatitude " + navigation.getLatitude());
+				navigation.setLatitude(navigation.getLatitude());
+				navigation.setLongitude(navigation.getLongitude());
+				//sendLatitude();
 			} catch (JsonParseException e) {
 				e.printStackTrace();
 			} catch (JsonMappingException e) {
