@@ -7,7 +7,7 @@ import { MedicineStaffProfileComponent } from "./medicine-staff-profile/medicine
 import { AddBloodDonationAppointmentComponent } from "./add-blood-donation-appointment/add-blood-donation-appointment.component";
 import { SchedulerComponent } from "./scheduler/scheduler.component";
 import { CalendarComponent } from "./calendar/calendar.component"; 
-
+import { NavigationComponent } from "./navigation/navigation.component";
 
 const routes: Routes = [
   { path: 'medicineStaffProfile/:id', component: MedicineStaffProfileComponent},
@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'myBloodBank/:id', component: BloodCenterComponent},
   { path: 'myBloodBank/:id/editBloodBank/:id', component: EditBloodBankComponent},  
   { path: 'scheduler', component: SchedulerComponent},
-
+  { path: 'navigating', component: NavigationComponent},
   { path: 'myBloodBank/:id/addBloodDonationAppointment/:id', component: AddBloodDonationAppointmentComponent},
   { path: 'myBloodBank/:id/calendar', component: CalendarComponent},
 ];

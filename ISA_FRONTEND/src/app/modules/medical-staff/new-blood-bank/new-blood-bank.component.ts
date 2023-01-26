@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { BloodBank } from 'src/app/model/bloodBank';
 import { BloodBankService } from 'src/app/services/blood-bank.service';
 import { NewAdminDialogComponent } from '../../administrator/new-admin-dialog/new-admin-dialog.component';
@@ -27,6 +28,25 @@ export class NewBloodBankComponent implements OnInit {
         this.banks = res;        
       })
   }
+
+  getGeoLocation(): Observable<any> {
+    console.log('Getting address: ', this.newBloodBank.address.city + ' ' + this.newBloodBank.address.street + ' ' + this.newBloodBank.address.streetNum);
+    let geocoder = new google.maps.Geocoder();
+    return Observable.create((observer: { next: (arg0: google.maps.LatLng) => void; complete: () => void; error: () => void; }) => {
+        geocoder.geocode({
+            'address': this.newBloodBank.address.city + ' ' + this.newBloodBank.address.street + ' ' + this.newBloodBank.address.streetNum
+        }, (results, status) => {
+            if (status == google.maps.GeocoderStatus.OK) {
+                observer.next(results[0].geometry.location);
+                alert(results[0].geometry.location);
+                observer.complete();
+            } else {
+                console.log('Error: ', results, ' & Status: ', status);
+                observer.error();
+            }
+        });
+    });
+}
 
   public createBloodBank(): void {
     

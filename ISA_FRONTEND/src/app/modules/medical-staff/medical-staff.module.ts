@@ -24,8 +24,8 @@ import { SchedulerComponent } from './scheduler/scheduler.component';
 import { CalendarComponent } from './calendar/calendar.component'; 
 import { BrowserModule } from "@angular/platform-browser";
 import { FullCalendarModule } from "@fullcalendar/angular";
-
-
+import { NavigationComponent } from './navigation/navigation.component';
+import { AgmCoreModule } from '@agm/core';
 
 
 @NgModule({
@@ -38,14 +38,13 @@ import { FullCalendarModule } from "@fullcalendar/angular";
     MedicalRootComponent,
     AddBloodDonationAppointmentComponent,
     SchedulerComponent,
-    CalendarComponent
+    CalendarComponent,
+    NavigationComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
 
-    
-    
     MatFormFieldModule,
     MatNativeDateModule,
     MatInputModule,
@@ -53,8 +52,6 @@ import { FullCalendarModule } from "@fullcalendar/angular";
     
     MatIconModule,
     ReactiveFormsModule,
-    
-   
     MatRadioModule,
     MatGridListModule,
     FormsModule,
@@ -62,9 +59,11 @@ import { FullCalendarModule } from "@fullcalendar/angular";
     MatTableModule,
     MatSortModule,
     RouterModule,
-
     BrowserModule,
-    FullCalendarModule
+    FullCalendarModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCDXPNYO6kyyF0S5qO5cjQaBiWPzCd_J8I'
+    })
 
   ],
   exports:[MedicineStaffMenuComponent]

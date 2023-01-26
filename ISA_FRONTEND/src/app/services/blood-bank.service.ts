@@ -89,4 +89,12 @@ export class BloodBankService {
   updateHasReport(id: any): Observable<any> {
     return this.http.put<any>(this.apiHost + 'centerVisit/updateReport/' + id, {headers: this.headers});
   }
+
+  sendCoordinates(id: any): Observable<any> {
+    return this.http.get<any>(this.apiHost + 'apiNavi/get/' + id, {headers: this.headers});
+  }
+
+  getCoordinates(): Observable<any> {
+    return this.http.get<any>(this.apiHost + 'apiNavi/get');
+  }
 }
