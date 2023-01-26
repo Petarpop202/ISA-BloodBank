@@ -10,6 +10,7 @@ import { StartAppointmentDialogComponent } from '../start-appointment-dialog/sta
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { cD } from '@fullcalendar/core/internal-common';
 import { id } from 'date-fns/locale';
+import { RejectDonationDialogComponent } from '../reject-donation-dialog/reject-donation-dialog/reject-donation-dialog.component';
 
 
 @Component({
@@ -130,13 +131,21 @@ export class CalendarComponent implements OnInit {
     this.calendarOptions = {
       initialView: 'dayGridMonth',
       plugins: [dayGridPlugin],      
-      eventClick: function(info) {
-        //alert('Event: ' + info.event.id);
-        //router1.navigate(['/home']);
+      eventClick: function(info) {                     
         dialogConf.data = {
           centerVisitId: info.event.id,          
         }
-        const dialogRef1 = dialog1.open(StartAppointmentDialogComponent, dialogConf)
+        let num = Number(info.event.start?.toString().substring(8, 10))
+        console.log(num)
+        if(num <= 28){
+          const dialogRef1 = dialog1.open(StartAppointmentDialogComponent, dialogConf)
+        }
+        else {
+          dialogConf.height = "160px";
+          dialogConf.width = "180px";
+          const dialogRef1 = dialog1.open(RejectDonationDialogComponent, dialogConf)
+        }
+        
       },          
       events: dogadjaji,
     }
@@ -144,6 +153,15 @@ export class CalendarComponent implements OnInit {
 
   startAppointment(id:string):void{
     const dialogRef = this.dialog.open(StartAppointmentDialogComponent, {
+      data: {centerVisitId: id},
+      height: '550px',
+      width: '600px',
+      //data: {name: this.name, animal: this.animal},
+    });
+  }
+
+  rejectAppointment(id:string):void{
+    const dialogRef = this.dialog.open(RejectDonationDialogComponent, {
       data: {centerVisitId: id},
       height: '550px',
       width: '600px',

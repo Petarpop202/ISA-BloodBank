@@ -30,7 +30,7 @@ export class StartAppointmentDialogComponent implements OnInit {
     })
   }
 
-  public endAppointment():void{
+  public endAppointment():void{    
     console.log(this.bloodTypeValue)
     console.log(this.bloodAmountValue)
     this.bloodAmount.bloodType = this.bloodTypeValue
