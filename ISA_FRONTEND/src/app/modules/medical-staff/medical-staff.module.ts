@@ -24,6 +24,7 @@ import { SchedulerComponent } from './scheduler/scheduler.component';
 import { CalendarComponent } from './calendar/calendar.component'; 
 import { BrowserModule } from "@angular/platform-browser";
 import { FullCalendarModule } from "@fullcalendar/angular";
+import { StartAppointmentDialogComponent } from './start-appointment-dialog/start-appointment-dialog.component';
 
 
 
@@ -38,7 +39,8 @@ import { FullCalendarModule } from "@fullcalendar/angular";
     MedicalRootComponent,
     AddBloodDonationAppointmentComponent,
     SchedulerComponent,
-    CalendarComponent
+    CalendarComponent,
+    StartAppointmentDialogComponent
   ],
   imports: [
     CommonModule,

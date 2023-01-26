@@ -18,6 +18,8 @@ const routes: Routes = [
 
   { path: 'myBloodBank/:id/addBloodDonationAppointment/:id', component: AddBloodDonationAppointmentComponent},
   { path: 'myBloodBank/:id/calendar', component: CalendarComponent},
+  { path: '', redirectTo: 'scheduler', pathMatch:'full'},
+  { path: '**', redirectTo: 'scheduler', pathMatch:'full'},
 ];
   
   
