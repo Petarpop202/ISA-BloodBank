@@ -1,21 +1,53 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BloodCenterComponent } from './modules/blood-bank-center/blood-center/blood-center.component';
 import { HomepageComponent } from './modules/homepage/homepage/homepage.component';
 import { LoginComponent } from './modules/homepage/login/login.component';
+import { RoleGuardService as RoleGuard } from './services/role-guard.service';
 import { RegisterComponent } from './modules/homepage/register/register.component';
-import { EditMedicineStaffProfileComponent } from './modules/user-profiles/edit-medicine-staff-profile/edit-medicine-staff-profile.component';
-import { MedicineStaffProfileComponent } from './modules/user-profiles/medicine-staff-profile/medicine-staff-profile.component';
+import { DonorRootComponent } from './modules/blood-donor/donor-root/donor-root.component';
+import { AdministratorRootComponent } from './modules/administrator/administrator-root/administrator-root.component';
+import { MedicalRootComponent } from './modules/medical-staff/medical-root/medical-root.component';
 
 const routes: Routes = [
   { path: 'home', component: HomepageComponent},
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
 
-  { path: 'myBloodBankCenter', component: BloodCenterComponent},
+  {
+    path: 'donor',
+    component: DonorRootComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRole: 'ROLE_DONOR' },
+    loadChildren: () =>
+      import('./modules/blood-donor/donor-routing-module.module').then(
+        (m) => m.DonorRoutingModuleModule
+      ),
+  },
+  {
+    path: 'medicalworker',
+    component: MedicalRootComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRole: 'ROLE_MEDICALWORKER' },
+    loadChildren: () =>
+      import('./modules/medical-staff/medical-staff-routing.module').then(
+        (m) => m.MedicalStaffRoutingModule
+      ),
+  },
+  {
+    path: 'admin',
+    component: AdministratorRootComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRole: 'ROLE_ADMIN' },
+    loadChildren: () =>
+      import('./modules/administrator/administrator-routing.module').then(
+        (m) => m.AdministratorRoutingModule
+      ),
+  },
 
-  { path: 'medicineStaffProfile', component: MedicineStaffProfileComponent},
-  { path: 'editMedicineStaffProfile', component: EditMedicineStaffProfileComponent},
+
+
+  // ova linija mora biti zadnja, biti zadnja
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 
 @NgModule({

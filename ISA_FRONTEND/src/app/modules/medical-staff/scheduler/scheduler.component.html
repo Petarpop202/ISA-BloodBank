@@ -1,0 +1,53 @@
+<div>
+    <h1 class="masthead-heading mb-2 mt-3 text-center">Zakazani termini</h1>
+    
+       
+    <div class="w-100 d-flex float-end justify-content-center align-items-center mat-app-background">
+            <mat-form-field appearance="fill" class="mx-1 mt-3">
+            <mat-label>Pretraži donora</mat-label>
+                <input matInput (keyup)="filteredSportObjects()" [(ngModel)]="searchInput" placeholder="Pretraga po imenu donora">
+            <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="mx-1 mt-3">
+                <mat-label>Pretraži termine</mat-label>
+                    <input matInput (keyup)="filteredSportObjects()" [(ngModel)]="searchInput2" placeholder="Pretraga po id termina">
+                <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
+            <button type="button" class="btn btn-warning btn-lg justify-content-center mx-1 my-1" (click)="resetFilters()">Resetuj</button>
+    </div>
+    <br>
+    <!-- tabela -->
+    <section class="my-5">
+        <div class="container px-5">
+            
+            <div class="row gx-5 align-items-center">
+                <table class="table w-100">
+                    <thead>
+                        <tr>
+                            <th>Id termina</th>
+                            <th>Korisnik</th>
+                            <th>Datum početka</th>
+                            <th>Trajanje</th>
+                            <th>Zapocni pregled</th>
+                            <th>Propusten pregled</th>
+                            <th>Ne ispunjava uslove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngFor="let visit of filteredSportObjects()">
+                            <tr>
+                                <td>{{visit.bloodDonationAppointment.id}}</td>
+                                <td>{{visit.bloodDonor.name}} {{visit.bloodDonor.surname}}</td>
+                                <td>{{visit.bloodDonationAppointment.startDateTime | date : 'dd.MM.yyyy. HH:mm'}}</td>
+                                <td>{{visit.bloodDonationAppointment.duration}}</td>
+                                <td><button class="btn btn-dark text-white" (click)="startAppointment(visit.id)">Zapocni</button></td>
+                                <td><button class="btn btn-dark text-white" (click)="didntShowAppointment(visit.id)">Nije se pojavio</button></td>
+                                <td><button class="btn btn-dark text-white" (click)="rejectDonation(visit.id)">Odbij donaciju</button></td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>

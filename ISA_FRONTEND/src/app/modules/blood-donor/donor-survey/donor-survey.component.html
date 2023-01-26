@@ -1,0 +1,60 @@
+<h1 style="color: red; text-align: center;" class="mt-3"><b>Upitnik davaocu</b></h1>
+<hr>
+<div class="float-container">
+        <div class="float-child">
+        <ol>
+            <li>Da li ste ikada do sada davali krv ? <p style="float: right;"><input mdbRadio class="form-check-input" [checked]="true" type="radio" name="inlineRadioOptions" id="inlineRadio1"/> <label class="form-check-label" for="inlineRadio1">Da</label> <input mdbRadio class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"/><label class="form-check-label" for="inlineRadio2">Ne</label></p></li>
+            <hr>
+            <li>Da li ste ikada bili odbijeni kao davalac ?  <p style="float: right;"><input mdbRadio class="form-check-input" [checked]="true" type="radio" name="inlineRadioOptions1" id="inlineRadio3"/> <label class="form-check-label" for="inlineRadio3">Da</label> <input mdbRadio class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio4"/><label class="form-check-label" for="inlineRadio4">Ne</label></p></li>
+            <hr>
+            <li>Da li se trenutno osecate zdravim i sposobnim da date krv ?  <p style="float: right;"><input mdbRadio (change)="setTrue()" class="form-check-input" [checked]="true" type="radio" name="inlineRadioOptions2" id="inlineRadio1"/> <label class="form-check-label" for="inlineRadio1">Da</label> <input mdbRadio (change)="setFalse()" class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio2"/><label class="form-check-label" for="inlineRadio2">Ne</label></p></li>
+            <hr>
+            <li>Da li smatrate da ste se dovoljno naspavali ?  <p style="float: right;"><input mdbRadio (change)="setTrue()" class="form-check-input" [checked]="true" type="radio" name="inlineRadioOptions3" id="inlineRadio1"/> <label class="form-check-label" for="inlineRadio1">Da</label> <input mdbRadio (change)="setFalse()" class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio2"/><label class="form-check-label" for="inlineRadio2">Ne</label></p></li>
+            <hr>
+            <li>Da li ste nesto jeli pre dolaska na davanje krvi ?  <p style="float: right;"><input mdbRadio (change)="setTrue()" class="form-check-input" [checked]="true" type="radio" name="inlineRadioOptions4" id="inlineRadio1"/> <label class="form-check-label" for="inlineRadio1">Da</label> <input mdbRadio (change)="setFalse()" class="form-check-input" type="radio" name="inlineRadioOptions4" id="inlineRadio2"/><label class="form-check-label" for="inlineRadio2">Ne</label></p></li>
+            <hr>
+            <li>Da li se bavite opasnim zanimanjem ili hobijem ?  <p style="float: right;"><input mdbRadio (change)="setTrue()" class="form-check-input" [checked]="true" type="radio" name="inlineRadioOptions5" id="inlineRadio1"/> <label class="form-check-label" for="inlineRadio1">Da</label> <input mdbRadio (change)="setFalse()" class="form-check-input" type="radio" name="inlineRadioOptions5" id="inlineRadio2"/><label class="form-check-label" for="inlineRadio2">Ne</label></p></li>
+            <hr>
+            <li>Da li uzimate bilo kakve lekove ?  <p style="float: right;"><input mdbRadio (change)="setTrue()" class="form-check-input" [checked]="true" type="radio" name="inlineRadioOptions6" id="inlineRadio1"/> <label class="form-check-label" for="inlineRadio1">Da</label> <input mdbRadio (change)="setFalse()" class="form-check-input" type="radio" name="inlineRadioOptions6" id="inlineRadio2"/><label class="form-check-label" for="inlineRadio2">Ne</label></p></li>
+            <hr>
+            <li>Da li stalno uzimate Aspirin;Da li ste ga uzimali poslednjih 5 dana ?  <p style="float: right;"><input mdbRadio (change)="setTrue()" class="form-check-input" [checked]="true" type="radio" name="inlineRadioOptions7" id="inlineRadio1"/> <label class="form-check-label" for="inlineRadio1">Da</label> <input mdbRadio (change)="setFalse()" class="form-check-input" type="radio" name="inlineRadioOptions7" id="inlineRadio2"/><label class="form-check-label" for="inlineRadio2">Ne</label></p></li>
+            <hr>
+            <li>Da li ste do sada ispitivani ili leceni u bolnici ?  <p style="float: right;"><input mdbRadio (change)="setTrue()" class="form-check-input" [checked]="true" type="radio" name="inlineRadioOptions8" id="inlineRadio1"/> <label class="form-check-label" for="inlineRadio1">Da</label> <input mdbRadio (change)="setFalse()" class="form-check-input" type="radio" name="inlineRadioOptions8" id="inlineRadio2"/><label class="form-check-label" for="inlineRadio2">Ne</label></p></li>
+            <hr>
+            <li>Da li ste sada na medicinskom ispitivanju ili bolovanju ?   <p style="float: right;"><input mdbRadio (change)="setTrue()" class="form-check-input" [checked]="true" type="radio" name="inlineRadioOptions9" id="inlineRadio1"/> <label class="form-check-label" for="inlineRadio1">Da</label> <input mdbRadio (change)="setFalse()" class="form-check-input" type="radio" name="inlineRadioOptions9" id="inlineRadio2"/><label class="form-check-label" for="inlineRadio2">Ne</label></p></li>
+            <hr>
+            <li>Da li ste nedavno vadili zub ?  <p style="float: right;"><input mdbRadio (change)="setTrue()" class="form-check-input" [checked]="true" type="radio" name="inlineRadioOptions10" id="inlineRadio1"/> <label class="form-check-label" for="inlineRadio1">Da</label> <input mdbRadio (change)="setFalse()" class="form-check-input" type="radio" name="inlineRadioOptions10" id="inlineRadio2"/><label class="form-check-label" for="inlineRadio2">Ne</label></p></li>
+            <hr>
+        </ol>
+    </div>
+
+    <div class="float-child">
+        <ol start="12">
+            <li>Da li ste u poslednjih 7 dana imali prehladu ?  <p style="float: right;"><input mdbRadio (change)="setTrue()" class="form-check-input" [checked]="true" type="radio" name="inlineRadioOptions11" id="inlineRadio1"/> <label class="form-check-label" for="inlineRadio1">Da</label> <input mdbRadio (change)="setFalse()" class="form-check-input" type="radio" name="inlineRadioOptions11" id="inlineRadio2"/><label class="form-check-label" for="inlineRadio2">Ne</label></p></li>
+            <hr>
+            <li>Da li ste skoro primili bilo koju vakcinu ili serum ? <p style="float: right;"><input mdbRadio (change)="setTrue()" class="form-check-input" [checked]="true" type="radio" name="inlineRadioOptions12" id="inlineRadio1"/> <label class="form-check-label" for="inlineRadio1">Da</label> <input mdbRadio (change)="setFalse()" class="form-check-input" type="radio" name="inlineRadioOptions12" id="inlineRadio2"/><label class="form-check-label" for="inlineRadio2">Ne</label></p></li>
+            <hr>
+            <li>Da li ste u poslednjih 6 meseci naglo izgubili na tezini ?<p style="float: right;"><input mdbRadio (change)="setTrue()" class="form-check-input" [checked]="true" type="radio" name="inlineRadioOptions13" id="inlineRadio1"/> <label class="form-check-label" for="inlineRadio1">Da</label> <input mdbRadio (change)="setFalse()" class="form-check-input" type="radio" name="inlineRadioOptions13" id="inlineRadio2"/><label class="form-check-label" for="inlineRadio2">Ne</label></p></li>
+            <hr>
+            <li>Da li ste imali ubode krpelja i da li ste se javljali lekaru ? <p style="float: right;"><input mdbRadio (change)="setTrue()" class="form-check-input" [checked]="true" type="radio" name="inlineRadioOptions14" id="inlineRadio1"/> <label class="form-check-label" for="inlineRadio1">Da</label> <input mdbRadio (change)="setFalse()" class="form-check-input" type="radio" name="inlineRadioOptions14" id="inlineRadio2"/><label class="form-check-label" for="inlineRadio2">Ne</label></p></li>
+            <hr>
+            <li>Da li ste leceni od hronicnih bolesti ? <p style="float: right;"><input mdbRadio (change)="setTrue()" class="form-check-input" [checked]="true" type="radio" name="inlineRadioOptions15" id="inlineRadio1"/> <label class="form-check-label" for="inlineRadio1">Da</label> <input mdbRadio (change)="setFalse()" class="form-check-input" type="radio" name="inlineRadioOptions15" id="inlineRadio2"/><label class="form-check-label" for="inlineRadio2">Ne</label></p></li>
+            <hr>
+            <li>Da li ste primali hormon rasta ili transplant ? <p style="float: right;"><input mdbRadio (change)="setTrue()" class="form-check-input" [checked]="true" type="radio" name="inlineRadioOptions16" id="inlineRadio1"/> <label class="form-check-label" for="inlineRadio1">Da</label> <input mdbRadio (change)="setFalse()" class="form-check-input" type="radio" name="inlineRadioOptions16" id="inlineRadio2"/><label class="form-check-label" for="inlineRadio2">Ne</label></p></li>
+            <hr>
+            <li>Da li bolujete od alergije ? <p style="float: right;"><input mdbRadio (change)="setTrue()"  class="form-check-input" [checked]="true" type="radio" name="inlineRadioOptions17" id="inlineRadio1"/> <label class="form-check-label" for="inlineRadio1">Da</label> <input mdbRadio (change)="setFalse()" class="form-check-input" type="radio" name="inlineRadioOptions17" id="inlineRadio2"/><label class="form-check-label" for="inlineRadio2">Ne</label></p></li>
+            <hr>
+            <li>Da li bolujete od bolesti srca pluca ?<p style="float: right;"><input mdbRadio (change)="setTrue()" class="form-check-input" [checked]="true" type="radio" name="inlineRadioOptions18" id="inlineRadio1"/> <label class="form-check-label" for="inlineRadio1">Da</label> <input mdbRadio (change)="setFalse()" class="form-check-input" type="radio" name="inlineRadioOptions18" id="inlineRadio2"/><label class="form-check-label" for="inlineRadio2">Ne</label></p></li>
+            <hr>
+            <li>Da li dugo krvarite posle povrede ?<p style="float: right;"><input mdbRadio (change)="setTrue()" class="form-check-input" [checked]="true" type="radio" name="inlineRadioOptions19" id="inlineRadio1"/> <label class="form-check-label" for="inlineRadio1">Da</label> <input mdbRadio (change)="setFalse()" class="form-check-input" type="radio" name="inlineRadioOptions19" id="inlineRadio2"/><label class="form-check-label" for="inlineRadio2">Ne</label></p></li>
+            <hr>
+            <li>Da li ste imali neku operaciju u proteklih 6 meseci ?<p style="float: right;"><input mdbRadio (change)="setTrue()" class="form-check-input" [checked]="true" type="radio" name="inlineRadioOptions20" id="inlineRadio1"/> <label class="form-check-label" for="inlineRadio1">Da</label> <input mdbRadio (change)="setFalse()" class="form-check-input" type="radio" name="inlineRadioOptions20" id="inlineRadio2"/><label class="form-check-label" for="inlineRadio2">Ne</label></p></li>
+            <hr>
+            <li>Da li ste pili alkohol u proteklih 6 sati ?<p style="float: right;"><input mdbRadio (change)="setTrue()" class="form-check-input" [checked]="true" type="radio" name="inlineRadioOptions21" id="inlineRadio1"/> <label class="form-check-label" for="inlineRadio1">Da</label> <input mdbRadio (change)="setFalse()" class="form-check-input" type="radio" name="inlineRadioOptions21" id="inlineRadio2"/><label class="form-check-label" for="inlineRadio2">Ne</label></p></li>
+            <hr>
+        </ol>
+    </div>
+</div>
+<div style="text-align: center;" class="mb-5">
+<button type="button" style="width: 200px;" (click)="surveyDone()" class="btn btn-primary">Zavrsi anketu</button>
+</div>

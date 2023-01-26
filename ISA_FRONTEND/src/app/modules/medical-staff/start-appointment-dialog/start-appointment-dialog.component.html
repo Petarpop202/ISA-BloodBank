@@ -1,0 +1,54 @@
+        <div class="card-body p-md-1 text-white">
+            <h3 class="mb-3">Obavite pregled</h3>
+
+            <div class="row mb-0">
+                <div class="col-md-6 mb-0">
+                    <div class="form-outline">
+                        <select class="form-control form-control-lg dropdown-toggle" [(ngModel)]="bloodTypeValue"
+                        data-toggle="dropdown">
+                        <option class="dropdown-item" value="A_PLUS">A+</option>
+                        <option class="dropdown-item" value="A_MINUS">A-</option>
+                        <option class="dropdown-item" value="B_PLUS">B+</option>
+                        <option class="dropdown-item" value="B_MINUS">B-</option>
+                        <option class="dropdown-item" value="AB_PLUS">AB+</option>
+                        <option class="dropdown-item" value="AB_MINUS">AB-</option>
+                        <option class="dropdown-item" value="O_PLUS">O+</option>
+                        <option class="dropdown-item" value="O_MINUS">O-</option>
+                    </select>
+                        <label class="form-label">Krvna grupa</label>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-0">
+                    <div class="form-outline">
+                        <input  type="number" class="form-control form-control-lg" [(ngModel)]="bloodAmountValue"/>
+                        <label class="form-label">Kolicina uzete krvi</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-md-flex justify-content-start align-items-center mb-1 py-2">
+                <h6 class="mb-0 me-4">Ruka: </h6>
+                <div class="form-check form-check-inline mb-0 me-4">
+                    <input value="1" class="form-check-input" type="radio"/>
+                    <label class="form-check-label">Lijeva</label>
+                </div>
+                <div class="form-check form-check-inline mb-0 me-4">
+                    <input value="0" class="form-check-input" type="radio"/>
+                    <label class="form-check-label">Desna</label>
+                </div>
+            </div>
+
+            <div class="form-outline mb-1">
+                <input type="text" class="form-control form-control-lg" />
+                <label class="form-label">Hemoglobin</label>
+            </div>
+
+            <div class="form-outline mb-0">
+                <input type="text" class="form-control form-control-lg" />
+                <label class="form-label">Srce</label>
+            </div>
+            <div style="color: red;" id="greska"></div>
+            <div class="d-flex justify-content-end pt-3">
+                <button (click)="endAppointment()" type="button" class="btn btn-warning btn-lg ms-2">Zavrsi pregled</button>
+            </div>
+        </div>

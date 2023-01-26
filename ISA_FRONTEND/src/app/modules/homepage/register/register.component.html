@@ -1,2 +1,143 @@
 <app-homepage-menu></app-homepage-menu>
-<p>register works!</p>
+
+<section class="mb-5 mt-5" style="background-color: #fff;">
+  <div class="container ">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-lg-12 col-xl-11">
+        <div class="card text-black" style="border-radius: 25px;">
+          <div class="card-body p-md-5">
+            <div class="row justify-content-center">
+              <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Registracija</p>
+
+                <form class="mx-1 mx-md-4">
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="text" id="form3Example1c" class="form-control" name="name" matInput [(ngModel)]="donor.name"/>
+                      <label class="form-label" for="form3Example1c">Ime</label>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="email" id="form3Example3c" class="form-control" name="surname" matInput [(ngModel)]="donor.surname"/>
+                      <label class="form-label" for="form3Example3c">Prezime</label>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                    <label >Pol: </label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                          <input mdbRadio class="form-check-input" [checked]="true" (change)="setGender('MALE')" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="MALE"/>
+                          <label class="form-check-label" for="inlineRadio1">Musko</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input mdbRadio class="form-check-input" (change)="setGender('FEMALE')" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="FEMALE"/>
+                          <label class="form-check-label" for="inlineRadio2">Zensko</label>
+                        </div>
+                    </div>
+                    </div>
+                  </div>
+
+                  <div style="border-style: solid; border-color: burlywood; border-radius: 10%; " class="mb-5">
+                    <p class="text-center h3 fw-bold mb-1 mx-1 mx-md-4 mt-1">Adresa</p>
+                    <div class="d-flex flex-row align-items-center mb-4" style="margin-right: 10px;">
+                      <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="email" id="form3Example3c" class="form-control" name="country" matInput [(ngModel)]="donor.address.country"/>
+                        <label class="form-label" for="form3Example3c">Zemlja</label>
+                      </div>
+                    </div>
+                    <div class="d-flex flex-row align-items-center mb-4" style="margin-right: 10px;">
+                      <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="email" id="form3Example3c" class="form-control" name="city" matInput [(ngModel)]="donor.address.city"/>
+                        <label class="form-label" for="form3Example3c">Grad</label>
+                      </div>
+                    </div>
+                    <div class="d-flex flex-row align-items-center mb-4" style="margin-right: 10px;">
+                      <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="email" id="form3Example3c" class="form-control" name="street" matInput [(ngModel)]="donor.address.street"/>
+                        <label class="form-label" for="form3Example3c">Ulica</label>
+                      </div>
+                    </div>
+                    <div class="d-flex flex-row align-items-center mb-4" style="margin-right: 10px;">
+                      <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="email" id="form3Example3c" class="form-control" name="streetNum" matInput [(ngModel)]="donor.address.streetNum"/>
+                        <label class="form-label" for="form3Example3c">Broj</label>
+                      </div>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-row align-items-center mb-4">
+                  <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                  <div class="form-outline flex-fill mb-0">
+                    <input type="email" id="form3Example3c" class="form-control" name="phoneNumber" matInput [(ngModel)]="donor.phoneNumber"/>
+                    <label class="form-label" for="form3Example3c">Broj telefona</label>
+                  </div>
+                </div>
+
+                <div class="d-flex flex-row align-items-center mb-4">
+                  <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                  <div class="form-outline flex-fill mb-0">
+                    <input type="email" id="form3Example3c" class="form-control" name="mail" matInput [(ngModel)]="donor.mail"/>
+                    <label class="form-label" for="form3Example3c">E-mail adresa</label>
+                  </div>
+                </div>
+
+                <div class="d-flex flex-row align-items-center mb-4">
+                  <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                  <div class="form-outline flex-fill mb-0">
+                    <input type="email" id="form3Example3c" class="form-control" name="jmbg" matInput [(ngModel)]="donor.jmbg"/>
+                    <label class="form-label" for="form3Example3c">JMBG</label>
+                  </div>
+                </div>
+
+                <div class="d-flex flex-row align-items-center mb-4">
+                  <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                  <div class="form-outline flex-fill mb-0">
+                    <input type="email" id="form3Example3c" class="form-control" name="username" matInput [(ngModel)]="donor.username"/>
+                    <label class="form-label fw-bold" for="form3Example3c">Korisnicko ime</label>
+                  </div>
+                </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="password" id="form3Example4c" class="form-control" name="password" matInput [(ngModel)]="donor.password"/>
+                      <label class="form-label fw-bold" for="form3Example4c">Sifra</label>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="password" id="form3Example4cd" class="form-control" name="checkPass" matInput [(ngModel)]="checkPass" />
+                      <label class="form-label fw-bold" for="form3Example4cd">Ponovite sifru</label>
+                    </div>
+                  </div>
+
+                  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                    <button type="button" class="btn btn-primary btn-lg" (click)="createDonor()">Registruj</button>
+                  </div>
+
+                </form>
+
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
