@@ -18,6 +18,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -33,7 +35,11 @@ import java.util.concurrent.Future;
 //Kontroler zaduzen za autentifikaciju korisnika
 @RestController
 @RequestMapping(value = "/auth", produces = MediaType.APPLICATION_JSON_VALUE)
+@CrossOrigin(origins = "http://localhost:4200")
 public class AuthenticationController {
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@Autowired
 	private TokenUtils tokenUtils;
@@ -112,8 +118,20 @@ public class AuthenticationController {
 
 
 	@GetMapping("/whoami")
-	@PreAuthorize("hasAnyRole('ROLE_DONOR', 'ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_DONOR', 'ROLE_ADMIN', 'ROLE_MEDICALWORKER')")
 	public User user(Principal user) {
 		return this.userService.findByUsername(user.getName());
+	}
+
+
+	@PutMapping("/editPassword/{id}/{newPassword}")
+	@PreAuthorize("hasAnyRole('ROLE_DONOR', 'ROLE_ADMIN', 'ROLE_MEDICALWORKER')")
+	public String editPassword(@PathVariable Long id,@PathVariable String newPassword){
+		User u = userService.getById(id);
+		String pass = passwordEncoder.encode(newPassword);
+		u.setPassword(pass);
+
+		userService.update(u);
+		return pass;
 	}
 }

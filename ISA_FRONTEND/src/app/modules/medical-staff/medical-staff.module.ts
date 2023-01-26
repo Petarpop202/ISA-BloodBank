@@ -25,6 +25,7 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { BrowserModule } from "@angular/platform-browser";
 import { FullCalendarModule } from "@fullcalendar/angular";
 import { StartAppointmentDialogComponent } from './start-appointment-dialog/start-appointment-dialog.component';
+import { EditPasswordComponent } from './edit-medicine-staff-profile/edit-password/edit-password.component';
 
 
 
@@ -40,7 +41,8 @@ import { StartAppointmentDialogComponent } from './start-appointment-dialog/star
     AddBloodDonationAppointmentComponent,
     SchedulerComponent,
     CalendarComponent,
-    StartAppointmentDialogComponent
+    StartAppointmentDialogComponent,
+    EditPasswordComponent
   ],
   imports: [
     CommonModule,
