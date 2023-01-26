@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { cD } from '@fullcalendar/core/internal-common';
+import { BloodDonationAppointment } from 'src/app/model/bloodDonationAppointment';
 import { BloodDonor } from 'src/app/model/bloodDonor';
 import { CenterVisit } from 'src/app/model/centerVisit';
 import { BloodBankService } from 'src/app/services/blood-bank.service';
@@ -16,8 +18,17 @@ export class SchedulerComponent implements OnInit {
   donorValue: string = ''
   id : string | null | undefined;
   centerVisits : CenterVisit[] = [] 
+  centerVisits2 : CenterVisit[] = []
   searchObject: CenterVisit[] = [] 
   searchInput:string = ''
+  hours: number = 0
+  minutes: number = 0
+  selectedDate: Date = new Date()
+  error?: String
+  dateError?: String
+  timeError?: String
+  appointments: BloodDonationAppointment[] = []
+  appointmentDate: Date = new Date()
   constructor(private donorService: UserService, private bloodBankService:BloodBankService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -82,4 +93,37 @@ export class SchedulerComponent implements OnInit {
                           sportsObject.bloodDonor.surname.toLowerCase().match(this.searchInput.toLowerCase());
     })
   }
+
+  getAppointments(): void{
+    this.bloodBankService.getAppointmentsByDateTime(this.appointmentDate.toISOString()).subscribe(res => {
+      this.appointments = res
+      this.appointments.forEach(app => {
+        app.startDateTime = new Date(Number(app.startDateTime[0]), Number(app.startDateTime[1]) - 1, Number(app.startDateTime[2]), Number(app.startDateTime[3]), Number(app.startDateTime[4]), 0).toISOString()
+      })
+    })
+  }
+
+  searchAppointments(): void {
+    let selectedDate = new Date(this.selectedDate)
+    this.appointmentDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate(), this.hours + 1, this.minutes, 0)
+    this.getAppointments()
+    
+    //console.log(this.appointments)
+    this.centerVisits2 = []
+    if(this.appointments.length != 0){
+      this.centerVisits.forEach(cv => {
+        this.appointments.forEach(ap => {
+          if(cv.bloodDonationAppointment.id === ap.id){
+            this.centerVisits2.push(cv);
+          }
+        })
+      })
+      
+    }
+    console.log(this.centerVisits2)
+    
+  }
+    
+  
+  
 }
