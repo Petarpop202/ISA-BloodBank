@@ -34,7 +34,6 @@ export class NavigationComponent implements OnInit {
       this.id = res;
       this.getBloodBank(this.id);
       this.bloodBankService.sendCoordinates(this.id).subscribe(res=>{
-        alert(res);
       });
     })
   }

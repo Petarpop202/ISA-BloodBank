@@ -73,9 +73,9 @@ public class NavigationComponent {
                 try {
                     //45.264358901796854, 19.82999000652997  Pozicija banke kojoj saljemo krv
                     if(navigation.getLongitude() <= 19.82999000652997)
-                        navigation.setLongitude(navigation.getLongitude() + 0.001);
+                        navigation.setLongitude(navigation.getLongitude() + 0.0005);
                     if(navigation.getLatitude() <= 45.264358901796854)
-                        navigation.setLatitude(navigation.getLatitude() + 0.001);
+                        navigation.setLatitude(navigation.getLatitude() + 0.0005);
                     String json = new ObjectMapper().registerModule(new JavaTimeModule()).writeValueAsString(navigation);
                     sendTo( "navigation-queue1", json);
                 } catch (JsonProcessingException e) {
