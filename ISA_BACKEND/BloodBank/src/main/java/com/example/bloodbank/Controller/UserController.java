@@ -53,7 +53,7 @@ public class UserController {
     
     @PutMapping("/update")
     BloodDonor UpdateDonor(@RequestBody BloodDonor updatedUser) {
-    	if (_userService.isUnique(updatedUser))
+    	if (_userService.isUniqueOnEdit(updatedUser))
     		return _userService.update(updatedUser);
     	else
     		return null;

@@ -57,6 +57,12 @@ public class BloodDonorService implements IBloodDonorService {
     }
     
     @Override
+    public boolean isUniqueOnEdit(BloodDonor newUser) {
+    	List<BloodDonor> bloodDonors = _bloodDonorRepository.findAllByUsername(newUser.getUsername());
+        return bloodDonors.isEmpty() || (bloodDonors.get(0).getId() == newUser.getId());
+    }
+    
+    @Override
     public List<BloodDonor> findByNameAndSurname(String name, String surname){
     	List<BloodDonor> listAll = this.getAll();
     	List<BloodDonor> result = new ArrayList<BloodDonor>();

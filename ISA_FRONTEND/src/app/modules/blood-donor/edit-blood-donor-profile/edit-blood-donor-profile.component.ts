@@ -43,7 +43,7 @@ export class EditBloodDonorProfileComponent implements OnInit {
         }
         else{
           this.error = false;
-          this.router.navigate(["/bloodDonorProfile"]);
+          this.router.navigate(["/donor/bloodDonorProfile"]);
         }
       })
     }
@@ -67,6 +67,6 @@ export class EditBloodDonorProfileComponent implements OnInit {
   }
 
   cancelEdit() {
-    this.router.navigate(["/bloodDonorProfile"]);
+    this.router.navigate(["/donor/bloodDonorProfile"]);
   }
 }
