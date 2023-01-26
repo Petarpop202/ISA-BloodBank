@@ -2,6 +2,7 @@ package com.example.bloodbank.Service.ServiceImplementation;
 
 import com.example.bloodbank.Model.BloodAmount;
 import com.example.bloodbank.Model.BloodBank;
+import com.example.bloodbank.Model.BloodDonationAppointment;
 import com.example.bloodbank.Model.BloodType;
 import com.example.bloodbank.Repository.IBloodAmountRepository;
 import com.example.bloodbank.Repository.IBloodBankRepository;
@@ -28,10 +29,10 @@ public class BloodAmountService implements IBloodAmountService {
         List<BloodType> result = Arrays.asList(BloodType.values());
         return bloodAmountRepository.findAll();
     }
-
+    
     @Override
     public BloodAmount getById(Long id) {
-        return null;
+        return bloodAmountRepository.findById(id).orElseGet(null);
     }
 
     @Override
@@ -41,7 +42,11 @@ public class BloodAmountService implements IBloodAmountService {
 
     @Override
     public BloodAmount update(BloodAmount entity) {
-        return null;
+    	BloodAmount oldBloodAmount = getById(entity.getId());
+
+    	oldBloodAmount.setBloodType(entity.getBloodType());
+    	oldBloodAmount.setAmount(entity.getAmount());
+		return bloodAmountRepository.save(oldBloodAmount);
     }
 
     @Override
@@ -57,6 +62,10 @@ public class BloodAmountService implements IBloodAmountService {
             }
         }
         return bloodAmounts;
+    }
+    
+    public List<BloodAmount> getAllByBloodType(BloodType bloodtype){
+    	return bloodAmountRepository.findAllByBloodType(bloodtype);
     }
 
     public List<BloodType> getAllBloodTypes() {
