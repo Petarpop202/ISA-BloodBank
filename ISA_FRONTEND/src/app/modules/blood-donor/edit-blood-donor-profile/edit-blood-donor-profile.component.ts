@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { BloodDonor } from 'src/app/model/bloodDonor';
 import { UserService } from 'src/app/services/user.service';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-edit-blood-donor-profile',
@@ -11,22 +12,26 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class EditBloodDonorProfileComponent implements OnInit {
 
-  constructor(private userService: UserService, public dialog: MatDialog, private router: Router) { }
+  constructor(private userService: UserService, public dialog: MatDialog, private router: Router,private loginService:LoginService) { }
 
   public donor: BloodDonor = new BloodDonor;
-  donorId = 1;
+  donorId = "";
   isMale = true;
   error = false;
   errorText = "POLJA NE MOGU BITI PRAZNA!";
 
   ngOnInit(): void {
-    this.userService.getUser(this.donorId).subscribe(res=>{
-      this.donor = res;
-      if (this.donor.gender === "FEMALE")
-        this.isMale = false;
-      else 
-        this.isMale = true;
-    });
+    this.loginService.whoAmI().subscribe(res=>{
+      this.donorId = res.id;
+      this.userService.getUser(this.donorId).subscribe(res=>{
+        this.donor = res;
+        if (this.donor.gender === "FEMALE")
+          this.isMale = false;
+        else 
+          this.isMale = true;
+      });
+    })
+   
   }
 
   editBloodDonorProfile(){

@@ -2,6 +2,7 @@ import { ConditionalExpr } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { BloodDonor } from 'src/app/model/bloodDonor';
+import { LoginService } from 'src/app/services/login.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -11,25 +12,29 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class BloodDonorProfileComponent implements OnInit {
 
-  constructor(private userService: UserService, public dialog: MatDialog) { }
+  constructor(private userService: UserService, public dialog: MatDialog, private loginService: LoginService) { }
 
   public donor: BloodDonor = new BloodDonor;
-  donorId = 1;
+  donorId = "";
   gender = "";
   isHidden = true;
   passwordType = "password";
   passwordButtonText = "Prikaži"
 
   ngOnInit(): void {  
-    this.userService.getUser(this.donorId).subscribe(res=>{
-      this.donor = res;
-      if (this.donor.gender === "MALE"){
-        this.gender = "Muško";
-      }
-      else {
-        this.gender = "Žensko";
-      }
-    });
+    this.loginService.whoAmI().subscribe(res=>{
+      this.donorId = res.id;
+      this.userService.getUser(this.donorId).subscribe(res=>{
+        this.donor = res;
+        if (this.donor.gender === "MALE"){
+          this.gender = "Muško";
+        }
+        else {
+          this.gender = "Žensko";
+        }
+      });
+    })
+    
   }
 
   togglePasswordVisibility() : void {
