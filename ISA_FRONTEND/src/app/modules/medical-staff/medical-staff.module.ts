@@ -27,7 +27,11 @@ import { FullCalendarModule } from "@fullcalendar/angular";
 import { NavigationComponent } from './navigation/navigation.component';
 import { AgmCoreModule } from '@agm/core';
 import { StartAppointmentDialogComponent } from './start-appointment-dialog/start-appointment-dialog.component';
+
 import { EditPasswordComponent } from './edit-medicine-staff-profile/edit-password/edit-password.component';
+
+import { ChangeDoctorPasswordDialogComponent } from './change-doctor-password/change-doctor-password-dialog/change-doctor-password-dialog.component';
+
 
 
 
@@ -42,9 +46,14 @@ import { EditPasswordComponent } from './edit-medicine-staff-profile/edit-passwo
     AddBloodDonationAppointmentComponent,
     SchedulerComponent,
     CalendarComponent,
+
     NavigationComponent,
     StartAppointmentDialogComponent,
-    EditPasswordComponent
+    EditPasswordComponent,
+
+
+    
+    ChangeDoctorPasswordDialogComponent
 
   ],
   imports: [

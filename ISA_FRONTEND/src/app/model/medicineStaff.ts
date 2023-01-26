@@ -13,6 +13,7 @@ export class MedicineStaff {
     gender: string = '';
     address: Address = new Address;
     bloodBank: BloodBank = new BloodBank;
+    lastPasswordResetDate: string = '';
 
     public constructor(obj?: any) {
         if (obj) {
@@ -27,6 +28,7 @@ export class MedicineStaff {
             this.gender = obj.gender;
             this.address = obj.address;
             this.bloodBank = obj.bloodBank;
+            this.lastPasswordResetDate = obj.lastPasswordResetDate;
         }
     }
 }

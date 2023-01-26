@@ -3,6 +3,7 @@ package com.example.bloodbank.Service.ServiceImplementation;
 import com.example.bloodbank.Model.BloodDonor;
 import com.example.bloodbank.Model.MedicineStaff;
 import com.example.bloodbank.Model.Role;
+import com.example.bloodbank.Model.SystemAdministrator;
 import com.example.bloodbank.Model.User;
 import com.example.bloodbank.Repository.IMedicineStaffRepository;
 import com.example.bloodbank.Repository.IUserRepository;
@@ -78,5 +79,17 @@ public class MedicineStaffService implements IMedicineStaffService {
         }
 
         return  medicineStaffs;
+    }
+    
+    @Override
+    public MedicineStaff changePassword(Long id, String password) {
+    	MedicineStaff systemAdmministrator = getById(id);
+    
+    	
+    	systemAdmministrator.setPassword(passwordEncoder.encode(password));
+    	
+    	
+    	
+    	return _medicineStaffRepository.save(systemAdmministrator);
     }
 }

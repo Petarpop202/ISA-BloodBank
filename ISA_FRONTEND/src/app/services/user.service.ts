@@ -103,4 +103,8 @@ export class UserService {
   getComplainsWithResponse(id: any): Observable<Complains[]> {
     return this.http.get<Complains[]>(this.apiHost + 'Complains/getComplainsWithResponse/' + id, {headers: this.headers});
   }
+
+  doctorChangePassword(id: any, password: any): Observable<any> {
+    return this.http.put<any>(this.apiHost + 'MedicineStaff/update/id=' + id + '+pw=' + password, {headers: this.headers});
+  }
 }

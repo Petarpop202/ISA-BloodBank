@@ -4,8 +4,11 @@ import { cD } from '@fullcalendar/core/internal-common';
 import { BloodDonationAppointment } from 'src/app/model/bloodDonationAppointment';
 import { BloodDonor } from 'src/app/model/bloodDonor';
 import { CenterVisit } from 'src/app/model/centerVisit';
+import { MedicineStaff } from 'src/app/model/medicineStaff';
 import { BloodBankService } from 'src/app/services/blood-bank.service';
+import { LoginService } from 'src/app/services/login.service';
 import { UserService } from 'src/app/services/user.service';
+import { ChangeDoctorPasswordDialogComponent } from '../change-doctor-password/change-doctor-password-dialog/change-doctor-password-dialog.component';
 import { StartAppointmentDialogComponent } from '../start-appointment-dialog/start-appointment-dialog.component';
 
 @Component({
@@ -30,9 +33,11 @@ export class SchedulerComponent implements OnInit {
   timeError?: String
   appointments: BloodDonationAppointment[] = []
   appointmentDate: Date = new Date()
-  constructor(private donorService: UserService, private bloodBankService:BloodBankService, public dialog: MatDialog) { }
+  admin: MedicineStaff = new MedicineStaff
+  constructor(private loginService: LoginService, private donorService: UserService, private bloodBankService:BloodBankService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.loggedAdmin();
     this.getBloodDonors();
     this.getMedicineWorkerBloodBank()
   }
@@ -133,6 +138,24 @@ export class SchedulerComponent implements OnInit {
     }
     console.log(this.centerVisits2)
     
+  }
+
+  loggedAdmin(){
+    this.loginService.whoAmI().subscribe(res => {
+      this.admin = res;
+      if(this.admin.lastPasswordResetDate == null && this.admin.username != "plaoludastruja1"){
+        this.openChangePasswordDialog(res);
+      }
+     
+    })
+  }
+
+  public openChangePasswordDialog(adm: any): void{
+    const dialogRef = this.dialog.open(ChangeDoctorPasswordDialogComponent, {  
+      data: {admin: adm},    
+      height: '500px',
+      width: '400px',
+    })
   }
     
   
