@@ -21,7 +21,7 @@ public class BloodConsumer {
 
 	@RabbitListener(queues="${bloodqueue}")
 	public void handler(String message){
-		if (message.equals("Initial blood queue message")) {
+		if (message.equals("Initial blood queue message") || message.equals("No blood available")) {
 			log.info("Blood Consumer> " + message);
 		}else {
 			try {

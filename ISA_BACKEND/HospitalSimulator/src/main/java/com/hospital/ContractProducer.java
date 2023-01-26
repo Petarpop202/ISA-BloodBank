@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.hospital.model.BloodType;
 import com.hospital.model.HospitalContract;
 
 @Component
@@ -30,8 +31,8 @@ public class ContractProducer {
 		
 		HospitalContract contract = new HospitalContract();
 		contract.setHospital("Hospital 1");
-		contract.setBloodType("B+");
-		contract.setAmount(500);
+		contract.setBloodType(BloodType.A_PLUS);
+		contract.setAmount(20);
 		contract.setDateTime(LocalDateTime.now());
 		try {
 			String json = new ObjectMapper().registerModule(new JavaTimeModule()).writeValueAsString(contract);

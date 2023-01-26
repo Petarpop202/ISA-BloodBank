@@ -5,9 +5,6 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.dialect.lock.OptimisticEntityLockException;
-import org.jetbrains.annotations.NotNull;
-import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
 import com.example.bloodbank.Model.BloodDonationAppointment;

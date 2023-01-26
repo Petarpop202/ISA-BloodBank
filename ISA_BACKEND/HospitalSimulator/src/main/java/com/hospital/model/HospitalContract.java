@@ -14,7 +14,7 @@ import lombok.Setter;
 public class HospitalContract {
 	
 	private String hospital;
-	private String bloodType;
+	private BloodType bloodType;
 	private double amount;
 	private LocalDateTime dateTime;
 }

@@ -3,12 +3,12 @@ package com.example.bloodbank.Util;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import com.example.bloodbank.Model.Navigation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -18,8 +18,12 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
+import com.example.bloodbank.Model.BloodAmount;
 import com.example.bloodbank.Model.BloodDelivery;
+import com.example.bloodbank.Model.BloodType;
 import com.example.bloodbank.Model.HospitalContract;
+import com.example.bloodbank.Model.Navigation;
+import com.example.bloodbank.Service.ServiceImplementation.BloodAmountService;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -34,6 +38,9 @@ public class BloodProducer {
 	@Autowired
 	private RabbitTemplate rabbitTemplate;
 	
+	@Autowired
+	private BloodAmountService bloodAmountService;
+	
 	private HospitalContract contract;
 	private Navigation navigation;
 	
@@ -46,6 +53,11 @@ public class BloodProducer {
 		//sendLatitude();
 	}
 	
+	public void sendNoBloodMessage() {
+	    log.info("Sending> ... Message=[ Initial blood queue message ] RoutingKey=[blood-queue]");
+		this.rabbitTemplate.convertAndSend("blood-queue", "No blood available");
+	}
+	
 	public void sendBlood() {
 		ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
 
@@ -55,6 +67,12 @@ public class BloodProducer {
 		    	//if (!shouldDeliver(contract.getDateTime())) return;
 		    	if (!LocalDateTime.now().toLocalDate().equals(contract.getDateTime().toLocalDate())) return;
 		    	
+		    	BloodAmount bloodAmount = getAvailableBlood(contract.getBloodType(), contract.getAmount());
+		    	if (bloodAmount.getAmount() <= 0) {
+		    		sendNoBloodMessage();
+		    		return;
+		    	}
+		    	
 		    	BloodDelivery bd = new BloodDelivery();
 				bd.setReceivingHospital(contract.getHospital());
 				bd.setBloodType(contract.getBloodType());
@@ -63,6 +81,8 @@ public class BloodProducer {
 				try {
 					String json = new ObjectMapper().registerModule(new JavaTimeModule()).writeValueAsString(bd);
 					sendTo("blood-queue", json);
+					bloodAmount.setAmount(bloodAmount.getAmount() - contract.getAmount());
+					bloodAmountService.update(bloodAmount);
 				} catch (JsonProcessingException e) {
 					e.printStackTrace();
 				}
@@ -70,6 +90,11 @@ public class BloodProducer {
 		};
 		//executor.scheduleAtFixedRate(periodicTask, 0, 1, TimeUnit.DAYS);
 		executor.scheduleAtFixedRate(periodicTask, 0, 10, TimeUnit.SECONDS);
+	}
+	
+	public BloodAmount getAvailableBlood(BloodType bloodType, double amount) {
+		List<BloodAmount> allBlood = bloodAmountService.getAllByBloodType(bloodType);
+		return allBlood.get(0);
 	}
 
 	public void sendLatitude(String a, String b) {
@@ -91,9 +116,11 @@ public class BloodProducer {
 		//executor.scheduleAtFixedRate(periodicTask, 0, 1, TimeUnit.DAYS);
 		//executor.scheduleAtFixedRate(periodicTask, 0, 1, TimeUnit.MINUTES);
 	}
+	
 	public Navigation getNavigation(){
 		return navigation;
 	}
+	
 	private boolean shouldDeliver(LocalDateTime contractDate) {
 		int today = LocalDateTime.now().getDayOfMonth();
     	int contractDay = contractDate.getDayOfMonth();
