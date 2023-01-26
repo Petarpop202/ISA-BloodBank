@@ -44,8 +44,11 @@ public class CenterVisitService implements ICenterVisitService {
         for(CenterVisit cv : _centerVisitRepostiory.findAll()){
             if(cv.getBloodDonor() == entity.getBloodDonor())
                 if(!cv.getBloodDonationAppointment().getStartDateTime().isBefore(entity.getBloodDonationAppointment().getStartDateTime().minusMonths(6)))
-                    return null;
+                    if(!cv.isCanceled())
+                        return null;
         }
+        if(entity.getBloodDonor().getPenaltyPoints() >= 3)
+            return null;
         for(DonorSurvey ds : _surveyRepository.findAll()){
             if(ds.getBloodDonor().getId() == entity.getBloodDonor().getId())
                 return _centerVisitRepostiory.save(entity);

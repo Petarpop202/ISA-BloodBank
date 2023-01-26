@@ -40,6 +40,7 @@ public class MedicineStaffService implements IMedicineStaffService {
     public MedicineStaff create(MedicineStaff entity) {
     	entity.setPassword(passwordEncoder.encode(entity.getPassword()));    	
     	entity.setEnabled(true);
+        entity.setLastPasswordResetDate(null);
     	Role roles1 = _roleService.findByName("ROLE_MEDICALWORKER");
         List<Role> r = new ArrayList<>();
         r.add(roles1);
