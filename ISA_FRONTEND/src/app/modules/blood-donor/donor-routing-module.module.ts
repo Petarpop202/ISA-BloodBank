@@ -9,6 +9,7 @@ import { DonorSurveyComponent } from './donor-survey/donor-survey.component';
 import { ScheduledAppointmentsComponent } from './scheduled-appointments/scheduled-appointments.component';
 import { BloodDonorHomepageComponent } from './blood-donor-homepage/blood-donor-homepage.component';
 import { ScheduleAppointmentComponent } from './schedule-appointment/schedule-appointment.component';
+import { ScheduledAppointmentHistoryComponent } from './scheduled-appointment-history/scheduled-appointment-history.component';
 
 const routes: Routes = [
   { path: 'bloodDonorProfile', component: BloodDonorProfileComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'bloodDonorProfile/editBloodDonorProfile', component: EditBloodDonorProfileComponent},
   { path: 'donorSurvey', component: DonorSurveyComponent},
   { path: 'scheduledAppointments', component: ScheduledAppointmentsComponent},
+  { path: 'scheduledAppointmentsHistory', component: ScheduledAppointmentHistoryComponent},
   { path: 'bloodDonorHomepage', component: BloodDonorHomepageComponent},
   { path: '', redirectTo: 'bloodDonorHomepage', pathMatch:'full'},
   { path: '**', redirectTo: 'bloodDonorHomepage', pathMatch:'full'},

@@ -21,6 +21,7 @@ import { AppointmentDialogComponent } from './donor-root/appointment-dialog/appo
 import { ScheduledAppointmentsComponent } from './scheduled-appointments/scheduled-appointments.component';
 import { BloodDonorHomepageComponent } from './blood-donor-homepage/blood-donor-homepage.component';
 import { ScheduleAppointmentComponent } from './schedule-appointment/schedule-appointment.component';
+import { ScheduledAppointmentHistoryComponent } from './scheduled-appointment-history/scheduled-appointment-history.component';
 
 
 
@@ -33,6 +34,7 @@ import { ScheduleAppointmentComponent } from './schedule-appointment/schedule-ap
         DonorSurveyComponent,
         AppointmentDialogComponent,
         ScheduledAppointmentsComponent,
+        ScheduledAppointmentHistoryComponent,
         BloodDonorHomepageComponent,
         ScheduleAppointmentComponent
     ],
