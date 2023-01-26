@@ -7,8 +7,9 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import { CalendarOptions, EventInput } from '@fullcalendar/core';
 import { Termin } from 'src/app/model/termin';
 import { StartAppointmentDialogComponent } from '../start-appointment-dialog/start-appointment-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { cD } from '@fullcalendar/core/internal-common';
+import { id } from 'date-fns/locale';
 
 
 @Component({
@@ -78,8 +79,9 @@ export class CalendarComponent implements OnInit {
         
       });
       
-      for(var a of this.centerVisits){      
-        this.eventss.push({id: a.id, title: a.bloodDonor.name + ' ' + a.bloodDonor.surname + ' ' + a.bloodDonationAppointment.startDateTime.substring(11, 16) + ' (' + a.bloodDonationAppointment.duration + 'min)', date: a.bloodDonationAppointment.startDateTime});
+      for(var a of this.centerVisits){   
+        if(a.hasReport === false)   
+          this.eventss.push({id: a.id, title: a.bloodDonor.name + ' ' + a.bloodDonor.surname + ' ' + a.bloodDonationAppointment.startDateTime.substring(11, 16) + ' (' + a.bloodDonationAppointment.duration + 'min)', date: a.bloodDonationAppointment.startDateTime});
       }
       
       this.showCalendar(this.eventss);
@@ -118,14 +120,23 @@ export class CalendarComponent implements OnInit {
       
     
   }
-
-  public showCalendar(dogadjaji: any){
+  
+  public showCalendar(dogadjaji: any){ 
+    var router1: Router = this.router;   
+    const dialogConf = new MatDialogConfig();
+    dialogConf.height = "550px";
+    dialogConf.width = "600px";
+    var dialog1: MatDialog = this.dialog;
     this.calendarOptions = {
       initialView: 'dayGridMonth',
-      plugins: [dayGridPlugin],
+      plugins: [dayGridPlugin],      
       eventClick: function(info) {
-        alert('Event: ' + info.event.id);
-        
+        //alert('Event: ' + info.event.id);
+        //router1.navigate(['/home']);
+        dialogConf.data = {
+          centerVisitId: info.event.id,          
+        }
+        const dialogRef1 = dialog1.open(StartAppointmentDialogComponent, dialogConf)
       },          
       events: dogadjaji,
     }
