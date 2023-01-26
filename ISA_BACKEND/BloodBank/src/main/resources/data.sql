@@ -29,17 +29,13 @@ insert into complains (description, response, blood_bank_id, blood_donor_id, sys
 insert into complains (description, response, blood_bank_id, blood_donor_id, system_administrator_id) values ('Osoblje uzasno', null, 1, 5, null);
 insert into complains (description, response, blood_bank_id, blood_donor_id, system_administrator_id) values ('Moze to i bolje', null, 1, 5, null);
 
-insert into blood_donation_appointments (start_date_time, duration, blood_bank_id, is_free, version) values ('2022-06-22 12:00:00', 30, 1, false, 1);
-insert into blood_donation_appointments (start_date_time, duration, blood_bank_id, is_free, version) values ('2023-01-12 12:00:00', 30, 1, true, 1);
-insert into blood_donation_appointments (start_date_time, duration, blood_bank_id, is_free, version) values ('2023-01-22 10:40:00', 20, 1, true, 1);
-insert into blood_donation_appointments (start_date_time, duration, blood_bank_id, is_free, version) values ('2023-02-11 13:15:00', 45, 2, true, 1);
-insert into blood_donation_appointments (start_date_time, duration, blood_bank_id, is_free, version) values ('2023-01-12 12:00:00', 30, 2, true, 1);
-insert into blood_donation_appointments (start_date_time, duration, blood_bank_id, is_free, version) values ('2023-01-20 12:00:00', 30, 1, false, 1);
+insert into blood_donation_appointments (start_date_time, duration, blood_bank_id, is_free, version) values ('2021-02-11 13:15:00', 45, 2, false, 1);
+insert into blood_donation_appointments (start_date_time, duration, blood_bank_id, is_free, version) values ('2021-01-12 12:00:00', 30, 2, false, 1);
+insert into blood_donation_appointments (start_date_time, duration, blood_bank_id, is_free, version) values ('2021-01-20 12:00:00', 30, 1, false, 1);
 
-insert into center_visit (blood_donation_id, blood_donor_id, price, is_canceled, has_report) values (1, 1, 0, false, false);
-insert into center_visit (blood_donation_id, blood_donor_id, price, is_canceled, has_report) values (2, 1, 0, false, false);
-insert into center_visit (blood_donation_id, blood_donor_id, price, is_canceled, has_report) values (3, 1, 0, false, false);
-insert into center_visit (blood_donation_id, blood_donor_id, price, is_canceled, has_report) values (6, 5, 0, false, false);
+insert into center_visit (blood_donation_id, blood_donor_id, price, is_canceled, has_report) values (1, 1, 0, false, true);
+insert into center_visit (blood_donation_id, blood_donor_id, price, is_canceled, has_report) values (2, 1, 0, false, true);
+insert into center_visit (blood_donation_id, blood_donor_id, price, is_canceled, has_report) values (3, 1, 0, false, true);
 
 insert into blood_donation_appointments_medicine_staffs (blood_donation_appointment_id, medicine_staffs_id) values (1, 2);
 insert into blood_donation_appointments_medicine_staffs (blood_donation_appointment_id, medicine_staffs_id) values (2, 2);

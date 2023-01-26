@@ -41,6 +41,11 @@ public class CenterVisitService implements ICenterVisitService {
 
     @Override
     public CenterVisit create(CenterVisit entity) {
+        for(CenterVisit cv : _centerVisitRepostiory.findAll()){
+            if(cv.getBloodDonor() == entity.getBloodDonor())
+                if(!cv.getBloodDonationAppointment().getStartDateTime().isBefore(entity.getBloodDonationAppointment().getStartDateTime().minusMonths(6)))
+                    return null;
+        }
         for(DonorSurvey ds : _surveyRepository.findAll()){
             if(ds.getBloodDonor().getId() == entity.getBloodDonor().getId())
                 return _centerVisitRepostiory.save(entity);
@@ -63,7 +68,6 @@ public class CenterVisitService implements ICenterVisitService {
 
     @Override
     public void delete(Long entityId) {
-
     }
 
     public List<CenterVisit> getAllByBloodDonorId(Long id) {

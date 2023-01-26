@@ -17,6 +17,7 @@ export class ScheduledAppointmentsComponent implements OnInit {
   constructor(private bloodBankService: BloodBankService,private loginService: LoginService) { }
   public dataSource = new MatTableDataSource<CenterVisit>();
   appointments : CenterVisit [] = [];
+  goodAppointments : CenterVisit [] = [];
   displayedColumns: string[] = ['date', 'duration', 'make'];
   donor: BloodDonor = new BloodDonor;
   appDto : CenterVisitDto = new CenterVisitDto;
@@ -32,8 +33,10 @@ export class ScheduledAppointmentsComponent implements OnInit {
         this.appointments = res;
         this.appointments.forEach(app => {
           app.bloodDonationAppointment.startDateTime = new Date(Number(app.bloodDonationAppointment.startDateTime[0]), Number(app.bloodDonationAppointment.startDateTime[1]) - 1, Number(app.bloodDonationAppointment.startDateTime[2]), Number(app.bloodDonationAppointment.startDateTime[3]), Number(app.bloodDonationAppointment.startDateTime[4]), 0).toISOString()
+          if(!app.hasReport)
+            this.goodAppointments.push(app);
         })
-        this.dataSource.data = this.appointments;
+        this.dataSource.data = this.goodAppointments;
       })
     })
   }

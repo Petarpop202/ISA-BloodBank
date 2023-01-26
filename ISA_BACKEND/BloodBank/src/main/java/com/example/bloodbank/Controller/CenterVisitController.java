@@ -92,7 +92,6 @@ public class CenterVisitController {
         cv.setBloodDonationAppointment(_bloodDonationAppointmentService.getById(newBloodDonationAppointment.getAppointmentId()));
         cv.setPrice(newBloodDonationAppointment.getPrice());
         BloodDonationAppointment bda = _bloodDonationAppointmentService.getById(newBloodDonationAppointment.getAppointmentId());
-        bda.setFree(false);
         CenterVisit center = _centerVisitService.create(cv);
         if(center != null) {
         	ExecutorService executor = Executors.newFixedThreadPool(2);
@@ -113,6 +112,7 @@ public class CenterVisitController {
     				_emailService.sendMailWithImage(newMail, qrCode);
     			}
     		});
+            bda.setFree(false);
             _bloodDonationAppointmentService.update(bda);
             return center;
         }

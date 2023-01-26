@@ -23,6 +23,7 @@ export class AppointmentDialogComponent implements OnInit {
 
   public dataSource = new MatTableDataSource<BloodDonationAppointment>();
   appointments : BloodDonationAppointment [] = [];
+  goodAppointments : BloodDonationAppointment [] = [];
   displayedColumns: string[] = ['date', 'duration', 'make'];
   donor: BloodDonor = new BloodDonor;
   visit: CenterVisitDto = new CenterVisitDto;
@@ -45,8 +46,10 @@ export class AppointmentDialogComponent implements OnInit {
       this.appointments = res;
       this.appointments.forEach(app => {
         app.startDateTime = new Date(Number(app.startDateTime[0]), Number(app.startDateTime[1]) - 1, Number(app.startDateTime[2]), Number(app.startDateTime[3]), Number(app.startDateTime[4]), 0).toISOString()
+        if(app.free)
+          this.goodAppointments.push(app);
       })
-      this.dataSource.data = this.appointments;
+      this.dataSource.data = this.goodAppointments;
       this.dataSource.sort = this.sort;
 
     })
@@ -71,8 +74,8 @@ export class AppointmentDialogComponent implements OnInit {
   createApp():void{
     this.bloodBankService.createVisit(this.visit).subscribe(res=>{
       if(res != null)
-        alert("Uspesno kreiran " + res.bloodDonor.name);
-      else alert("Korisnik nema popunjenu anketu!")
+        alert("Uspesno zakazan termin ");
+      else alert("Nije moguce zakazati ovaj termin!")
     })
   }
 }
