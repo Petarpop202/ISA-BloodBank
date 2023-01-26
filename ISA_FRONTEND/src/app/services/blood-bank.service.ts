@@ -97,7 +97,7 @@ export class BloodBankService {
 
   getCoordinates(): Observable<any> {
     return this.http.get<any>(this.apiHost + 'apiNavi/get');
-
+  }
   getBloodAMountByBank(id: any): Observable<BloodAmount[]> {
     return this.http.get<BloodAmount[]>(this.apiHost + 'bloodAmount/getAllByBloodBank/' + id, {headers: this.headers});
   }
@@ -112,6 +112,5 @@ export class BloodBankService {
 
   addBloodDonation(bloodAmount: BloodAmount): Observable<any> {
     return this.http.post<BloodAmount>(this.apiHost + 'bloodAmount/addBloodDonation', bloodAmount);
-
   }
 }
