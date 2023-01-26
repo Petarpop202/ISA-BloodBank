@@ -82,15 +82,16 @@ public class BloodBankApplication {
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
 
-        mailSender.setUsername("isabloodbanknoreply@gmail.com");
-        mailSender.setPassword("ophmivqfijmphqsp");
+        mailSender.setUsername("noreplybloodbank847@gmail.com");
+        mailSender.setPassword("ujfwrwsevdqbtxjo");
 
         Properties props = mailSender.getJavaMailProperties();
-        props.put("mail.transport.protocol", "smtp");
+		props.put("mail.smtp.ssl.protocols", "TLSv1.2");
         props.put("mail.smtp.auth", "true");
         //props.put("mail.smtp.starttls.enable", "false");
         props.put("mail.debug", "true");
         props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
 
         return mailSender;
     }
