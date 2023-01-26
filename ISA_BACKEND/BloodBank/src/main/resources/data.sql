@@ -1,7 +1,7 @@
 insert into addresses (city, country, street, street_num) values ('Novi Sad', 'Srbija', 'Ulica 1', '11');
 insert into addresses (city, country, street, street_num) values ('Novi Sad', 'Srbija', 'Ulica 2', '22');
-insert into addresses (city, country, street, street_num) values ('Beograd', 'Srbija', 'Ulica 3', '33');
-insert into addresses (city, country, street, street_num) values ('Beograd', 'Srbija', 'Ulica 4', '44');
+insert into addresses (city, country, street, street_num, longitude, latitude) values ('Beograd', 'Srbija', 'Ulica 3', '33', '19.826855', '45.250311');
+insert into addresses (city, country, street, street_num, longitude, latitude) values ('Beograd', 'Srbija', 'Ulica 4', '44','19.826855', '45.250311');
 insert into addresses (city, country, street, street_num) values ('Niš', 'Srbija', 'Ulica 5', '55');
 insert into addresses (city, country, street, street_num) values ('Kraljevo', 'Srbija', 'Dositejeva', '14');
 

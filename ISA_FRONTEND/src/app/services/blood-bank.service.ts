@@ -91,6 +91,13 @@ export class BloodBankService {
     return this.http.put<any>(this.apiHost + 'centerVisit/updateReport/' + id, {headers: this.headers});
   }
 
+  sendCoordinates(id: any): Observable<any> {
+    return this.http.get<any>(this.apiHost + 'apiNavi/get/' + id, {headers: this.headers});
+  }
+
+  getCoordinates(): Observable<any> {
+    return this.http.get<any>(this.apiHost + 'apiNavi/get');
+  }
   getBloodAMountByBank(id: any): Observable<BloodAmount[]> {
     return this.http.get<BloodAmount[]>(this.apiHost + 'bloodAmount/getAllByBloodBank/' + id, {headers: this.headers});
   }

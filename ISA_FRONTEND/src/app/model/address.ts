@@ -4,6 +4,8 @@ export class Address {
     city: string = '';
     street: string = '';
     streetNum: string = '';
+    longitude: string = '';
+    latitude: string = '';
 
     public constructor(obj?: any) {
         if (obj) {
@@ -12,6 +14,8 @@ export class Address {
             this.city = obj.city;
             this.street = obj.street;
             this.streetNum = obj.streetNum;
+            this.longitude = obj.longitude;
+            this.latitude = obj.latitude;
         }
     }
 }

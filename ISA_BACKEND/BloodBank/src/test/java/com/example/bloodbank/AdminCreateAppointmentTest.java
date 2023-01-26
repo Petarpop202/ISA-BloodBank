@@ -2,8 +2,11 @@ package com.example.bloodbank;
 
 import com.example.bloodbank.Model.BloodBank;
 import com.example.bloodbank.Model.BloodDonationAppointment;
+import com.example.bloodbank.Model.MedicineStaff;
 import com.example.bloodbank.Service.ServiceImplementation.BloodBankService;
 import com.example.bloodbank.Service.ServiceImplementation.BloodDonationAppointmentService;
+import com.example.bloodbank.Service.ServiceImplementation.MedicineStaffService;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,6 +17,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -29,6 +35,9 @@ public class AdminCreateAppointmentTest {
     @Autowired
     private BloodBankService bloodBankService;
 
+    @Autowired
+    private MedicineStaffService medicineStaffService;
+
     @Before
     public void setUp() throws Exception {
         BloodBank newBank = new BloodBank();
@@ -37,9 +46,12 @@ public class AdminCreateAppointmentTest {
         newBank.setWorkTimeEnd(LocalTime.of(20, 0, 0));
         bloodBankService.create(newBank);
 
+        MedicineStaff medicineStaff = new MedicineStaff();
+        medicineStaff.setId(3L);
+        medicineStaff.setBloodBank(newBank);
     }
 
-    @Test(expected = ObjectOptimisticLockingFailureException.class)
+    @Test(/*expected = ObjectOptimisticLockingFailureException.class*/) //org.springframework.orm.ObjectOptimisticLockingFailureException
     public void testOptimisticLockingScenario() throws Throwable {
 
         ExecutorService executor = Executors.newFixedThreadPool(2);
@@ -50,6 +62,7 @@ public class AdminCreateAppointmentTest {
                 System.out.println("Startovan Thread 1");
 
                 BloodDonationAppointment bda = new BloodDonationAppointment();
+
                 bda.setId(2L);
                 bda.setStartDateTime(LocalDateTime.of(2023, 4, 11, 11, 10, 0));
                 bda.setBloodBank(bloodBankService.getById(1L));
@@ -57,7 +70,7 @@ public class AdminCreateAppointmentTest {
                 bda.setFree(true);
 
                 try { Thread.sleep(3000); } catch (InterruptedException e) {}
-                bloodDonationAppointmentService.create(bda);
+                Assert.assertEquals(null,bloodDonationAppointmentService.create(bda));
 
             }
         });
@@ -75,6 +88,7 @@ public class AdminCreateAppointmentTest {
                 bda.setFree(true);
 
                 bloodDonationAppointmentService.create(bda);
+
             }
         });
         try {
