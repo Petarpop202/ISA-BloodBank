@@ -25,6 +25,7 @@ export class SchedulerComponent implements OnInit {
   minutes: number = 0
   selectedDate: Date = new Date()
   error?: String
+  searchInput2: string = ''
   dateError?: String
   timeError?: String
   appointments: BloodDonationAppointment[] = []
@@ -88,10 +89,20 @@ export class SchedulerComponent implements OnInit {
   }
 
   filteredSportObjects() {
-    return this.centerVisits.filter((sportsObject) => {
-          return  sportsObject.bloodDonor.name.toLowerCase().match(this.searchInput.toLowerCase()) ||
-                          sportsObject.bloodDonor.surname.toLowerCase().match(this.searchInput.toLowerCase());
-    })
+    if(this.searchInput2.length != 0){
+      return this.centerVisits.filter((sportsObject) => {          
+        // return  (sportsObject.bloodDonor.name.toLowerCase().match(this.searchInput.toLowerCase()) ||
+        //                 sportsObject.bloodDonor.surname.toLowerCase().match(this.searchInput.toLowerCase()))          
+        return sportsObject.bloodDonationAppointment.id == this.searchInput2;
+      })
+    } else {
+      return this.centerVisits.filter((sportsObject) => {          
+        return  (sportsObject.bloodDonor.name.toLowerCase().match(this.searchInput.toLowerCase()) ||
+                        sportsObject.bloodDonor.surname.toLowerCase().match(this.searchInput.toLowerCase()))          
+        //return sportsObject.bloodDonationAppointment.id == this.searchInput2;
+      })
+    }
+    
   }
 
   getAppointments(): void{
