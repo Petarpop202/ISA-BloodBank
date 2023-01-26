@@ -1,6 +1,7 @@
 package com.example.bloodbank.Controller;
 
 import com.example.bloodbank.Model.MedicineStaff;
+import com.example.bloodbank.Model.SystemAdministrator;
 import com.example.bloodbank.Service.ServiceImplementation.MedicineStaffService;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,5 +39,12 @@ public class MedicineStaffController {
     @GetMapping(value = "/getMedicineStaffFromBloodBank/{id}")
     public List<MedicineStaff> getMedicineStaffFromBloodBank(@PathVariable Long id){
         return _medicineStaffService.getMedicineStaffFromBloodBank(id);
+    }
+    
+    @PutMapping(value = "/update/id={id}+pw={password}")
+    MedicineStaff changePassword(@PathVariable Long id, @PathVariable String password) {
+    		
+    		return _medicineStaffService.changePassword(id, password);
+    	
     }
 }

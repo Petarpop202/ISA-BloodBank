@@ -19,12 +19,10 @@ insert into blood_banks (name, address_id, description, average_grade, blood, wo
 insert into blood_banks (name, address_id, description, average_grade, blood, work_time_start, work_time_end) values ('Losa Banka Krvi', 4, 'Los opis', 1, 'A', '10:00:00', '14:00:00');
 
 insert into blood_donors (category, loyality_points, penalty_points, id) values (0, 0, 0, 1);
-insert into blood_donors (category, loyality_points, penalty_points, id) values (0, 0, 0, 2);
 insert into blood_donors (category, loyality_points, penalty_points, id) values (0, 0, 0, 5);
 insert into blood_donors (category, loyality_points, penalty_points, id) values (0, 0, 0, 4);
 insert into medicine_staffs (blood_bank_id, id) values (1, 2);
-insert into medicine_staffs (blood_bank_id, id) values (1, 3);
-insert into medicine_staffs (blood_bank_id, id) values (2, 4);
+
 
 insert into complains (description, response, blood_bank_id, blood_donor_id, system_administrator_id) values ('Ne valja nista', null, 1, 5, null);
 insert into complains (description, response, blood_bank_id, blood_donor_id, system_administrator_id) values ('Sve je super', null, 1, 5, null);
@@ -36,14 +34,16 @@ insert into blood_donation_appointments (start_date_time, duration, blood_bank_i
 insert into blood_donation_appointments (start_date_time, duration, blood_bank_id, is_free, version) values ('2023-01-22 10:40:00', 20, 1, true, 1);
 insert into blood_donation_appointments (start_date_time, duration, blood_bank_id, is_free, version) values ('2023-02-11 13:15:00', 45, 2, true, 1);
 insert into blood_donation_appointments (start_date_time, duration, blood_bank_id, is_free, version) values ('2023-01-12 12:00:00', 30, 2, true, 1);
+insert into blood_donation_appointments (start_date_time, duration, blood_bank_id, is_free, version) values ('2023-01-20 12:00:00', 30, 1, false, 1);
 
 insert into center_visit (blood_donation_id, blood_donor_id, price, is_canceled, has_report) values (1, 1, 0, false, false);
 insert into center_visit (blood_donation_id, blood_donor_id, price, is_canceled, has_report) values (2, 1, 0, false, false);
 insert into center_visit (blood_donation_id, blood_donor_id, price, is_canceled, has_report) values (3, 1, 0, false, false);
+insert into center_visit (blood_donation_id, blood_donor_id, price, is_canceled, has_report) values (6, 5, 0, false, false);
 
 insert into blood_donation_appointments_medicine_staffs (blood_donation_appointment_id, medicine_staffs_id) values (1, 2);
-insert into blood_donation_appointments_medicine_staffs (blood_donation_appointment_id, medicine_staffs_id) values (2, 3);
-insert into blood_donation_appointments_medicine_staffs (blood_donation_appointment_id, medicine_staffs_id) values (3, 4);
+insert into blood_donation_appointments_medicine_staffs (blood_donation_appointment_id, medicine_staffs_id) values (2, 2);
+insert into blood_donation_appointments_medicine_staffs (blood_donation_appointment_id, medicine_staffs_id) values (3, 2);
 
 INSERT INTO role (name) VALUES ('ROLE_DONOR');
 INSERT INTO role (name) VALUES ('ROLE_MEDICALWORKER');
@@ -52,6 +52,7 @@ INSERT INTO role (name) VALUES ('ROLE_ADMIN');
 INSERT INTO USER_ROLE (user_id, role_id) VALUES (1, 1); -- user-u dodeljujemo rolu DONOR
 INSERT INTO USER_ROLE (user_id, role_id) VALUES (2, 2); -- user-u dodeljujemo rolu MW
 INSERT INTO USER_ROLE (user_id, role_id) VALUES (3, 3); -- user-u dodeljujemo rolu ADMIN
+INSERT INTO USER_ROLE (user_id, role_id) VALUES (5, 1);
 
 INSERT INTO blood_amount(amount, blood_type, blood_bank_id) VALUES (100, 0, 1);
 INSERT INTO blood_amount(amount, blood_type, blood_bank_id) VALUES (200, 1, 1);

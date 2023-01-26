@@ -1,5 +1,6 @@
 package com.example.bloodbank.Service.ServiceImplementation;
 
+import java.time.LocalTime;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -29,6 +30,9 @@ public class BloodBankService implements IBloodBankService {
 
 	@Override
 	public BloodBank create(BloodBank entity) {
+		
+		entity.setWorkTimeEnd(LocalTime.of(17, 00, 00));
+		entity.setWorkTimeStart(LocalTime.of(07, 00, 00));
 		return bloodBankRepo.save(entity);
 	}
 

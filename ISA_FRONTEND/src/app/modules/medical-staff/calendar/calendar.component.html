@@ -1,11 +1,15 @@
 
-<!-- <full-calendar [options]="calendarOptions"></full-calendar> -->
+<full-calendar [options]="calendarOptions">
+    <ng-template #eventContent let-arg>
+      <b>{{ arg.event.title }}</b>
+    </ng-template>
+  </full-calendar>
 
-<full-calendar [options]="calendarOptions" *ngFor="let n of centerVisits" [events]="[
+<!-- <full-calendar [options]="calendarOptions" *ngFor="let n of centerVisits" [events]="[
 {title: n.bloodDonor.name + ' ' + n.bloodDonor.surname + ' (' + n.bloodDonationAppointment.duration +'min)', date: n.bloodDonationAppointment.startDateTime}
 ]">
     
-</full-calendar>
+</full-calendar> -->
 
 
 

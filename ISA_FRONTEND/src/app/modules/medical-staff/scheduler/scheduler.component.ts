@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { cD } from '@fullcalendar/core/internal-common';
+import { BloodDonationAppointment } from 'src/app/model/bloodDonationAppointment';
 import { BloodDonor } from 'src/app/model/bloodDonor';
 import { CenterVisit } from 'src/app/model/centerVisit';
+import { MedicineStaff } from 'src/app/model/medicineStaff';
 import { BloodBankService } from 'src/app/services/blood-bank.service';
+import { LoginService } from 'src/app/services/login.service';
 import { UserService } from 'src/app/services/user.service';
+import { ChangeDoctorPasswordDialogComponent } from '../change-doctor-password/change-doctor-password-dialog/change-doctor-password-dialog.component';
 import { StartAppointmentDialogComponent } from '../start-appointment-dialog/start-appointment-dialog.component';
 
 @Component({
@@ -16,11 +21,23 @@ export class SchedulerComponent implements OnInit {
   donorValue: string = ''
   id : string | null | undefined;
   centerVisits : CenterVisit[] = [] 
+  centerVisits2 : CenterVisit[] = []
   searchObject: CenterVisit[] = [] 
   searchInput:string = ''
-  constructor(private donorService: UserService, private bloodBankService:BloodBankService, public dialog: MatDialog) { }
+  hours: number = 0
+  minutes: number = 0
+  selectedDate: Date = new Date()
+  error?: String
+  searchInput2: string = ''
+  dateError?: String
+  timeError?: String
+  appointments: BloodDonationAppointment[] = []
+  appointmentDate: Date = new Date()
+  admin: MedicineStaff = new MedicineStaff
+  constructor(private loginService: LoginService, private donorService: UserService, private bloodBankService:BloodBankService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.loggedAdmin();
     this.getBloodDonors();
     this.getMedicineWorkerBloodBank()
   }
@@ -77,9 +94,70 @@ export class SchedulerComponent implements OnInit {
   }
 
   filteredSportObjects() {
-    return this.centerVisits.filter((sportsObject) => {
-          return  sportsObject.bloodDonor.name.toLowerCase().match(this.searchInput.toLowerCase()) ||
-                          sportsObject.bloodDonor.surname.toLowerCase().match(this.searchInput.toLowerCase());
+    if(this.searchInput2.length != 0){
+      return this.centerVisits.filter((sportsObject) => {          
+        // return  (sportsObject.bloodDonor.name.toLowerCase().match(this.searchInput.toLowerCase()) ||
+        //                 sportsObject.bloodDonor.surname.toLowerCase().match(this.searchInput.toLowerCase()))          
+        return sportsObject.bloodDonationAppointment.id == this.searchInput2;
+      })
+    } else {
+      return this.centerVisits.filter((sportsObject) => {          
+        return  (sportsObject.bloodDonor.name.toLowerCase().match(this.searchInput.toLowerCase()) ||
+                        sportsObject.bloodDonor.surname.toLowerCase().match(this.searchInput.toLowerCase()))          
+        //return sportsObject.bloodDonationAppointment.id == this.searchInput2;
+      })
+    }
+    
+  }
+
+  getAppointments(): void{
+    this.bloodBankService.getAppointmentsByDateTime(this.appointmentDate.toISOString()).subscribe(res => {
+      this.appointments = res
+      this.appointments.forEach(app => {
+        app.startDateTime = new Date(Number(app.startDateTime[0]), Number(app.startDateTime[1]) - 1, Number(app.startDateTime[2]), Number(app.startDateTime[3]), Number(app.startDateTime[4]), 0).toISOString()
+      })
     })
   }
+
+  searchAppointments(): void {
+    let selectedDate = new Date(this.selectedDate)
+    this.appointmentDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate(), this.hours + 1, this.minutes, 0)
+    this.getAppointments()
+    
+    //console.log(this.appointments)
+    this.centerVisits2 = []
+    if(this.appointments.length != 0){
+      this.centerVisits.forEach(cv => {
+        this.appointments.forEach(ap => {
+          if(cv.bloodDonationAppointment.id === ap.id){
+            this.centerVisits2.push(cv);
+          }
+        })
+      })
+      
+    }
+    console.log(this.centerVisits2)
+    
+  }
+
+  loggedAdmin(){
+    this.loginService.whoAmI().subscribe(res => {
+      this.admin = res;
+      if(this.admin.lastPasswordResetDate == null && this.admin.username != "plaoludastruja1"){
+        this.openChangePasswordDialog(res);
+      }
+     
+    })
+  }
+
+  public openChangePasswordDialog(adm: any): void{
+    const dialogRef = this.dialog.open(ChangeDoctorPasswordDialogComponent, {  
+      data: {admin: adm},    
+      height: '500px',
+      width: '400px',
+    })
+  }
+    
+  
+  
 }

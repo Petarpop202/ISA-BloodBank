@@ -37,6 +37,7 @@ export class NewBloodBankComponent implements OnInit {
       alert("sva polja moraju biti popunjena!")
       return;
     } else {
+      
       this.bloodBankService.createBloodBank(this.newBloodBank).subscribe(res => {
         this.newBloodBank = res;
         this.openNewAdminDialog(this.newBloodBank);
