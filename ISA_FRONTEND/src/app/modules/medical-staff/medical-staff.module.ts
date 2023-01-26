@@ -31,6 +31,7 @@ import { StartAppointmentDialogComponent } from './start-appointment-dialog/star
 import { EditPasswordComponent } from './edit-medicine-staff-profile/edit-password/edit-password.component';
 
 import { ChangeDoctorPasswordDialogComponent } from './change-doctor-password/change-doctor-password-dialog/change-doctor-password-dialog.component';
+import { RejectDonationDialogComponent } from './reject-donation-dialog/reject-donation-dialog/reject-donation-dialog.component';
 
 
 
@@ -53,7 +54,8 @@ import { ChangeDoctorPasswordDialogComponent } from './change-doctor-password/ch
 
 
     
-    ChangeDoctorPasswordDialogComponent
+    ChangeDoctorPasswordDialogComponent,
+              RejectDonationDialogComponent
 
   ],
   imports: [

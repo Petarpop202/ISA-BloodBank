@@ -7,8 +7,10 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import { CalendarOptions, EventInput } from '@fullcalendar/core';
 import { Termin } from 'src/app/model/termin';
 import { StartAppointmentDialogComponent } from '../start-appointment-dialog/start-appointment-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { cD } from '@fullcalendar/core/internal-common';
+import { id } from 'date-fns/locale';
+import { RejectDonationDialogComponent } from '../reject-donation-dialog/reject-donation-dialog/reject-donation-dialog.component';
 
 
 @Component({
@@ -78,8 +80,9 @@ export class CalendarComponent implements OnInit {
         
       });
       
-      for(var a of this.centerVisits){      
-        this.eventss.push({id: a.id, title: a.bloodDonor.name + ' ' + a.bloodDonor.surname + ' ' + a.bloodDonationAppointment.startDateTime.substring(11, 16) + ' (' + a.bloodDonationAppointment.duration + 'min)', date: a.bloodDonationAppointment.startDateTime});
+      for(var a of this.centerVisits){   
+        if(a.hasReport === false)   
+          this.eventss.push({id: a.id, title: a.bloodDonor.name + ' ' + a.bloodDonor.surname + ' ' + a.bloodDonationAppointment.startDateTime.substring(11, 16) + ' (' + a.bloodDonationAppointment.duration + 'min)', date: a.bloodDonationAppointment.startDateTime});
       }
       
       this.showCalendar(this.eventss);
@@ -118,13 +121,43 @@ export class CalendarComponent implements OnInit {
       
     
   }
-
-  public showCalendar(dogadjaji: any){
+  
+  public showCalendar(dogadjaji: any){ 
+    var router1: Router = this.router;   
+    const dialogConf = new MatDialogConfig();
+    dialogConf.height = "550px";
+    dialogConf.width = "600px";
+    var dialog1: MatDialog = this.dialog;
     this.calendarOptions = {
       initialView: 'dayGridMonth',
-      plugins: [dayGridPlugin],
-      eventClick: function(info) {
-        alert('Event: ' + info.event.id);
+      plugins: [dayGridPlugin],      
+      eventClick: function(info) {                     
+        dialogConf.data = {
+          centerVisitId: info.event.id,          
+        }
+        let dan = Number(info.event.start?.toString().substring(8, 10))
+        let mesec = info.event.start?.toString().substring(4, 7)
+        let godina = Number(info.event.start?.toString().substring(11, 15))  
+        if(godina >= 2023 && mesec != 'Jan'){
+          dialogConf.height = "160px";
+          dialogConf.width = "180px";
+          const dialogRef1 = dialog1.open(RejectDonationDialogComponent, dialogConf)
+        }      
+        else if(dan <= 28 && godina == 2023 && mesec == 'Jan'){
+          dialogConf.height = "550px";
+          dialogConf.width = "600px";
+          const dialogRef1 = dialog1.open(StartAppointmentDialogComponent, dialogConf)
+        }
+        else if(godina < 2023){
+          dialogConf.height = "550px";
+          dialogConf.width = "600px";
+          const dialogRef1 = dialog1.open(StartAppointmentDialogComponent, dialogConf)
+        }
+        else {
+          dialogConf.height = "160px";
+          dialogConf.width = "180px";
+          const dialogRef1 = dialog1.open(RejectDonationDialogComponent, dialogConf)
+        }
         
       },          
       events: dogadjaji,
@@ -133,6 +166,15 @@ export class CalendarComponent implements OnInit {
 
   startAppointment(id:string):void{
     const dialogRef = this.dialog.open(StartAppointmentDialogComponent, {
+      data: {centerVisitId: id},
+      height: '550px',
+      width: '600px',
+      //data: {name: this.name, animal: this.animal},
+    });
+  }
+
+  rejectAppointment(id:string):void{
+    const dialogRef = this.dialog.open(RejectDonationDialogComponent, {
       data: {centerVisitId: id},
       height: '550px',
       width: '600px',
