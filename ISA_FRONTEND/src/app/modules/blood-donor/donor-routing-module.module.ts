@@ -16,7 +16,9 @@ const routes: Routes = [
   { path: 'bloodDonorProfile/editBloodDonorProfile', component: EditBloodDonorProfileComponent},
   { path: 'donorSurvey', component: DonorSurveyComponent},
   { path: 'scheduledAppointments', component: ScheduledAppointmentsComponent},
-  { path: 'bloodDonorHomepage', component: BloodDonorHomepageComponent}
+  { path: 'bloodDonorHomepage', component: BloodDonorHomepageComponent},
+  { path: '', redirectTo: 'bloodDonorHomepage', pathMatch:'full'},
+  { path: '**', redirectTo: 'bloodDonorHomepage', pathMatch:'full'},
   ];
 
 @NgModule({

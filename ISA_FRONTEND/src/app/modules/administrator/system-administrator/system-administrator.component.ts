@@ -122,6 +122,7 @@ export class SystemAdministratorComponent implements OnInit {
       height: '500px',
       width: '400px',
     })
+    
   }
 
   public openNewAdminDialog(bb: any): void{

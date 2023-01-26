@@ -52,6 +52,10 @@ whoAmI(): Observable<any> {
   return this.http.get<any>(ConstSettings.apiHost + 'auth/whoami');
 }
 
+editMyPassword(id:any, newPassword:any): Observable<any> {
+  return this.http.put<any>(ConstSettings.apiHost + 'auth/editPassword/'+ id + '/' + newPassword,{headers: ConstSettings.standardHeader});
+}
+
 
 public logout = () =>
 {

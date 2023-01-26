@@ -10,6 +10,8 @@ const routes: Routes = [
     { path: 'systemAdministrator/searchUsers', component: SearchUsersComponent},
     { path: 'systemAdministrator/newBloodBank', component: NewBloodBankComponent},
     { path: 'systemAdministrator/zalbe', component: ZalbeComponent},
+    { path: '', redirectTo: 'systemAdministrator', pathMatch:'full'},
+    { path: '**', redirectTo: 'systemAdministrator', pathMatch:'full'},
     ];
   
   @NgModule({

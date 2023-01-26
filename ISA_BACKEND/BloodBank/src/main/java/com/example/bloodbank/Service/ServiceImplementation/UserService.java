@@ -2,6 +2,7 @@ package com.example.bloodbank.Service.ServiceImplementation;
 
 import com.example.bloodbank.Dto.UserRequest;
 import com.example.bloodbank.Model.BloodDonor;
+import com.example.bloodbank.Model.MedicineStaff;
 import com.example.bloodbank.Model.Role;
 import com.example.bloodbank.Model.User;
 import com.example.bloodbank.Repository.IUserRepository;
@@ -41,7 +42,9 @@ public class UserService implements IUserService {
 
     @Override
     public User update(User entity) {
-        return null;
+        User oldMedicineStaff = getById(entity.getId());
+        oldMedicineStaff.setPassword(entity.getPassword());
+        return _userRepository.save(oldMedicineStaff);
     }
 
     @Override

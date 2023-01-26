@@ -26,6 +26,9 @@ import { BrowserModule } from "@angular/platform-browser";
 import { FullCalendarModule } from "@fullcalendar/angular";
 import { NavigationComponent } from './navigation/navigation.component';
 import { AgmCoreModule } from '@agm/core';
+import { StartAppointmentDialogComponent } from './start-appointment-dialog/start-appointment-dialog.component';
+import { EditPasswordComponent } from './edit-medicine-staff-profile/edit-password/edit-password.component';
+
 
 
 @NgModule({
@@ -39,7 +42,10 @@ import { AgmCoreModule } from '@agm/core';
     AddBloodDonationAppointmentComponent,
     SchedulerComponent,
     CalendarComponent,
-    NavigationComponent
+    NavigationComponent,
+    StartAppointmentDialogComponent,
+    EditPasswordComponent
+
   ],
   imports: [
     CommonModule,

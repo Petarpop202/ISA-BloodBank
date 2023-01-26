@@ -24,7 +24,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="d-flex flex-column align-items-center text-center">
-                                        <img v-bind:src="sportObject.logo"  width="200" height="200">
+                                        <img src="../../../../assets/map.png"  width="250" height="200">
                                     </div>
                                 </div>
                             </div>
@@ -139,9 +139,29 @@
             </section>
         </mat-tab>
         <mat-tab label="Zalihe krvi">
-            <section class="my-5">
-                Dodati da vidi kolicine krvi koje se cuvaju u centru razvrstene po grupama
+            <section id="scroll" class="my-5">
+                <div class="container px-5">
+                    <h1 class="masthead-heading mb-1">Zalihe krvi u banci</h1>
+                    <div class="row gx-5 align-items-center">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Tip krvi</th>
+                                    <th>Kolicina</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let blood of bloodAmountInBank">
+                                    <tr>
+                                        <td>{{blood.bloodType}}</td>
+                                        <td>{{blood.amount}}</td>
+                                    </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </section>
         </mat-tab>
-      </mat-tab-group>
+    </mat-tab-group>
 </div>
