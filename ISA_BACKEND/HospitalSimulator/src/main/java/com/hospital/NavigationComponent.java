@@ -61,7 +61,7 @@ public class NavigationComponent {
     }
 
 
-    //@EventListener(ApplicationReadyEvent.class)
+    @EventListener(ApplicationReadyEvent.class)
     public void sendInitialMessages() {
         ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
         log.info("Sending> ... Message=[ New Longitude and Latitude] Exchange=[myexchange] RoutingKey=[navigation-queue]");
