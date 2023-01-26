@@ -135,9 +135,22 @@ export class CalendarComponent implements OnInit {
         dialogConf.data = {
           centerVisitId: info.event.id,          
         }
-        let num = Number(info.event.start?.toString().substring(8, 10))
-        console.log(num)
-        if(num <= 28){
+        let dan = Number(info.event.start?.toString().substring(8, 10))
+        let mesec = info.event.start?.toString().substring(4, 7)
+        let godina = Number(info.event.start?.toString().substring(11, 15))  
+        if(godina >= 2023 && mesec != 'Jan'){
+          dialogConf.height = "160px";
+          dialogConf.width = "180px";
+          const dialogRef1 = dialog1.open(RejectDonationDialogComponent, dialogConf)
+        }      
+        else if(dan <= 28 && godina == 2023 && mesec == 'Jan'){
+          dialogConf.height = "550px";
+          dialogConf.width = "600px";
+          const dialogRef1 = dialog1.open(StartAppointmentDialogComponent, dialogConf)
+        }
+        else if(godina < 2023){
+          dialogConf.height = "550px";
+          dialogConf.width = "600px";
           const dialogRef1 = dialog1.open(StartAppointmentDialogComponent, dialogConf)
         }
         else {
